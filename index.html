@@ -66,4 +66,22 @@ const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
 if(!Recognition){$('mic').disabled=true;$('mic').textContent='🎙️ Dictado no disponible'}else{$('mic').addEventListener('click',()=>{const r=new Recognition();r.lang='es-AR';r.interimResults=false;r.maxAlternatives=1;status('Escuchando... hablá ahora.');r.onresult=e=>{const said=e.results[0][0].transcript;const match=said.match(/\b[PCBU][0-9]{4}\b/i);if(match&&!$('code').value.trim())$('code').value=match[0].toUpperCase();else $('notes').value=($('notes').value.trim()+' '+said).trim();status('Dictado recibido: '+said)};r.onerror=e=>status('No se pudo usar el micrófono: '+e.error);r.onend=()=>{};try{r.start()}catch{status('El micrófono no está disponible ahora.')}})}
 render();
 })();
+</script> <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBdnsyW2len_vQesuPY9tyjjxrCvl7zVow",
+    authDomain: "scantec-7e3e9.firebaseapp.com",
+    projectId: "scantec-7e3e9",
+    storageBucket: "scantec-7e3e9.firebasestorage.app",
+    messagingSenderId: "293382540",
+    appId: "1:293382540:web:39a3dcbc70e3e921b38ea9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
 </script></body></html>
