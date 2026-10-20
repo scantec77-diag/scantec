@@ -246,8 +246,6 @@ async function mostrar(code,vehiculo,kind,motorEcu){
   el.appendChild(nodo('p','La biblioteca no se pudo cargar en este momento. Probá con conexión o actualizá la app.','result-caption'));
   el.appendChild(nodo('p','Mientras tanto podés entrar a la biblioteca independiente, que incluye un acceso directo al plano MAP de Corsa Z14XE.','result-caption'));
   const pagina=nodo('a','📚 Abrir Planos y Manuales ↗','bib-link');pagina.href='./biblioteca.html';el.appendChild(pagina);
-
-  el.appendChild(enlace('Abrir portal oficial de GM ↗',GM_SI));
  }
 }
 window.ScantecBiblioteca=Object.freeze({mostrar,modelo,sistemas,esChevrolet});
