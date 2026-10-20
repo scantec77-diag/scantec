@@ -26,7 +26,14 @@ function enlace(t,u,clase){
  else{a.removeAttribute('href');a.setAttribute('aria-disabled','true');}
  return a;
 }
-function esChevrolet(v){return /\b(chevrolet|chevy|chev|gm)\b/.test(normal(v));}
+function esChevrolet(v){
+ const s=normal(v);
+ if(/\b(chevrolet|chevy|chev|gm|opel)\b/.test(s))return true;
+ // Reconocer modelos GM habituales en Argentina sin exigir escribir la marca.
+ if(/\b(astra|corsa|meriva|classic|agile|zafira|vectra)\b/.test(s)&&
+   !/\b(volkswagen|vw|fiat|renault|ford|peugeot|citroen|toyota|honda|nissan|kia|hyundai)\b/.test(s))return true;
+ return false;
+}
 function modelo(v){
  const s=normal(v);
  if(/\bastra\b/.test(s))return 'astra';
@@ -173,6 +180,9 @@ function renderizar(d,code,vehiculo,motorEcu){
       !conflictoValvulas(a,fuente)&&
       grupos.length&&a.sistemas?.some(g=>grupos.includes(g)));
   const generales=docs.filter(a=>a.tipo==='sistema'&&grupos.length&&a.sistemas?.some(g=>grupos.includes(g)));
+  const orientativos=!String(motorEcu||'').trim()?
+   docs.filter(a=>a.tipo==='plano'&&!específicos.includes(a)&&!conflictoValvulas(a,fuente)&&grupos.length&&a.sistemas?.some(g=>grupos.includes(g))).slice(0,5):[];
+
   const indices=docs.filter(a=>a.tipo==='indice');
   const manuales=docs.filter(a=>a.tipo==='manual');
   if(regionales.length){
@@ -186,6 +196,11 @@ function renderizar(d,code,vehiculo,motorEcu){
   }else{
    el.appendChild(nodo('p',regionales.length?'Aún no hay un pinado de ECU confirmado para este vehículo. La documentación regional de arriba es una referencia pendiente de validación.':'No hay un plano de motor/ECU confirmado para esta consulta. No se muestran planos de otras motorizaciones como si fueran compatibles.','result-caption'));
    if(!motorEcu.trim())el.appendChild(nodo('p','Para afinar: completá el campo «Motor / ECU» con el código de motor real (por ejemplo X20XEV), no solo cilindrada.','result-caption'));
+  }
+  if(orientativos.length){
+   el.appendChild(nodo('h5','Diagramas orientativos para el sistema (motor sin verificar)'));
+   el.appendChild(nodo('p','Estos diagramas son de motores Opel diferentes: sirven para explorar el sistema, NO como pinado del Chevrolet. Para confirmar una correspondencia, identificá la ECU.','bib-warning'));
+   orientativos.forEach(a=>el.appendChild(renglon(a,'Motor no identificado · no usar pines')));
   }
   if(generales.length){
    el.appendChild(nodo('h5','Esquemas generales del sistema (no homologados para tu vehículo)'));
@@ -236,6 +251,9 @@ async function mostrar(code,vehiculo,kind,motorEcu){
   el.replaceChildren();
   el.appendChild(nodo('h4','📚 Biblioteca Chevrolet'));
   el.appendChild(nodo('p','La biblioteca no se pudo cargar en este momento. Probá con conexión o actualizá la app.','result-caption'));
+  el.appendChild(nodo('p','Mientras tanto podés entrar a la biblioteca independiente, que incluye un acceso directo al plano MAP de Corsa Z14XE.','result-caption'));
+  const pagina=nodo('a','📚 Abrir Planos y Manuales ↗','bib-link');pagina.href='./biblioteca.html';el.appendChild(pagina);
+
   el.appendChild(enlace('Abrir portal oficial de GM ↗',GM_SI));
  }
 }
