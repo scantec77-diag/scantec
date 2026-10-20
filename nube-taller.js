@@ -1,4 +1,4 @@
-import {getFirestore,collection,getDocs,doc,writeBatch} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+import {getFirestore,collection,getDocs,getDoc,doc,writeBatch} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
 // Todos los documentos se guardan bajo usuarios/{uid}/...  Las
 // reglas de Firestore comprueban uid en el servidor antes de permitir acceso.
@@ -12,8 +12,8 @@ export async function cargarNube(app,uid){
    const query=await getDocs(collection(firestore,"usuarios",uid,tipo));
    return query.docs.map(d=>({...(d.data()||{}),id:d.id}));
  }));
- const configSnap=await getDocs(collection(firestore,"usuarios",uid,"configuracion"));
- const config=configSnap.docs.find(d=>d.id==="general")?.data()||{correo:"",whatsapp:""};
+ const configSnap=await getDoc(doc(firestore,"usuarios",uid,"configuracion","general"));
+ const config=configSnap.exists()?configSnap.data():{correo:"",whatsapp:""};
  const datos={...Object.fromEntries(TIPOS.map((tipo,i)=>[tipo,listas[i]])),ajustes:config};
  return {datos,firestore};
 }
