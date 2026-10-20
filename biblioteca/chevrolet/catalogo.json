@@ -2,16 +2,7 @@
   "version": 1,
   "marca": "Chevrolet",
   "aviso": "Material Opel disponible como REFERENCIA para ciertas plataformas GM; no se garantiza equivalencia con Chevrolet de Argentina/Brasil. Confirmar número de motor, ECU, ramal, mercado y esquema antes de medir pines.",
-  "fuentes": [
-    {
-      "id": "gm-si",
-      "modelo": "general",
-      "titulo": "GM / ACDelco TDS — información técnica de servicio",
-      "tipo": "portal_oficial",
-      "url": "https://www.acdelcotds.com/",
-      "nota": "Portal oficial, con suscripción; la cobertura depende del mercado y del vehículo. No es un enlace directo a un plano."
-    }
-  ],
+  "fuentes": [],
   "planos": [
     {
       "id": "astra-g-indice",
