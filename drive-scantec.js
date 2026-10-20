@@ -229,9 +229,16 @@ function init(){
 }
 let activated=false;
 function activate(uid){
- if(activated)return;
- activeUid=String(uid||"");
- if(!activeUid)return;
+ const requestedUid=String(uid||"");
+ if(!requestedUid)return;
+ if(activated&&activeUid===requestedUid)return;
+ if(activated&&activeUid!==requestedUid){
+  // Una cuenta distinta de Scantec nunca puede reutilizar el acceso de Drive anterior.
+  forgetSession();
+  token="";expiresAt=0;tokenClient=null;items=[];lastRoot="";
+  setAuth(false);clearFiles();
+ }
+ activeUid=requestedUid;
  activated=true;
  // Los documentos y el índice se cargan recién después del desbloqueo local.
  const s=settings();
