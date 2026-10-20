@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07152b">
+<title>Google Drive · Scantec 77</title>
+<style>
+:root{color-scheme:dark;--bg:#07152b;--card:#102440;--border:#355a7a;--accent:#48c7ff;--text:#f3f9ff;--muted:#bdcfe3}
+*{box-sizing:border-box}
+body{background:radial-gradient(circle at top,#123e63,var(--bg) 58%);margin:0;color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:840px;margin:auto;padding:22px 15px 70px}
+header{display:flex;gap:13px;align-items:center;flex-wrap:wrap;margin-bottom:15px}
+header img{width:60px;height:60px;border-radius:50%;border:2px solid var(--accent)}
+h1{font-size:24px;margin:0;color:#b5eaff}h2{font-size:19px;margin:0 0 10px}
+header>a{margin-left:auto}
+a{color:#9ddfff}p{margin:10px 0}
+.card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:17px;margin:14px 0}
+.note{font-size:13px;color:var(--muted)}
+.status{min-height:20px;line-height:1.5}.error{color:#ffba99;font-size:13px}
+label{display:block;font-size:13px;color:#d2e5f7;font-weight:650;margin:11px 0 5px}
+input{display:block;width:100%;min-width:0;border:1px solid #476d8a;background:#061830;border-radius:9px;color:#fff;padding:12px;font:16px system-ui}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin:13px 0}
+button,.doc-link{border:1px solid #4280a9;border-radius:11px;background:#205078;color:#f2fbff;padding:11px 13px;font:700 14px system-ui;cursor:pointer;text-decoration:none}
+button:disabled{opacity:.5;cursor:not-allowed}
+button.primary{background:linear-gradient(110deg,#128ec9,#5cd2ff);color:#061b2b;border:0}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff}
+#authLabel{font-weight:650;color:#9be9ff}
+#results{display:grid;gap:10px;margin-top:14px}
+.file-row{border:1px solid #375879;background:#0a2037;border-radius:11px;padding:12px;overflow-wrap:anywhere}
+.file-row strong{color:#d5efff}
+.file-row .path{font-size:12px;color:#a9c8df;margin:5px 0 9px;overflow-wrap:anywhere}
+.file-row .doc-link{display:inline-block;background:#1c6086}
+code{background:#081a31;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+ol{padding-left:24px}
+li{margin:8px 0}
+small{color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<header>
+<img src="./icons/scantec-logo.jpg" alt="Scantec"/>
+<div><h1>☁️ Google Drive · ScanTec 77</h1><div class="note">Biblioteca privada de manuales, diagramas y archivos técnicos</div></div>
+<a href="./">← Volver</a>
+</header>
+<section class="card">
+<h2>1. Autorizar Scantec en Google</h2>
+<p class="note">Esta conexión es independiente del inicio de sesión de Firebase. Pedirá permiso para ver <strong>nombres, carpetas y metadatos</strong> de tu Drive, no para borrar ni subir archivos. Los documentos se abren en una pestaña de Google Drive con tu propia cuenta.</p>
+<label for="clientId">ID de cliente OAuth 2.0 · Aplicación web</label>
+<input id="clientId" placeholder="123456789-xxxxxxxx.apps.googleusercontent.com" spellcheck="false" autocomplete="off">
+<label for="folderId">Carpeta raíz de ScanTec 77 (enlace o ID)</label>
+<input id="folderId" spellcheck="false" autocomplete="off">
+<p class="note">Vinculamos únicamente la carpeta raíz que indiques y sus subcarpetas. El ID del cliente y la carpeta se recuerdan en este navegador; <strong>el token de Google no se almacena</strong>.</p>
+<div class="actions">
+<button id="save" type="button">💾 Guardar configuración</button>
+<button id="connect" type="button" class="primary">🔐 Conectar Drive con Google</button>
+<button id="refresh" type="button" disabled>🔄 Actualizar biblioteca</button>
+<button id="disconnect" type="button" disabled>Desconectar</button>
+</div>
+<p id="authLabel">Drive sin conectar</p>
+<p id="estado" class="status note" role="status" aria-live="polite"></p>
+<p class="note"><a id="rootLink" target="_blank" rel="noopener noreferrer">Abrir carpeta ScanTec 77 en Drive ↗</a></p>
+</section>
+<section class="card">
+<h2>2. Mis planos y manuales sincronizados</h2>
+<label for="buscar">Buscar por nombre de archivo o carpeta (marca, modelo, año)</label>
+<input id="buscar" placeholder="Ej.: Astra, Chevrolet, Corsa, 2.0 8V, P0117" autocomplete="off">
+<p id="summary" class="note"></p>
+<div id="results"><p class="note">Conectá tu Drive para mostrar la biblioteca.</p></div>
+</section>
+<section class="card">
+<h2>¿Dónde consigo el ID de cliente?</h2>
+<ol>
+<li>Entrá a <a id="cloudLink" target="_blank" rel="noopener noreferrer">Google Cloud Console → Google Auth Platform → Clientes ↗</a> y seleccioná el proyecto de Scantec.</li>
+<li>Activá la <a href="https://console.cloud.google.com/apis/library/drive.googleapis.com" target="_blank" rel="noopener noreferrer">Google Drive API</a> para el mismo proyecto.</li>
+<li>En <strong>Público (Audience)</strong>, seleccioná <strong>Externo · En pruebas</strong> y agregá tu cuenta a <strong>Usuarios de prueba</strong>. Completá el nombre y correo en <strong>Branding</strong>.</li>
+<li>En <strong>Acceso a datos</strong> agregá <code>https://www.googleapis.com/auth/drive.metadata.readonly</code>. Google lo considera un permiso restringido; para publicarlo a todos los usuarios puede exigir verificación. Para una prueba personal, dejá la aplicación en modo Testing.</li>
+<li>Creá un cliente OAuth de tipo <strong>Aplicación web</strong>. En <strong>Orígenes de JavaScript autorizados</strong> escribí exactamente <code>https://scantec77-diag.github.io</code>, sin agregar <code>/scantec</code>.</li>
+<li>Copiá el <strong>ID de cliente</strong> y pegalo arriba. No uses ni compartas secretos de cliente.</li>
+<li>Pulsá <strong>Conectar Drive con Google</strong>, elegí la cuenta propietaria de la carpeta ScanTec 77 y aceptá el permiso.</li>
+</ol>
+<p class="note">Scantec recorre la carpeta cuando conectás o pulsás «Actualizar biblioteca». Esta primera etapa no realiza copias automáticas en segundo plano, ni sincroniza los clientes de Mi Taller. Eso continúa funcionando mediante Firebase y lo ampliaremos por separado.</p>
+</section>
+</main>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="./drive-scantec.js"></script>
+<script>window.ScantecDrive?.init();</script>
+</body>
+</html>
