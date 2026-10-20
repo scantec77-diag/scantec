@@ -53,6 +53,7 @@ textarea{min-height:78px;resize:vertical}
 <button type="button" data-tab="ajustes">⚙️ Configuración</button>
 </nav>
 <div class="card"><label for="busqueda">🔎 Buscar en Mi Taller por patente, cliente o teléfono</label><input id="busqueda" type="search" placeholder="Ej.: AA123BB, Astra, Juan, 11…" autocomplete="off"></div>
+<section id="coincidenciasBusqueda" class="card" aria-live="polite" hidden></section>
 <section class="panel" id="panel-inicio">
 <div class="card"><h2>Mi Taller</h2><div class="metrics"><div class="metric"><strong id="nClientes">0</strong><small>Clientes</small></div><div class="metric"><strong id="nVehiculos">0</strong><small>Vehículos</small></div><div class="metric"><strong id="nTrabajos">0</strong><small>Trabajos</small></div></div><div class="inline-actions"><button class="primary" type="button" data-go="clientes">+ Cliente</button><button type="button" data-go="vehiculos">+ Vehículo</button><button type="button" data-go="trabajos">+ Trabajo</button><button type="button" data-go="presupuestos">+ Presupuesto</button></div></div>
 <div class="card"><h3>Últimos trabajos</h3><div id="inicioUltimos" class="items"></div></div>
@@ -135,7 +136,31 @@ function cliente(id){return db.clientes.find(x=>x.id===id)}
 function vehiculo(id){return db.vehiculos.find(x=>x.id===id)}
 function duenio(v){const c=v&&cliente(v.clienteId);return c?(c.nombre+" "+c.apellido):"Cliente no disponible"}
 function auto(v){return v?(v.patente+" · "+v.marca+" "+v.modelo):"Vehículo no disponible"}
-function textMatch(...parts){const q=el("busqueda").value.trim().toLocaleLowerCase("es-AR");return !q||parts.join(" ").toLocaleLowerCase("es-AR").includes(q)}
+// Ignora tildes, espacios y guiones: AA 123 BB y AA-123-BB encuentran AA123BB.
+function normalizarBusqueda(v){return String(v??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("es-AR").replace(/[^a-z0-9]/g,"")}
+function textMatch(...parts){const q=normalizarBusqueda(el("busqueda").value);return !q||normalizarBusqueda(parts.join(" ")).includes(q)}
+function vehiculosDelCliente(c){return db.vehiculos.filter(v=>v.clienteId===c.id)}
+function clienteCoincide(c){
+ return textMatch(c.nombre,c.apellido,c.telefono,c.email,c.direccion,c.dni,
+  ...vehiculosDelCliente(c).flatMap(v=>[v.patente,v.marca,v.modelo,v.anio,v.gnc]));
+}
+function mostrarCoincidencias(){
+ const panel=el("coincidenciasBusqueda");
+ const termino=el("busqueda").value.trim();
+ if(!termino){panel.hidden=true;panel.innerHTML="";return}
+ const clientes=db.clientes.filter(clienteCoincide);
+ if(!clientes.length){panel.hidden=true;panel.innerHTML="";return}
+ panel.hidden=false;
+ const fichas=clientes.slice(0,10).map(c=>{
+  const autos=vehiculosDelCliente(c);
+  const trabajos=db.trabajos.filter(t=>autos.some(v=>v.id===t.vehiculoId)).length;
+  const detalleAutos=autos.length?autos.map(v=>'<p>🚗 '+esc(auto(v))+'</p>').join(""):'<p>Sin vehículos asociados</p>';
+  const autosElegidos=autos.filter(v=>textMatch(auto(v),duenio(v),v.gnc,v.anio));
+  const botones=autosElegidos.slice(0,4).map(v=>'<button class="tiny" type="button" data-act="vehiculoHistorial" data-id="'+esc(v.id)+'">🛠️ Historial '+esc(v.patente)+'</button>').join("");
+  return '<article class="item"><strong>👤 '+esc(c.nombre+" "+c.apellido)+'</strong><p>☎ '+esc(c.telefono||"Sin teléfono")+'</p>'+detalleAutos+'<small>'+trabajos+' trabajo(s) registrado(s)</small><div class="inline-actions"><button class="tiny primary" type="button" data-act="fichaCliente" data-id="'+esc(c.id)+'">Ver ficha del cliente</button>'+botones+'</div></article>';
+ }).join("");
+ panel.innerHTML='<h3>🔎 Clientes y vehículos encontrados ('+clientes.length+')</h3><div class="items">'+fichas+'</div>'+(clientes.length>10?'<p class="muted">Mostrando los primeros 10. Escribí más datos para afinar la búsqueda.</p>':'');
+}
 function go(name){document.querySelectorAll(".panel").forEach(p=>p.hidden=p.id!=="panel-"+name);document.querySelectorAll("nav [data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));render();window.scrollTo({top:0,behavior:"smooth"})}
 function opciones(){
 document.querySelectorAll(".clientesOptions").forEach(select=>{const anterior=select.value;select.innerHTML='<option value="">Seleccioná cliente</option>'+db.clientes.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.apellido+", "+c.nombre)+'</option>').join("");select.value=anterior||"";});
@@ -145,13 +170,14 @@ function actions(list){return list||'<p class="muted">Todavía no hay registros 
 function render(){
 if(!db)return;
 opciones();
+mostrarCoincidencias();
 el("nClientes").textContent=db.clientes.length;el("nVehiculos").textContent=db.vehiculos.length;el("nTrabajos").textContent=db.trabajos.length;
 const trabajos=[...db.trabajos].sort((a,b)=>(b.fecha||"").localeCompare(a.fecha||""));
 const jobHtml=t=>{const v=vehiculo(t.vehiculoId);return '<article class="item"><strong>'+esc(formatoFecha(t.fecha))+' · '+esc(t.tipo)+'</strong><p>'+esc(auto(v))+' · '+esc(duenio(v))+'</p><p>'+esc(t.detalle)+'</p>'+(t.codigos?'<p>Códigos: '+esc(t.codigos)+'</p>':'')+(t.resultado?'<p>Resultado: '+esc(t.resultado)+'</p>':'')+(t.recomendaciones?'<p>Recomendaciones: '+esc(t.recomendaciones)+'</p>':'')+(t.importe?'<p>Importe: '+money(t.importe)+'</p>':'')+'<div class="inline-actions"><button class="tiny danger" data-act="trabajoBorrar" data-id="'+esc(t.id)+'">Eliminar</button></div></article>'};
-const coinciden=trabajos.filter(t=>{const v=vehiculo(t.vehiculoId);return textMatch(auto(v),duenio(v),t.detalle,t.tipo,t.codigos)});
+const coinciden=trabajos.filter(t=>{const v=vehiculo(t.vehiculoId),c=v&&cliente(v.clienteId);return textMatch(auto(v),duenio(v),c?.telefono,c?.email,t.detalle,t.tipo,t.codigos)});
 el("inicioUltimos").innerHTML=actions(coinciden.slice(0,5).map(jobHtml).join(""));
 el("listaTrabajos").innerHTML=actions(coinciden.map(jobHtml).join(""));
-el("listaClientes").innerHTML=actions(db.clientes.filter(c=>textMatch(c.nombre,c.apellido,c.telefono,c.email,c.direccion,c.dni)).map(c=>'<article class="item"><strong>'+esc(c.apellido+", "+c.nombre)+'</strong><p>☎ '+esc(c.telefono||"Sin teléfono")+' · '+esc(c.email||"Sin correo")+'</p>'+(c.direccion?'<p>Dirección: '+esc(c.direccion)+'</p>':'')+(c.dni?'<p>DNI: '+esc(c.dni)+'</p>':'')+'<small>'+db.vehiculos.filter(v=>v.clienteId===c.id).length+' vehículo(s)</small><div class="inline-actions"><button class="tiny" data-act="clienteEditar" data-id="'+esc(c.id)+'">Editar</button><button class="tiny danger" data-act="clienteBorrar" data-id="'+esc(c.id)+'">Eliminar</button></div></article>').join(""));
+el("listaClientes").innerHTML=actions(db.clientes.filter(clienteCoincide).map(c=>'<article class="item"><strong>'+esc(c.apellido+", "+c.nombre)+'</strong><p>☎ '+esc(c.telefono||"Sin teléfono")+' · '+esc(c.email||"Sin correo")+'</p>'+(c.direccion?'<p>Dirección: '+esc(c.direccion)+'</p>':'')+(c.dni?'<p>DNI: '+esc(c.dni)+'</p>':'')+'<p>🚗 '+(vehiculosDelCliente(c).map(v=>esc(v.patente+' · '+v.marca+' '+v.modelo)).join(' | ')||'Sin vehículos asociados')+'</p><small>'+vehiculosDelCliente(c).length+' vehículo(s)</small><div class="inline-actions"><button class="tiny" data-act="clienteEditar" data-id="'+esc(c.id)+'">Editar</button><button class="tiny danger" data-act="clienteBorrar" data-id="'+esc(c.id)+'">Eliminar</button></div></article>').join(""));
 el("listaVehiculos").innerHTML=actions(db.vehiculos.filter(v=>{const c=cliente(v.clienteId);return textMatch(auto(v),duenio(v),c&&c.telefono,v.gnc,v.notas)}).map(v=>'<article class="item"><strong>'+esc(auto(v))+'</strong><p>Cliente: '+esc(duenio(v))+'</p><p>Año: '+esc(v.anio||"-")+' · Km: '+esc(v.km||"-")+(v.gnc?' · GNC: '+esc(v.gnc):'')+'</p>'+(v.notas?'<p>'+esc(v.notas)+'</p>':'')+'<div class="inline-actions"><button class="tiny" data-act="vehiculoEditar" data-id="'+esc(v.id)+'">Editar</button><button class="tiny" data-act="vehiculoHistorial" data-id="'+esc(v.id)+'">Ver historial</button><button class="tiny danger" data-act="vehiculoBorrar" data-id="'+esc(v.id)+'">Eliminar</button></div></article>').join(""));
 el("listaDocumentos").innerHTML=actions(db.documentos.filter(d=>{const v=vehiculo(d.vehiculoId);return textMatch(d.tipo,d.numero,auto(v),duenio(v),d.notas,(d.items||[]).map(x=>x.descripcion).join(" "))}).slice().reverse().map(d=>{const v=vehiculo(d.vehiculoId);const total=(d.items||[]).reduce((a,x)=>a+x.cantidad*x.precio,0);return '<article class="item"><strong>'+esc(d.tipo)+' · '+esc(d.numero)+'</strong><p>'+esc(formatoFecha(d.fecha))+' · '+esc(auto(v))+' · '+esc(duenio(v))+'</p><p>'+esc((d.items||[]).map(x=>x.descripcion+' × '+x.cantidad).join(" | "))+'</p><strong>Total: '+money(total)+'</strong><div class="inline-actions"><button class="tiny primary" data-act="pdf" data-id="'+esc(d.id)+'">⬇️ PDF</button><button class="tiny" data-act="share" data-id="'+esc(d.id)+'">📤 Compartir PDF</button><button class="tiny" data-act="wa" data-id="'+esc(d.id)+'">WhatsApp</button><button class="tiny" data-act="mail" data-id="'+esc(d.id)+'">Correo</button><button class="tiny danger" data-act="documentoBorrar" data-id="'+esc(d.id)+'">Eliminar</button></div></article>'}).join(""));
 }
@@ -176,11 +202,12 @@ el("formAjustes").onsubmit=async e=>{e.preventDefault();db.ajustes={correo:val(e
 el("exportar").onclick=()=>{const blob=new Blob([JSON.stringify({app:"Scantec Mi Taller",version:1,exportado:new Date().toISOString(),datos:db},null,2)],{type:"application/json"});download(blob,"Scantec-Mi-Taller-copia-"+hoy()+".json");toast("✅ Copia generada. Guardala en un lugar privado.");};
 el("restaurar").onclick=()=>el("archivoRestaurar").click();
 el("archivoRestaurar").onchange=async e=>{const f=e.currentTarget.files[0];if(!f)return;try{if(f.size>10000000)throw Error("Archivo demasiado grande");const o=JSON.parse(await f.text());const datos=o.datos;if(o.app!=="Scantec Mi Taller"||!datos||!Array.isArray(datos.clientes)||!Array.isArray(datos.vehiculos)||!Array.isArray(datos.trabajos)||!Array.isArray(datos.documentos))throw Error("La copia no tiene el formato de Scantec.");if(!confirm("¿Reemplazar TODOS los datos de Mi Taller guardados en este navegador por la copia seleccionada?"))return;db=datos;if(!db.ajustes||typeof db.ajustes!=="object")db.ajustes={correo:"",whatsapp:""};if(await guardar()){render();cargarAjustes();toast("✅ Copia restaurada en Firebase.");}}catch(err){toast("⚠️ "+err.message)}finally{e.currentTarget.value="";}};
-document.querySelectorAll("#listaClientes,#listaVehiculos,#listaTrabajos,#inicioUltimos,#listaDocumentos").forEach(box=>box.onclick=clickItem);
+document.querySelectorAll("#coincidenciasBusqueda,#listaClientes,#listaVehiculos,#listaTrabajos,#inicioUltimos,#listaDocumentos").forEach(box=>box.onclick=clickItem);
 cargarAjustes();render();
 }
 function cargarAjustes(){const f=el("formAjustes");f.elements.correo.value=(db.ajustes||{}).correo||"";f.elements.whatsapp.value=(db.ajustes||{}).whatsapp||"";}
 async function clickItem(event){const b=event.target.closest("button[data-act]");if(!b)return;const id=b.dataset.id;const act=b.dataset.act;
+if(act==="fichaCliente"){go("clientes");return}
 if(act==="clienteEditar"){const c=cliente(id);if(c){go("clientes");completar(el("formCliente"),c);el("formCliente").scrollIntoView({block:"start",behavior:"smooth"})}return}
 if(act==="vehiculoEditar"){const v=vehiculo(id);if(v){go("vehiculos");completar(el("formVehiculo"),v);el("formVehiculo").scrollIntoView({block:"start",behavior:"smooth"})}return}
 if(act==="vehiculoHistorial"){const v=vehiculo(id);if(v){el("busqueda").value=v.patente;go("trabajos")}return}
