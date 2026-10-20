@@ -53,3 +53,13 @@ Las fichas de las diez familias de sensores incorporan una visualización orient
 - Al introducir `Chevrolet Astra 2.0 8V 1999` aparecen enlaces a dos fuentes de esquemas de la familia Bosch Motronic M1.5.5 (Scribd y SlideShare). La segunda es una colección y requiere navegar a la sección del Astra. Los sitios pueden solicitar iniciar sesión. Sus contenidos no se rehostean.
 - **No se dispone todavía de pinado exacto confirmado para un Astra argentino específico**: identificar código de ECU y motor antes de usar el esquema de terceros. El dibujo local NO muestra pines ni colores y nunca debe interpretarse como plano oficial de GM.
 - El circuito funcional se desplaza horizontalmente en pantallas pequeñas. `P017` no es un DTC OBD-II completo; el ejemplo de ECT es `P0117`.
+
+## Biblioteca PSA Peugeot y Citroën
+Primera versión de la biblioteca técnica de **Peugeot y Citroën**, sin modificar `Mi Taller`, Firebase ni presupuestos.
+- Catálogo fuente `biblioteca/psa/catalogo.json`: 18 recursos externos etiquetados (por marca, modelo, motor, familia de sistema y URL), con aclaración de si el sitio solicita cuenta o suscripción.
+- Buscador independiente `biblioteca-psa.html`, enlazado desde el inicio de Scantec y desde la biblioteca Chevrolet.
+- Integración de `biblioteca-psa.js` con la consulta DTC: cuando la marca es Peugeot/Citroën aparece un bloque de referencias de planos del sistema vinculado, y el botón «Ver planos y manuales de esta falla» transfiere marca, modelo, motor/ECU y código al buscador PSA.
+- Los DTC relacionados con sensores MAP, MAF, ECT, IAT, TPS, CKP, CMP, sonda lambda, detonación, inyectores, bomba, refrigeración y encendido pueden usar el filtrado. Si el DTC no corresponde a un sistema clasificado, puede mostrarse una lista general de referencias del modelo.
+- Cuando el usuario declara un código de motor/ECU, no se ofrece una fuente de otro motor como coincidencia. Cuando no lo declara, los enlaces se anuncian solo como **referencias sin motor validado**.
+- Ejemplos probados por lógica de búsqueda: Peugeot 307 NFU + P0117, Citroën C3 TU5JP4 + P0107, Peugeot Partner 9HT + P0102, Citroën Berlingo RHY + P0117, Xsara Picasso NFZ + P0335.
+- No se copian ni redistribuyen manuales de terceros ni se promete compatibilidad por VIN, OPR, BSI/BSM o mercado. Algunos enlaces externos pueden exigir acceso pago.
