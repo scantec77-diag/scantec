@@ -38,6 +38,13 @@ code{background:#081a31;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere
 ol{padding-left:24px}
 li{margin:8px 0}
 small{color:var(--muted)}
+.remember-drive{padding:13px 14px;margin:8px 0 5px;border:1px solid #356282;border-radius:12px;background:#0b2037}
+.remember-drive .checkline{display:flex;align-items:center;gap:10px;cursor:pointer;margin:0;font-size:14px}
+.remember-drive .checkline input{display:inline-block;width:19px;height:19px;min-width:19px;margin:0;accent-color:#48c7ff}
+.remember-details[hidden]{display:none}
+.remember-details{margin-top:11px}
+.remember-details label{margin-top:6px}
+.remember-details button{margin-top:8px}
 </style>
 </head>
 <body>
@@ -62,6 +69,15 @@ small{color:var(--muted)}
 <div id="results"><p class="note">Conectá tu Drive para consultar la biblioteca.</p></div>
 </section>
 <p id="drivePublicStatus" class="note" role="status">Google Drive sin conectar. Abrí Configuración para autorizarlo.</p>
+<section class="remember-drive" aria-label="Cuenta preferida de Drive">
+<label class="checkline" for="rememberDriveAccount"><input id="rememberDriveAccount" type="checkbox"> Recordar siempre esta cuenta de Google Drive</label>
+<div id="rememberDriveDetails" class="remember-details" hidden>
+<label for="driveRememberEmail">Correo de la cuenta que querés utilizar siempre</label>
+<input id="driveRememberEmail" type="email" inputmode="email" placeholder="tu-cuenta@gmail.com" autocomplete="email" spellcheck="false">
+<button id="saveRememberAccount" type="button">💾 Guardar cuenta preferida</button>
+</div>
+<p class="note">Se guarda solo el correo en este dispositivo, nunca la contraseña. Scantec intenta usar esa cuenta al reconectar; Google puede volver a pedir autorización.</p>
+</section>
 <div class="actions"><button id="reconnectDrive" type="button" class="primary" hidden>🔄 Reconectar Mi Drive</button></div>
 <details id="driveSettings" class="card">
 <summary>⚙️ Configuración de Mi Drive</summary>
@@ -70,12 +86,10 @@ small{color:var(--muted)}
 <p class="note">Esta conexión es independiente del inicio de sesión de Firebase. Pedirá permiso para ver <strong>nombres, carpetas y metadatos</strong> de tu Drive, no para borrar ni subir archivos. Los documentos se abren en una pestaña de Google Drive con tu propia cuenta.</p>
 <label for="clientId">ID de cliente OAuth 2.0 · Aplicación web</label>
 <input id="clientId" placeholder="123456789-xxxxxxxx.apps.googleusercontent.com" spellcheck="false" autocomplete="off">
-<label for="driveAccountHint">Cuenta de Google Drive preferida (opcional)</label>
-<input id="driveAccountHint" type="email" inputmode="email" placeholder="cuenta-de-drive@gmail.com" autocomplete="email" spellcheck="false">
-<p class="note">Podés indicarla una sola vez para que Google intente usar esa cuenta sin mostrarte el selector. No es necesario si solo tenés una cuenta.</p>
+<p class="note">La opción para recordar el correo se encuentra junto al botón «Reconectar Mi Drive».</p>
 <label for="folderId">Carpeta raíz de ScanTec 77 (enlace o ID)</label>
 <input id="folderId" spellcheck="false" autocomplete="off">
-<p class="note">Vinculamos únicamente la carpeta raíz que indiques y sus subcarpetas. El ID del cliente y la carpeta se recuerdan en este navegador. La autorización temporal de Google se conserva solo durante esta sesión del navegador y hasta su vencimiento; no es un acceso permanente.</p>
+<p class="note">Vinculamos únicamente la carpeta raíz que indiques y sus subcarpetas. El ID del cliente y la carpeta se recuerdan en este navegador. La autorización temporal de Google dura hasta su vencimiento. Mientras mantengas esta pestaña, Scantec puede conservar el último índice de tu biblioteca para buscar sin reconectar; no permite sincronizar cambios nuevos sin autorización.</p>
 <div class="actions">
 <button id="save" type="button">💾 Guardar configuración</button>
 <button id="connect" type="button" class="primary">🔐 Conectar Drive con Google</button>
