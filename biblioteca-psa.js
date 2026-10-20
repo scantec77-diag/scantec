@@ -6,7 +6,7 @@ const BASE='./biblioteca/psa/catalogo.json';
 let loading=null,serial=0,panel=null;
 const $=id=>document.getElementById(id);
 const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-const tokens=s=>String(s||'').toUpperCase().match(/[A-Z][A-Z0-9.]{2,}/g)||[];
+const tokens=s=>String(s||'').toUpperCase().match(/\b(?:[A-Z][A-Z0-9.]{2,}|[0-9][A-Z]{2,}[A-Z0-9.]*)\b/g)||[];
 const sistemaNombres={map:'MAP',maf:'MAF',ect:'ECT',iat:'IAT',tps:'TPS/APP',ckp:'CKP',cmp:'CMP',oxygen:'sonda lambda',knock:'detonación',fuel:'presión de combustible',injectors:'inyectores',fuelpump:'bomba de combustible',ignition:'encendido',cooling:'refrigeración'};
 function marca(s){
  const x=norm(s);
@@ -79,6 +79,7 @@ function compatible(d,x){
  const motorList=[...(d.motores||[]),...(d.ecu||[])].map(z=>z.toUpperCase().replace(/[^A-Z0-9]/g,''));
  const matches=engineTokens.some(t=>motorList.includes(t.replace(/[^A-Z0-9]/g,'')));
  const isCollection=['indice','coleccion','manual'].includes(d.tipo);
+ if(motorConIdentificacion&&!motorList.length&&!isCollection)return null;
  const relevant=x.system?Array.isArray(d.sistemas)&&d.sistemas.includes(x.system):true;
  if(!relevant&&!isCollection)return null;
  if(x.motor&&motorConIdentificacion&&motorList.length&&!matches){
