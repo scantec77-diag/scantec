@@ -148,18 +148,35 @@ function mostrarCoincidencias(){
  const panel=el("coincidenciasBusqueda");
  const termino=el("busqueda").value.trim();
  if(!termino){panel.hidden=true;panel.innerHTML="";return}
- const clientes=db.clientes.filter(clienteCoincide);
- if(!clientes.length){panel.hidden=true;panel.innerHTML="";return}
  panel.hidden=false;
- const fichas=clientes.slice(0,10).map(c=>{
+ // Buscar primero las patentes en TODOS los vehículos, sin exigir coincidencia de cliente.
+ // Así podemos encontrar también los vehículos cuya vinculación con el cliente esté incompleta.
+ const vehiculosEncontrados=db.vehiculos.filter(v=>{
+  const c=cliente(v.clienteId);
+  return textMatch(v.patente,v.marca,v.modelo,v.anio,v.gnc,v.notas,c?.nombre,c?.apellido,c?.telefono,c?.dni);
+ });
+ const clientesEncontrados=db.clientes.filter(clienteCoincide);
+ const clientesPorId=new Map(clientesEncontrados.map(c=>[c.id,c]));
+ for(const v of vehiculosEncontrados){const c=cliente(v.clienteId);if(c)clientesPorId.set(c.id,c)}
+ const clientes=[...clientesPorId.values()];
+ if(!clientes.length&&!vehiculosEncontrados.length){
+  const patentes=db.vehiculos.slice(0,8).map(v=>esc(String(v.patente||"(patente vacía)"))).join(", ");
+  panel.innerHTML='<h3>🔎 Sin coincidencias para «'+esc(termino)+'»</h3><p class="muted">Revisá cómo quedó registrada la patente en Vehículos. Patentes guardadas en esta cuenta: '+(patentes||"ninguna")+'.</p><p class="muted">Buscador actualizado · revisión 2</p>';
+  return;
+ }
+ const tarjetas=[];
+ for(const c of clientes.slice(0,10)){
   const autos=vehiculosDelCliente(c);
   const trabajos=db.trabajos.filter(t=>autos.some(v=>v.id===t.vehiculoId)).length;
   const detalleAutos=autos.length?autos.map(v=>'<p>🚗 '+esc(auto(v))+'</p>').join(""):'<p>Sin vehículos asociados</p>';
-  const autosElegidos=autos.filter(v=>textMatch(auto(v),duenio(v),v.gnc,v.anio));
-  const botones=autosElegidos.slice(0,4).map(v=>'<button class="tiny" type="button" data-act="vehiculoHistorial" data-id="'+esc(v.id)+'">🛠️ Historial '+esc(v.patente)+'</button>').join("");
-  return '<article class="item"><strong>👤 '+esc(c.nombre+" "+c.apellido)+'</strong><p>☎ '+esc(c.telefono||"Sin teléfono")+'</p>'+detalleAutos+'<small>'+trabajos+' trabajo(s) registrado(s)</small><div class="inline-actions"><button class="tiny primary" type="button" data-act="fichaCliente" data-id="'+esc(c.id)+'">Ver ficha del cliente</button>'+botones+'</div></article>';
- }).join("");
- panel.innerHTML='<h3>🔎 Clientes y vehículos encontrados ('+clientes.length+')</h3><div class="items">'+fichas+'</div>'+(clientes.length>10?'<p class="muted">Mostrando los primeros 10. Escribí más datos para afinar la búsqueda.</p>':'');
+  const botones=autos.filter(v=>vehiculosEncontrados.some(en=>en.id===v.id)).slice(0,4).map(v=>'<button class="tiny" type="button" data-act="vehiculoHistorial" data-id="'+esc(v.id)+'">🛠️ Historial '+esc(v.patente)+'</button>').join("");
+  tarjetas.push('<article class="item"><strong>👤 '+esc(c.nombre+" "+c.apellido)+'</strong><p>☎ '+esc(c.telefono||"Sin teléfono")+'</p>'+detalleAutos+'<small>'+trabajos+' trabajo(s) registrado(s)</small><div class="inline-actions"><button class="tiny primary" type="button" data-act="fichaCliente" data-id="'+esc(c.id)+'">Ver ficha del cliente</button>'+botones+'</div></article>');
+ }
+ // Patentes coincidentes sin cliente vinculado: no esconderlas.
+ for(const v of vehiculosEncontrados.filter(v=>!cliente(v.clienteId)).slice(0,10)){
+  tarjetas.push('<article class="item"><strong>🚗 '+esc(auto(v))+'</strong><p>⚠️ Este vehículo figura sin un cliente asociado. Revisá su ficha en Vehículos.</p><div class="inline-actions"><button class="tiny primary" type="button" data-act="vehiculoEditar" data-id="'+esc(v.id)+'">Editar vehículo</button></div></article>');
+ }
+ panel.innerHTML='<h3>🔎 Coincidencias encontradas ('+tarjetas.length+')</h3><div class="items">'+tarjetas.join("")+'</div><p class="muted">Buscador actualizado · revisión 2</p>';
 }
 function go(name){document.querySelectorAll(".panel").forEach(p=>p.hidden=p.id!=="panel-"+name);document.querySelectorAll("nav [data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));render();window.scrollTo({top:0,behavior:"smooth"})}
 function opciones(){
