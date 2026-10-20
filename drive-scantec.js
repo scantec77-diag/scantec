@@ -196,20 +196,28 @@ function init(){
  $("disconnect").addEventListener("click",disconnect);
  $("buscar").addEventListener("input",render);
  setAuth(false);clearFiles();
+ show("Verificando acceso privado a Mi Drive…");
+}
+let activated=false;
+function activate(){
+ if(activated)return;
+ activated=true;
+ // Los documentos y el índice se cargan recién después del desbloqueo local.
+ const s=settings();
  if(restoreSession()){
   setAuth(true);
   if(restoreIndex()){
    render();
    show("Drive conectado. Biblioteca disponible para buscar tus planos y manuales.");
   }else{
-   show("Sesión de Google recuperada. Actualizando el índice de la biblioteca…");
+   show("Sesión de Google recuperada. Actualizando la biblioteca…");
    refresh();
   }
  }else if(!s.clientId){
-  show("Falta configurar el ID de cliente OAuth de Google Cloud. Abrí Configuración de Mi Drive.");
+  show("Falta configurar el ID de cliente OAuth. Abrí Configuración de Mi Drive.");
  }else{
   show("Google Drive necesita autorización. Abrí ⚙️ Configuración de Mi Drive para conectarlo.");
  }
 }
-window.ScantecDrive=Object.freeze({init,folderId,score});
+window.ScantecDrive=Object.freeze({init,activate,folderId,score});
 })();
