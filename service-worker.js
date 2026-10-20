@@ -1,9 +1,9 @@
 /* Scantec: guardado básico de la aplicación y biblioteca DTC para consultas offline.
    Los documentos privados de Drive no se guardan en caché. */
-const SHELL="scantec-v1-shell-20261020";
+const SHELL="scantec-v1-shell-20261020-sensores";
 const STATIC=[
  "./","./index.html","./manifest.webmanifest","./icons/scantec-logo.jpg","./icons/scantec-icon.svg",
- "./db/genericos.json","./db/marcas-a.json","./db/marcas-b.json","./db/marcas-c.json","./db/marcas-d.json"
+ "./sensores.js", "./db/genericos.json","./db/marcas-a.json","./db/marcas-b.json","./db/marcas-c.json","./db/marcas-d.json"
 ];
 self.addEventListener("install",event=>{
  event.waitUntil(caches.open(SHELL).then(async cache=>{
