@@ -36,3 +36,13 @@ Página: https://scantec77-diag.github.io/scantec/
 
 ### Imágenes y cables habituales
 Las fichas de las diez familias de sensores incorporan una visualización orientativa y cantidad de conductores habitual, con variantes (CKP Hall/inductivo, lambda convencional/AFR, IAT y MAP/MAF combinados, etc.). Los esquemas vectoriales se generan localmente en `sensores.js` para funcionar sin cargar imágenes remotas. Las fotografías de referencia de MAF, TPS y lambda, con atribución y enlace a sus fichas de licencia de Wikimedia Commons, se cargan si hay internet; si fallan, aparece automáticamente la ilustración local. Estas imágenes **no identifican una pieza exacta de un vehículo ni la posición de sus pines**. La cantidad de conductores no equivale a un pinado validado.
+
+## Biblioteca Chevrolet por código de falla · primera etapa
+- Archivos nuevos: `biblioteca/chevrolet/catalogo.json` (catálogo editable de enlaces y metadatos) y `biblioteca-marcas.js` (búsqueda contextual).
+- Al consultar un DTC con marca **Chevrolet** en el campo Vehículo, aparece la sección **Biblioteca Chevrolet**. Detecta sistema relacionado (ECT, MAP, CKP, CMP, etc.), modelo y año, y ofrece fuentes con el nivel de correspondencia indicado.
+- Se incorpora el campo opcional **Motor / ECU**; se guarda en borradores y fichas de consulta, se recupera del historial y se agrega al texto copiado. Ejemplo: vehículo `Chevrolet Astra 1999`, motor `X20XEV`, DTC `P0117`: aparecen enlaces a los diagramas Opel del motor declarado, **aún pendientes de validación de ECU/mercado**.
+- Cuando falta motor/ECU, no se promociona ningún plano de una motorización distinta como exacto: se ven los **índices** de diagramas que correspondan por modelo/año, y algunos esquemas generales marcados como orientativos.
+- En particular, un `Chevrolet Astra 2.0 8V 1999` **no** se hace pasar por motor europeo X20XEV de 16 válvulas. Para Meriva MY2012 se enlaza el **manual original de propietario de Chevrolet Argentina**, rotulado expresamente como **no plano ECU**.
+- Las fuentes externas incluyen diagramas de OpelBook y el portal oficial GM/ACDelco TDS (general, potencialmente pago). Estos enlaces no implican equivalencia verificada con los Chevrolet fabricados/comercializados en Argentina o Brasil.
+- No se descargan, rehostean ni se redistribuyen los manuales de terceros; se abren las fuentes externas. El catálogo y el código están en la caché de la app, pero los planos remotos necesitan conexión.
+- Para ampliar con planos propios/autorizados, agregar documentos con metadatos confiables de vehículo, año, código motor, identificación ECU, mercado y circuito. No cargar pinouts de otra motorización como si fuesen iguales.
