@@ -29,6 +29,7 @@ function abrir(){
  $("driveLock").hidden=true;
  $("driveApp").hidden=false;
  estadoBio();
+ window.ScantecDrive?.activate();
 }
 async function desbloquear(intentoAutomatico=false){
  if(ocupado||!cuenta)return;
