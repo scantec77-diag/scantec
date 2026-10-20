@@ -42,7 +42,7 @@ textarea{min-height:78px;resize:vertical}
 <main>
 <header><img src="./icons/scantec-logo.jpg" alt="Logo de Scantec"><div><h1>SCAN<span>TEC</span> · Mi Taller</h1><small>Diagnóstico automotor · © 2026</small></div><a class="back" href="./">← Volver a Scantec</a></header>
 <div id="blocked" class="card"><h2>🔐 Comprobando tu sesión</h2><p id="blockedMsg">Verificando la cuenta de Scantec…</p><a class="btn" href="./">Ingresar a Scantec</a></div>
-<div id="lockScreen" class="card" hidden><h2>🔐 Desbloquear Mi Taller</h2><p>Confirmá tu identidad con la seguridad del dispositivo. Android puede ofrecer huella, PIN o patrón.</p><button id="desbloquear" class="primary" type="button">🫆 Desbloquear con mi teléfono</button><p id="lockError" class="muted" role="status"></p><a href="./">← Volver a Scantec</a></div><div id="tallerApp" hidden>
+<div id="lockScreen" class="card" hidden><h2>🔐 Desbloquear Mi Taller</h2><p>Scantec intentará abrir automáticamente el desbloqueo del teléfono. Android puede ofrecer huella, PIN o patrón.</p><button id="desbloquear" class="primary" type="button">🫆 Desbloquear con mi teléfono</button><p id="lockError" class="muted" role="status"></p><a href="./">← Volver a Scantec</a></div><div id="tallerApp" hidden>
 <div class="callout"><strong>🔒 Acceso con cuenta Scantec.</strong> Las fichas se guardan en Firestore bajo tu cuenta. Solo quien tenga permiso según las reglas privadas de Firebase puede acceder a ellas. El desbloqueo del dispositivo es una protección local adicional. Hacé copias de seguridad desde Configuración.</div>
 <nav aria-label="Secciones de Mi Taller">
 <button type="button" data-tab="inicio" class="active">🏠 Inicio</button>
@@ -252,12 +252,35 @@ function bloquear(){
  document.querySelectorAll("#tallerApp form").forEach(form=>form.reset());
  el("lockScreen").hidden=false;el("lockError").textContent="";
 }
-el("desbloquear").onclick=async()=>{
- if(!usuarioActual)return;
- el("lockError").textContent="Confirmá tu identidad en el teléfono…";
- try{await verificar(credencial());el("lockError").textContent="";await abrirNube(usuarioActual)}
- catch(e){el("lockError").textContent="No se pudo desbloquear: "+(e.message||e.name)}
-};
+let desbloqueando=false;
+let intentoAutomatico=false;
+async function solicitarDesbloqueo(automatico=false){
+ if(!usuarioActual||!credencial()||desbloqueando)return;
+ if(automatico){
+  if(intentoAutomatico||document.visibilityState!=="visible")return;
+  intentoAutomatico=true;
+ }
+ desbloqueando=true;
+ el("desbloquear").disabled=true;
+ const cuenta=usuarioActual;
+ el("lockError").textContent=automatico?"Esperando la verificación del teléfono…":"Confirmá tu identidad en el teléfono…";
+ try{
+  await verificar(credencial());
+  if(!auth.currentUser||auth.currentUser.uid!==cuenta.uid)return;
+  el("lockError").textContent="";
+  await abrirNube(cuenta);
+ }catch(e){
+  if(automatico&&["NotAllowedError","SecurityError"].includes(e.name)){
+   el("lockError").textContent="Si no se abrió la huella automáticamente o cancelaste el aviso, tocá «Desbloquear con mi teléfono».";
+  }else{
+   el("lockError").textContent="No se pudo desbloquear: "+(e.message||e.name)+". Podés intentar de nuevo.";
+  }
+ }finally{
+  desbloqueando=false;
+  el("desbloquear").disabled=false;
+ }
+}
+el("desbloquear").onclick=()=>solicitarDesbloqueo(false);
 el("activarHuella").onclick=async()=>{
  try{
   if(!usuarioActual)return;toast("Confirmá el registro del dispositivo…");
@@ -271,9 +294,21 @@ el("desactivarHuella").onclick=()=>{
  localStorage.removeItem(claveLocal());estadoHuella();toast("Bloqueo local desactivado.");
 };
 el("bloquearTaller").onclick=bloquear;
-window.addEventListener("pageshow",event=>{if(event.persisted&&usuarioActual&&credencial())bloquear()});
+window.addEventListener("pageshow",event=>{
+ if(event.persisted&&usuarioActual&&credencial()){
+  bloquear();
+  intentoAutomatico=false;
+  solicitarDesbloqueo(true);
+ }
+});
+document.addEventListener("visibilitychange",()=>{
+ if(document.visibilityState==="visible"&&!el("lockScreen").hidden&&!intentoAutomatico){
+  solicitarDesbloqueo(true);
+ }
+});
 onAuthStateChanged(auth,async user=>{
  usuarioActual=user;
+ intentoAutomatico=false;
  if(!user){
   db=null;ultimaNube=null;firestore=null;
   el("blockedMsg").textContent="Para entrar a Mi Taller, primero iniciá sesión en Scantec con Google o correo.";
@@ -281,7 +316,9 @@ onAuthStateChanged(auth,async user=>{
  }
  if(credencial()){
   el("blocked").hidden=true;el("tallerApp").hidden=true;el("lockScreen").hidden=false;
-  el("lockError").textContent="";return;
+  el("lockError").textContent="";
+  solicitarDesbloqueo(true);
+  return;
  }
  await abrirNube(user);
 },e=>{el("blockedMsg").textContent="No se pudo validar la sesión: "+(e.code||e.message)});
