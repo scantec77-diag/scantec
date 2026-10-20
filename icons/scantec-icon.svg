@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Scantec">
+  <rect width="512" height="512" rx="110" fill="#07152b"/>
+  <circle cx="256" cy="256" r="212" fill="#0b2544" stroke="#29b6ff" stroke-width="13"/>
+  <circle cx="256" cy="256" r="173" fill="#06152b" stroke="#1462a2" stroke-width="6"/>
+  <image href="scantec-logo.jpg" x="103" y="103" width="306" height="306" preserveAspectRatio="xMidYMid meet"/>
+  <path d="M115 420 Q256 470 397 420" fill="none" stroke="#28b6ff" stroke-width="8" opacity=".6"/>
+</svg>
