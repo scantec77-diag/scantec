@@ -248,6 +248,8 @@ function bloquear(){
  if(!credencial())return toast("Primero activá el desbloqueo del teléfono.");
  el("tallerApp").hidden=true;el("blocked").hidden=true;
  db=null;ultimaNube=null;firestore=null;
+ document.querySelectorAll("#tallerApp .items").forEach(list=>list.replaceChildren());
+ document.querySelectorAll("#tallerApp form").forEach(form=>form.reset());
  el("lockScreen").hidden=false;el("lockError").textContent="";
 }
 el("desbloquear").onclick=async()=>{
@@ -269,6 +271,7 @@ el("desactivarHuella").onclick=()=>{
  localStorage.removeItem(claveLocal());estadoHuella();toast("Bloqueo local desactivado.");
 };
 el("bloquearTaller").onclick=bloquear;
+window.addEventListener("pageshow",event=>{if(event.persisted&&usuarioActual&&credencial())bloquear()});
 onAuthStateChanged(auth,async user=>{
  usuarioActual=user;
  if(!user){
