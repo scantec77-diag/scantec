@@ -78,7 +78,7 @@
         "injectors",
         "fuelpump"
       ],
-      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra/shema-5-sistema-upravleniya-dvigatelem-x16szr",
+      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra/shema-5-sistema-upravleniya-dvigatelem-h16szr",
       "nota": "Solo referencia para motor con identificación X16SZR; verificar ECU."
     },
     {
@@ -106,7 +106,7 @@
         "injectors",
         "fuelpump"
       ],
-      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra/shema-6-sistema-upravleniya-dvigatelem-x18xe-1",
+      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra/shema-6-sistema-upravleniya-dvigatelem-h18he-1",
       "nota": "Verificar identificación exacta X18XE-1 y ECU."
     },
     {
