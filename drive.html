@@ -41,6 +41,9 @@ small{color:var(--muted)}
 .remember-drive{padding:13px 14px;margin:8px 0 5px;border:1px solid #356282;border-radius:12px;background:#0b2037}
 .remember-drive .checkline{display:flex;align-items:center;gap:10px;cursor:pointer;margin:0;font-size:14px}
 .remember-drive .checkline input{display:inline-block;width:19px;height:19px;min-width:19px;margin:0;accent-color:#48c7ff}
+.remember-drive .connect-row{align-items:center;margin:0}
+.remember-drive .connect-row button{flex:0 0 auto}
+.remember-drive .connect-row label{flex:1 1 210px}
 .remember-details[hidden]{display:none}
 .remember-details{margin-top:11px}
 .remember-details label{margin-top:6px}
@@ -65,12 +68,13 @@ small{color:var(--muted)}
 <h2>📚 Mis planos y manuales sincronizados</h2>
 <label for="buscar">🔎 Buscar manuales y planos por marca, modelo, año o código de falla</label>
 <input id="buscar" placeholder="Ej.: Astra, Chevrolet, Corsa, 2.0 8V, P0117" autocomplete="off">
-<p id="summary" class="note"></p>
+<p id="summary" class="note" role="status" aria-live="polite"></p>
 <div id="results"><p class="note">Conectá tu Drive para consultar la biblioteca.</p></div>
 </section>
 <p id="drivePublicStatus" class="note" role="status">Google Drive sin conectar. Abrí Configuración para autorizarlo.</p>
 <section class="remember-drive" aria-label="Cuenta preferida de Drive">
-<label class="checkline" for="rememberDriveAccount"><input id="rememberDriveAccount" type="checkbox"> Recordar siempre esta cuenta de Google Drive</label>
+<div class="actions connect-row"><button id="reconnectDrive" type="button" class="primary" hidden>🔄 Reconectar Mi Drive</button>
+<label class="checkline" for="rememberDriveAccount"><input id="rememberDriveAccount" type="checkbox"> Recordar siempre esta cuenta de Google Drive</label></div>
 <div id="rememberDriveDetails" class="remember-details" hidden>
 <label for="driveRememberEmail">Correo de la cuenta que querés utilizar siempre</label>
 <input id="driveRememberEmail" type="email" inputmode="email" placeholder="tu-cuenta@gmail.com" autocomplete="email" spellcheck="false">
@@ -78,7 +82,7 @@ small{color:var(--muted)}
 </div>
 <p class="note">Se guarda solo el correo en este dispositivo, nunca la contraseña. Scantec intenta usar esa cuenta al reconectar; Google puede volver a pedir autorización.</p>
 </section>
-<div class="actions"><button id="reconnectDrive" type="button" class="primary" hidden>🔄 Reconectar Mi Drive</button></div>
+
 <details id="driveSettings" class="card">
 <summary>⚙️ Configuración de Mi Drive</summary>
 <div class="settings-body">
@@ -127,8 +131,8 @@ small{color:var(--muted)}
 </div>
 </main>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="./drive-scantec.js"></script>
+<script src="./drive-scantec.js?v=20261020-drive-reconnect-v8"></script>
 <script>window.ScantecDrive?.init();</script>
-<script type="module" src="./drive-acceso.js"></script>
+<script type="module" src="./drive-acceso.js?v=20261020-drive-reconnect-v8"></script>
 </body>
 </html>
