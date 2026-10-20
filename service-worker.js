@@ -1,6 +1,6 @@
 /* Scantec: guardado básico de la aplicación y biblioteca DTC para consultas offline.
    Los documentos privados de Drive no se guardan en caché. */
-const SHELL="scantec-v1-shell-20261020-drive-reconnect-v6";
+const SHELL="scantec-v1-shell-20261020-drive-remember-v7";
 const STATIC=[
  "./","./index.html","./drive.html","./drive-scantec.js","./drive-acceso.js","./biometria.js","./biblioteca.html","./manifest.webmanifest","./icons/scantec-logo.jpg","./icons/scantec-icon.svg",
  "./sensores.js","./biblioteca-marcas.js","./biblioteca-psa.js","./biblioteca/chevrolet/catalogo.json","./biblioteca/psa/catalogo.json","./biblioteca-psa.html", "./db/genericos.json","./db/marcas-a.json","./db/marcas-b.json","./db/marcas-c.json","./db/marcas-d.json"
