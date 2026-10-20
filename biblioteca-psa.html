@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07152b">
+<title>Biblioteca PSA · Peugeot y Citroën | Scantec</title>
+<style>
+:root{color-scheme:dark;--bg:#07152b;--card:#102440;--line:#365777;--fg:#f0f8ff;--muted:#bdd2e8;--blue:#46c7ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at top,#174166,var(--bg) 55%);color:var(--fg);font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:850px;margin:0 auto;padding:20px 14px 60px}
+header{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+header img{width:55px;height:55px;object-fit:cover;border:2px solid var(--blue);border-radius:50%}
+h1{margin:0;font-size:24px;color:#a8e7ff}h2{font-size:19px;margin:0 0 9px}h3{font-size:17px;color:#cbefff;margin:6px 0 12px}
+header a{margin-left:auto;color:#a6e3ff}
+p{line-height:1.55}
+.card{padding:17px;background:#102540;border:1px solid var(--line);border-radius:15px;margin:13px 0}
+.note,.result-caption{font-size:13px;color:var(--muted);line-height:1.5}
+label{display:block;color:#d0eafa;font-size:13px;font-weight:600;margin:9px 0 5px}
+input,select{font:16px system-ui;min-width:0;width:100%;padding:12px;background:#06172e;border:1px solid #3b6286;border-radius:10px;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+button,.bib-link{border:0;cursor:pointer;border-radius:10px;padding:12px;display:block;background:linear-gradient(120deg,#119ac8,#63d1ff);color:#031727;text-align:center;text-decoration:none;font-weight:750}
+button{margin-top:14px;width:100%;font:700 15px system-ui}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid white}
+.bib-doc{background:#0b1b30;border:1px solid #3a5c79;border-radius:12px;padding:13px;margin:12px 0}
+.bib-doc-head{display:flex;gap:9px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.bib-doc-head strong{color:#c5efff;flex:1;min-width:180px}
+.bib-status{background:#23435f;color:#c9e5fa;border-radius:30px;padding:5px 9px;font-size:11px}
+.bib-warning{border:1px solid #9a7642;background:#473522;color:#ffe8bf;border-radius:10px;padding:11px;font-size:13px}
+.bib-link{margin-top:12px}
+#psaEstado{min-height:1.7em;color:#a9dfff}
+.examples{display:flex;flex-wrap:wrap;gap:9px}
+.examples a{color:#9cdbff}
+</style>
+</head>
+<body>
+<main>
+<header><img src="./icons/scantec-logo.jpg" alt="Logo Scantec"><div><h1>📚 Biblioteca PSA</h1><div class="note">Peugeot · Citroën · Planos eléctricos y manuales</div></div><a href="./">← Scantec</a></header>
+<section class="card">
+<h2>Buscar por modelo, motor y falla</h2>
+<p class="note">Seleccioná la marca y el vehículo. Si sabés el motor o la ECU, ingresalos: así evitamos recomendarte pinados de un sistema distinto.</p>
+<form id="formPsa">
+<div class="grid">
+<div><label for="psaMarca">Marca</label><select id="psaMarca"><option value="Peugeot">Peugeot</option><option value="Citroën">Citroën</option></select></div>
+<div><label for="psaVehiculo">Modelo y año</label><input id="psaVehiculo" value="Peugeot 307 2005" placeholder="Ej.: Citroën C3 2005" autocomplete="off"></div>
+<div><label for="psaMotor">Código motor / ECU (si lo conocés)</label><input id="psaMotor" value="NFU" placeholder="Ej.: NFU, TU5JP4, ME7.4.4" autocomplete="off"></div>
+<div><label for="psaDtc">Código de falla</label><input id="psaDtc" value="P0117" placeholder="Ej.: P0117, P0107" autocapitalize="characters"></div>
+</div>
+<button type="submit">🔎 BUSCAR PLANOS Y MANUALES</button>
+</form>
+<p id="psaEstado" role="status" class="note"></p>
+</section>
+<section class="card">
+<h2>Resultados</h2>
+<div id="psaResultados" aria-live="polite"><p class="note">Cargando biblioteca PSA…</p></div>
+</section>
+<section class="card">
+<h2>Ejemplos para probar</h2>
+<div class="examples">
+<a href="./biblioteca-psa.html?marca=Peugeot&amp;vehiculo=Peugeot+307+2005&amp;motor=NFU&amp;codigo=P0117">307 NFU · P0117 ECT</a>
+<a href="./biblioteca-psa.html?marca=Citro%C3%ABn&amp;vehiculo=Citro%C3%ABn+C3+2005&amp;motor=TU5JP4&amp;codigo=P0107">C3 TU5JP4 · P0107 MAP</a>
+<a href="./biblioteca-psa.html?marca=Peugeot&amp;vehiculo=Peugeot+206&amp;motor=&amp;codigo=P0335">206 · P0335 CKP</a>
+</div>
+<p class="note">Las páginas enlazadas pertenecen a terceros. Algunas permiten lectura en línea y otras pueden pedir suscripción. No son esquemas certificados para un vehículo argentino sin validar su ECU/VIN.</p>
+</section>
+</main>
+<script src="./biblioteca-psa.js"></script>
+<script>if(window.ScantecPSA)window.ScantecPSA.initPage();</script>
+</body>
+</html>
