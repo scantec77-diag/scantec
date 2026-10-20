@@ -1,5 +1,5 @@
 /* Scantec Drive: lectura de metadatos dentro de la carpeta autorizada.
-   Token OAuth temporal SOLO en memoria. No se transmiten tokens a Firebase ni GitHub. */
+   Token temporal en memoria/sessionStorage. Nunca se transmite a Firebase ni GitHub. */
 (function(){
 "use strict";
 const SCOPE="https://www.googleapis.com/auth/drive.metadata.readonly";
@@ -19,12 +19,20 @@ const folderId=s=>{
 };
 const clientValid=s=>/^\d+-[A-Za-z0-9_-]+\.apps\.googleusercontent\.com$/.test(String(s||"").trim());
 function settings(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")||{}}catch{return{}}}
-function saveSettings(){const clientId=$("clientId").value.trim(),folder=folderId($("folderId").value);
+function saveSettings(){
+ const clientId=$("clientId").value.trim(),folder=folderId($("folderId").value);
+ const loginHint=$("driveAccountHint").value.trim().toLowerCase();
  if(!clientValid(clientId)){show("Pegá un ID de cliente OAuth de aplicación web válido (termina en .apps.googleusercontent.com).",true);return false}
  if(!folder){show("Pegá el enlace de la carpeta raíz ScanTec 77 o su ID.",true);return false}
- localStorage.setItem(STORAGE_KEY,JSON.stringify({clientId,folder}));
+ if(loginHint&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginHint)){
+  show("Revisá el correo de la cuenta preferida o dejalo vacío.",true);return false
+ }
+ const previous=settings();
+ const changed=previous.clientId!==clientId||previous.folder!==folder||(previous.loginHint||"")!==loginHint;
+ localStorage.setItem(STORAGE_KEY,JSON.stringify({clientId,folder,loginHint}));
  $("folderId").value=folder;
- show("Configuración guardada en este navegador. Ahora podés autorizar Drive con Google.");
+ if(changed){token="";expiresAt=0;tokenClient=null;forgetSession();clearFiles();setAuth(false)}
+ show("Configuración guardada. Podés conectarte a Drive con tu cuenta preferida.");
  return true;
 }
 let token="",expiresAt=0,tokenClient=null,items=[],lastRoot="";
@@ -91,19 +99,19 @@ function connect(){
  if(!window.google?.accounts?.oauth2?.initTokenClient){show("Todavía no cargó el sistema de autorización de Google. Esperá unos segundos y reintentá.",true);return}
  const conf=settings();
  tokenClient=window.google.accounts.oauth2.initTokenClient({
-  client_id:conf.clientId,scope:SCOPE,
+  client_id:conf.clientId,scope:SCOPE,prompt:"",...(conf.loginHint?{login_hint:conf.loginHint}:{}),
   callback:async response=>{
-   if(response.error||!response.access_token){show("Google no autorizó el acceso: "+(response.error||"intento cancelado"),true);return}
+   if(response.error||!response.access_token){$("connect").disabled=false;show("Google no autorizó el acceso: "+(response.error||"intento cancelado"),true);return}
    token=response.access_token;
    expiresAt=Date.now()+Math.max(0,Number(response.expires_in||3500)-90)*1000;
    rememberSession();
    setAuth(true);show("¡Conectado! Leyendo la biblioteca privada ScanTec 77…");
    await refresh();
   },
-  error_callback:e=>show("No se completó la autorización de Google: "+(e.type||"ventana cerrada"),true)
+  error_callback:e=>{$("connect").disabled=false;show("No se completó la autorización de Google: "+(e.type||"ventana cerrada"),true)}
  });
  $("connect").disabled=true;
- try{tokenClient.requestAccessToken({prompt:"consent"})}catch(e){show("No se pudo abrir Google: "+e.message,true);$("connect").disabled=false}
+ try{tokenClient.requestAccessToken({prompt:""})}catch(e){show("No se pudo abrir Google: "+e.message,true);$("connect").disabled=false}
 }
 function requestOK(){
  if(!token||Date.now()>=expiresAt){expire();throw Error("Tenés que volver a autorizar Drive.")}
@@ -188,6 +196,7 @@ function init(){
  const s=settings();
  $("clientId").value=s.clientId||"";
  $("folderId").value=s.folder||DEFAULT_FOLDER;
+ $("driveAccountHint").value=s.loginHint||"";
  $("rootLink").href=directRoot;
  $("cloudLink").href=signinURL;
  const qs=new URLSearchParams(location.search);
