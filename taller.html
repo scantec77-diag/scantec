@@ -116,7 +116,9 @@ textarea{min-height:78px;resize:vertical}
 <div class="card"><h3>🔐 Desbloqueo de Mi Taller</h3><p>Activá el desbloqueo con huella, PIN o patrón de este dispositivo mediante WebAuthn. Debe configurarse por navegador. <strong>Es una protección local adicional y no reemplaza las reglas privadas de Firebase.</strong></p><div class="inline-actions"><button id="activarHuella" type="button" class="primary">🫆 Activar desbloqueo</button><button id="bloquearTaller" type="button">🔒 Bloquear ahora</button><button id="desactivarHuella" type="button" class="danger">Quitar bloqueo local</button></div><p id="estadoHuella" class="muted"></p></div>
 <div class="card"><h3>☁️ Copia de seguridad y sincronización</h3><p>Las fichas se guardan en <strong>Cloud Firestore</strong> por cuenta. Desde otro dispositivo, al iniciar con la misma cuenta y recargar, podrás verlas. Sincronización en tiempo real y acceso sin conexión todavía no están activados.</p>
 <div class="inline-actions"><button id="exportar" class="primary" type="button">⬇️ Descargar copia JSON</button><button id="restaurar" type="button">📂 Restaurar copia</button><input id="archivoRestaurar" type="file" accept=".json,application/json" hidden></div>
-<p class="muted">La copia contiene nombres, teléfonos, direcciones, matrículas y trabajos: guardala en un lugar privado. Restaurar reemplaza todas las fichas de la cuenta actual en Firebase.</p></div>
+<p class="muted">La copia contiene nombres, teléfonos, direcciones, matrículas y trabajos: guardala en un lugar privado. Restaurar reemplaza todas las fichas de la cuenta actual en Firebase.</p>
+<div class="inline-actions"><a class="btn" href="./drive.html">☁️ Ver manuales y archivos de Drive</a></div>
+<p class="muted">El acceso de Scantec a Drive es de consulta de archivos. Todavía no sube automáticamente las copias de Mi Taller: esta información continúa sincronizándose mediante Firebase.</p></div>
 </section>
 <div id="status" role="status" aria-live="polite"></div>
 <footer>Scantec · Diagnóstico Automotor · Mi Taller · By Ariel Jacob · © 2026</footer>
