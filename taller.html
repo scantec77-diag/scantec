@@ -21,7 +21,7 @@ button:hover,.btn:hover{border-color:#48c8ff}button:focus-visible,a:focus-visibl
 button.primary,.primary{background:linear-gradient(110deg,#087eaf,#24b8f2);color:#031c33;border:0}
 nav button{white-space:nowrap}nav button.active{color:#031c33;background:#5acaff;border-color:#5acaff}
 button.danger{background:#593041;border-color:#805060}button.tiny{padding:6px 9px;font-size:12px}
-.panel[hidden],#tallerApp[hidden],#blocked[hidden]{display:none}
+.panel[hidden],#tallerApp[hidden],#blocked[hidden],#lockScreen[hidden]{display:none}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
 .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(max-width:670px){.grid,.grid.three{grid-template-columns:1fr}header h1{font-size:23px}header img{width:54px;height:54px}.card{padding:14px}}
@@ -42,8 +42,8 @@ textarea{min-height:78px;resize:vertical}
 <main>
 <header><img src="./icons/scantec-logo.jpg" alt="Logo de Scantec"><div><h1>SCAN<span>TEC</span> · Mi Taller</h1><small>Diagnóstico automotor · © 2026</small></div><a class="back" href="./">← Volver a Scantec</a></header>
 <div id="blocked" class="card"><h2>🔐 Comprobando tu sesión</h2><p id="blockedMsg">Verificando la cuenta de Scantec…</p><a class="btn" href="./">Ingresar a Scantec</a></div>
-<div id="tallerApp" hidden>
-<div class="callout"><strong>🔒 Acceso con cuenta Scantec.</strong> En esta primera versión, las fichas se guardan <strong>solo en este navegador</strong>, separadas por usuario. Todavía <strong>no se sincronizan</strong> con Firebase, Drive ni otros dispositivos. Hacé copias de seguridad desde Configuración.</div>
+<div id="lockScreen" class="card" hidden><h2>🔐 Desbloquear Mi Taller</h2><p>Confirmá tu identidad con la seguridad del dispositivo. Android puede ofrecer huella, PIN o patrón.</p><button id="desbloquear" class="primary" type="button">🫆 Desbloquear con mi teléfono</button><p id="lockError" class="muted" role="status"></p><a href="./">← Volver a Scantec</a></div><div id="tallerApp" hidden>
+<div class="callout"><strong>🔒 Acceso con cuenta Scantec.</strong> Las fichas se guardan en Firestore bajo tu cuenta. Solo quien tenga permiso según las reglas privadas de Firebase puede acceder a ellas. El desbloqueo del dispositivo es una protección local adicional. Hacé copias de seguridad desde Configuración.</div>
 <nav aria-label="Secciones de Mi Taller">
 <button type="button" data-tab="inicio" class="active">🏠 Inicio</button>
 <button type="button" data-tab="clientes">👤 Clientes</button>
@@ -97,9 +97,10 @@ textarea{min-height:78px;resize:vertical}
 </section>
 <section class="panel" id="panel-ajustes" hidden>
 <div class="card"><h2>⚙️ Datos de contacto Scantec</h2><form id="formAjustes"><label>Correo de Scantec</label><input name="correo" type="email" placeholder="scantec@ejemplo.com"><label>WhatsApp de Scantec (formato internacional)</label><input name="whatsapp" type="tel" placeholder="+54 9 11..."><div class="inline-actions"><button type="submit" class="primary">Guardar datos de contacto</button></div></form><p class="muted">Estos datos figuran en documentos. El botón Correo abre la aplicación de correo configurada en tu teléfono; no selecciona automáticamente la cuenta de Scantec.</p></div>
-<div class="card"><h3>☁️ Copia de seguridad y sincronización</h3><p>La cuenta de Google controla el acceso a Mi Taller, pero <strong>las fichas aún se guardan en el navegador</strong>. No está activo el guardado remoto en Firebase ni Drive. La siguiente etapa será Firestore con reglas privadas por usuario y sincronización entre dispositivos.</p>
+<div class="card"><h3>🔐 Desbloqueo de Mi Taller</h3><p>Activá el desbloqueo con huella, PIN o patrón de este dispositivo mediante WebAuthn. Debe configurarse por navegador. <strong>Es una protección local adicional y no reemplaza las reglas privadas de Firebase.</strong></p><div class="inline-actions"><button id="activarHuella" type="button" class="primary">🫆 Activar desbloqueo</button><button id="bloquearTaller" type="button">🔒 Bloquear ahora</button><button id="desactivarHuella" type="button" class="danger">Quitar bloqueo local</button></div><p id="estadoHuella" class="muted"></p></div>
+<div class="card"><h3>☁️ Copia de seguridad y sincronización</h3><p>Las fichas se guardan en <strong>Cloud Firestore</strong> por cuenta. Desde otro dispositivo, al iniciar con la misma cuenta y recargar, podrás verlas. Sincronización en tiempo real y acceso sin conexión todavía no están activados.</p>
 <div class="inline-actions"><button id="exportar" class="primary" type="button">⬇️ Descargar copia JSON</button><button id="restaurar" type="button">📂 Restaurar copia</button><input id="archivoRestaurar" type="file" accept=".json,application/json" hidden></div>
-<p class="muted">La copia contiene nombres, teléfonos, direcciones, matrículas y trabajos: guardala en un lugar privado. Restaurar reemplaza todas las fichas del usuario actual en este navegador.</p></div>
+<p class="muted">La copia contiene nombres, teléfonos, direcciones, matrículas y trabajos: guardala en un lugar privado. Restaurar reemplaza todas las fichas de la cuenta actual en Firebase.</p></div>
 </section>
 <div id="status" role="status" aria-live="polite"></div>
 <footer>Scantec · Diagnóstico Automotor · Mi Taller · By Ariel Jacob · © 2026</footer>
@@ -108,6 +109,8 @@ textarea{min-height:78px;resize:vertical}
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import {cargarNube,persistirNube} from "./nube-taller.js";
+import {disponible,enrolar,verificar} from "./biometria.js";
 const config={apiKey:"AIzaSyBdnsyW2len_vQesuPY9tyjjxrCvl7zVow",authDomain:"scantec-7e3e9.firebaseapp.com",projectId:"scantec-7e3e9",storageBucket:"scantec-7e3e9.firebasestorage.app",messagingSenderId:"293382540",appId:"1:293382540:web:39a3dcbc70e3e921b38ea9"};
 const el=id=>document.getElementById(id);
 const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -117,9 +120,17 @@ const hoy=()=>new Date().toISOString().slice(0,10);
 const formatoFecha=v=>{if(!v)return "";const d=new Date(v+"T12:00:00");return isNaN(d.getTime())?v:d.toLocaleDateString("es-AR")};
 const toast=t=>{el("status").textContent=t;};
 const val=(form,n)=>String(new FormData(form).get(n)||"").trim();
-let db=null,storageKey="",iniciado=false;
-function load(key){try{const o=JSON.parse(localStorage.getItem(key)||"null");if(o&&Array.isArray(o.clientes)&&Array.isArray(o.vehiculos)&&Array.isArray(o.trabajos)&&Array.isArray(o.documentos))return o;}catch(e){}return {clientes:[],vehiculos:[],trabajos:[],documentos:[],ajustes:{correo:"",whatsapp:""}};}
-function guardar(){try{localStorage.setItem(storageKey,JSON.stringify(db));return true;}catch(e){toast("⚠️ No se pudo guardar. Revisá el espacio y permisos del navegador.");return false}}
+let db=null,iniciado=false,usuarioActual=null,firestore=null,ultimaNube=null,cola=Promise.resolve();
+const copia=x=>JSON.parse(JSON.stringify(x));
+async function guardar(){
+ if(!db||!firestore||!usuarioActual){toast("⚠️ Firebase no está listo.");return false;}
+ const nuevo=copia(db),uidGoogle=usuarioActual.uid,dbActivo=firestore;
+ const actualizacion=cola.then(async()=>{ultimaNube=await persistirNube(dbActivo,uidGoogle,ultimaNube,nuevo);});
+ cola=actualizacion.catch(()=>{});
+ try{await actualizacion;return true;}catch(e){
+  db=copia(ultimaNube);render();toast("⚠️ No se guardó en Firebase: "+(e.code||e.message));return false;
+ }
+}
 function cliente(id){return db.clientes.find(x=>x.id===id)}
 function vehiculo(id){return db.vehiculos.find(x=>x.id===id)}
 function duenio(v){const c=v&&cliente(v.clienteId);return c?(c.nombre+" "+c.apellido):"Cliente no disponible"}
@@ -154,29 +165,29 @@ document.querySelectorAll("nav [data-tab]").forEach(b=>b.onclick=()=>go(b.datase
 document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
 el("busqueda").addEventListener("input",render);
 document.querySelectorAll("form").forEach(f=>f.addEventListener("reset",()=>setTimeout(setDefaults,0)));
-el("formCliente").onsubmit=e=>{e.preventDefault();const f=e.currentTarget;const id=val(f,"id");const x={id:id||uid(),nombre:val(f,"nombre"),apellido:val(f,"apellido"),telefono:val(f,"telefono"),email:val(f,"email"),direccion:val(f,"direccion"),dni:val(f,"dni")};if(!x.nombre||!x.apellido)return toast("Completá nombre y apellido.");const old=db.clientes.findIndex(c=>c.id===x.id);if(old>=0)db.clientes[old]=x;else db.clientes.push(x);if(guardar()){resetForm(f);render();toast("✅ Cliente guardado.");}};
-el("formVehiculo").onsubmit=e=>{e.preventDefault();const f=e.currentTarget;const id=val(f,"id");const x={id:id||uid(),clienteId:val(f,"clienteId"),patente:val(f,"patente").replace(/\s/g,"").toUpperCase(),marca:val(f,"marca"),modelo:val(f,"modelo"),anio:val(f,"anio"),km:val(f,"km"),gnc:val(f,"gnc"),notas:val(f,"notas")};if(!cliente(x.clienteId))return toast("Elegí un cliente válido.");if(db.vehiculos.some(v=>v.patente===x.patente&&v.id!==x.id))return toast("⚠️ Ya existe esa patente.");const old=db.vehiculos.findIndex(v=>v.id===x.id);if(old>=0)db.vehiculos[old]=x;else db.vehiculos.push(x);if(guardar()){resetForm(f);render();toast("✅ Vehículo guardado.");}};
-el("formTrabajo").onsubmit=e=>{e.preventDefault();const f=e.currentTarget;const x={id:uid(),vehiculoId:val(f,"vehiculoId"),fecha:val(f,"fecha"),km:val(f,"km"),tipo:val(f,"tipo"),codigos:val(f,"codigos"),detalle:val(f,"detalle"),resultado:val(f,"resultado"),recomendaciones:val(f,"recomendaciones"),importe:Number(val(f,"importe"))||0};if(!vehiculo(x.vehiculoId)||!x.detalle||!x.fecha)return toast("Elegí vehículo, fecha y trabajo realizado.");db.trabajos.push(x);const v=vehiculo(x.vehiculoId);if(v&&x.km)v.km=x.km;if(guardar()){resetForm(f);render();toast("✅ Trabajo agregado al historial.");}};
-el("formDocumento").onsubmit=e=>{e.preventDefault();const f=e.currentTarget;const v=vehiculo(val(f,"vehiculoId"));if(!v)return toast("Elegí un vehículo.");const filas=val(f,"conceptos").split(/\r?\n/).map(s=>s.trim()).filter(Boolean);const items=[];for(const fila of filas){const p=fila.split("|").map(z=>z.trim());if(p.length!==3||!p[0])return toast("Usá: Descripción | cantidad | precio en cada línea.");const qty=Number(p[1].replace(",","."));const precio=Number(p[2].replace(/\./g,"").replace(",","."));if(!Number.isFinite(qty)||qty<=0||!Number.isFinite(precio)||precio<0)return toast("Revisá cantidades y precios de los conceptos.");items.push({descripcion:p[0].slice(0,180),cantidad:qty,precio});}
+el("formCliente").onsubmit=async e=>{e.preventDefault();const f=e.currentTarget;const id=val(f,"id");const x={id:id||uid(),nombre:val(f,"nombre"),apellido:val(f,"apellido"),telefono:val(f,"telefono"),email:val(f,"email"),direccion:val(f,"direccion"),dni:val(f,"dni")};if(!x.nombre||!x.apellido)return toast("Completá nombre y apellido.");const old=db.clientes.findIndex(c=>c.id===x.id);if(old>=0)db.clientes[old]=x;else db.clientes.push(x);if(await guardar()){resetForm(f);render();toast("✅ Cliente guardado en Firebase.");}};
+el("formVehiculo").onsubmit=async e=>{e.preventDefault();const f=e.currentTarget;const id=val(f,"id");const x={id:id||uid(),clienteId:val(f,"clienteId"),patente:val(f,"patente").replace(/\s/g,"").toUpperCase(),marca:val(f,"marca"),modelo:val(f,"modelo"),anio:val(f,"anio"),km:val(f,"km"),gnc:val(f,"gnc"),notas:val(f,"notas")};if(!cliente(x.clienteId))return toast("Elegí un cliente válido.");if(db.vehiculos.some(v=>v.patente===x.patente&&v.id!==x.id))return toast("⚠️ Ya existe esa patente.");const old=db.vehiculos.findIndex(v=>v.id===x.id);if(old>=0)db.vehiculos[old]=x;else db.vehiculos.push(x);if(await guardar()){resetForm(f);render();toast("✅ Vehículo guardado en Firebase.");}};
+el("formTrabajo").onsubmit=async e=>{e.preventDefault();const f=e.currentTarget;const x={id:uid(),vehiculoId:val(f,"vehiculoId"),fecha:val(f,"fecha"),km:val(f,"km"),tipo:val(f,"tipo"),codigos:val(f,"codigos"),detalle:val(f,"detalle"),resultado:val(f,"resultado"),recomendaciones:val(f,"recomendaciones"),importe:Number(val(f,"importe"))||0};if(!vehiculo(x.vehiculoId)||!x.detalle||!x.fecha)return toast("Elegí vehículo, fecha y trabajo realizado.");db.trabajos.push(x);const v=vehiculo(x.vehiculoId);if(v&&x.km)v.km=x.km;if(await guardar()){resetForm(f);render();toast("✅ Trabajo guardado en Firebase.");}};
+el("formDocumento").onsubmit=async e=>{e.preventDefault();const f=e.currentTarget;const v=vehiculo(val(f,"vehiculoId"));if(!v)return toast("Elegí un vehículo.");const filas=val(f,"conceptos").split(/\r?\n/).map(s=>s.trim()).filter(Boolean);const items=[];for(const fila of filas){const p=fila.split("|").map(z=>z.trim());if(p.length!==3||!p[0])return toast("Usá: Descripción | cantidad | precio en cada línea.");const qty=Number(p[1].replace(",","."));const precio=Number(p[2].replace(/\./g,"").replace(",","."));if(!Number.isFinite(qty)||qty<=0||!Number.isFinite(precio)||precio<0)return toast("Revisá cantidades y precios de los conceptos.");items.push({descripcion:p[0].slice(0,180),cantidad:qty,precio});}
 if(!items.length)return toast("Ingresá al menos un concepto.");
 const x={id:uid(),numero:"ST-"+String(Date.now()),fecha:hoy(),vehiculoId:v.id,tipo:val(f,"tipo"),items,notas:val(f,"notas")};
-db.documentos.push(x);if(guardar()){f.reset();render();toast("✅ Documento creado. Ya podés descargarlo en PDF.");}};
-el("formAjustes").onsubmit=e=>{e.preventDefault();db.ajustes={correo:val(e.currentTarget,"correo"),whatsapp:val(e.currentTarget,"whatsapp")};if(guardar())toast("✅ Datos de contacto guardados.");};
+db.documentos.push(x);if(await guardar()){f.reset();render();toast("✅ Documento guardado en Firebase.");}};
+el("formAjustes").onsubmit=async e=>{e.preventDefault();db.ajustes={correo:val(e.currentTarget,"correo"),whatsapp:val(e.currentTarget,"whatsapp")};if(await guardar())toast("✅ Datos de contacto guardados en Firebase.");};
 el("exportar").onclick=()=>{const blob=new Blob([JSON.stringify({app:"Scantec Mi Taller",version:1,exportado:new Date().toISOString(),datos:db},null,2)],{type:"application/json"});download(blob,"Scantec-Mi-Taller-copia-"+hoy()+".json");toast("✅ Copia generada. Guardala en un lugar privado.");};
 el("restaurar").onclick=()=>el("archivoRestaurar").click();
-el("archivoRestaurar").onchange=async e=>{const f=e.currentTarget.files[0];if(!f)return;try{if(f.size>10000000)throw Error("Archivo demasiado grande");const o=JSON.parse(await f.text());const datos=o.datos;if(o.app!=="Scantec Mi Taller"||!datos||!Array.isArray(datos.clientes)||!Array.isArray(datos.vehiculos)||!Array.isArray(datos.trabajos)||!Array.isArray(datos.documentos))throw Error("La copia no tiene el formato de Scantec.");if(!confirm("¿Reemplazar TODOS los datos de Mi Taller guardados en este navegador por la copia seleccionada?"))return;db=datos;if(!db.ajustes||typeof db.ajustes!=="object")db.ajustes={correo:"",whatsapp:""};guardar();render();cargarAjustes();toast("✅ Copia restaurada.");}catch(err){toast("⚠️ "+err.message)}finally{e.currentTarget.value="";}};
+el("archivoRestaurar").onchange=async e=>{const f=e.currentTarget.files[0];if(!f)return;try{if(f.size>10000000)throw Error("Archivo demasiado grande");const o=JSON.parse(await f.text());const datos=o.datos;if(o.app!=="Scantec Mi Taller"||!datos||!Array.isArray(datos.clientes)||!Array.isArray(datos.vehiculos)||!Array.isArray(datos.trabajos)||!Array.isArray(datos.documentos))throw Error("La copia no tiene el formato de Scantec.");if(!confirm("¿Reemplazar TODOS los datos de Mi Taller guardados en este navegador por la copia seleccionada?"))return;db=datos;if(!db.ajustes||typeof db.ajustes!=="object")db.ajustes={correo:"",whatsapp:""};if(await guardar()){render();cargarAjustes();toast("✅ Copia restaurada en Firebase.");}}catch(err){toast("⚠️ "+err.message)}finally{e.currentTarget.value="";}};
 document.querySelectorAll("#listaClientes,#listaVehiculos,#listaTrabajos,#inicioUltimos,#listaDocumentos").forEach(box=>box.onclick=clickItem);
 cargarAjustes();render();
 }
 function cargarAjustes(){const f=el("formAjustes");f.elements.correo.value=(db.ajustes||{}).correo||"";f.elements.whatsapp.value=(db.ajustes||{}).whatsapp||"";}
-function clickItem(event){const b=event.target.closest("button[data-act]");if(!b)return;const id=b.dataset.id;const act=b.dataset.act;
+async function clickItem(event){const b=event.target.closest("button[data-act]");if(!b)return;const id=b.dataset.id;const act=b.dataset.act;
 if(act==="clienteEditar"){const c=cliente(id);if(c){go("clientes");completar(el("formCliente"),c);el("formCliente").scrollIntoView({block:"start",behavior:"smooth"})}return}
 if(act==="vehiculoEditar"){const v=vehiculo(id);if(v){go("vehiculos");completar(el("formVehiculo"),v);el("formVehiculo").scrollIntoView({block:"start",behavior:"smooth"})}return}
 if(act==="vehiculoHistorial"){const v=vehiculo(id);if(v){el("busqueda").value=v.patente;go("trabajos")}return}
-if(act==="clienteBorrar"){if(db.vehiculos.some(v=>v.clienteId===id))return toast("⚠️ Este cliente tiene vehículos. No se puede eliminar.");if(confirm("¿Eliminar este cliente?")){db.clientes=db.clientes.filter(c=>c.id!==id);guardar();render()}return}
-if(act==="vehiculoBorrar"){if(db.trabajos.some(t=>t.vehiculoId===id)||db.documentos.some(t=>t.vehiculoId===id))return toast("⚠️ El vehículo tiene historial o documentos. No se puede eliminar.");if(confirm("¿Eliminar este vehículo?")){db.vehiculos=db.vehiculos.filter(v=>v.id!==id);guardar();render()}return}
-if(act==="trabajoBorrar"){if(confirm("¿Eliminar definitivamente este trabajo del historial?")){db.trabajos=db.trabajos.filter(t=>t.id!==id);guardar();render()}return}
-if(act==="documentoBorrar"){if(confirm("¿Eliminar este documento?")){db.documentos=db.documentos.filter(t=>t.id!==id);guardar();render()}return}
+if(act==="clienteBorrar"){if(db.vehiculos.some(v=>v.clienteId===id))return toast("⚠️ Este cliente tiene vehículos. No se puede eliminar.");if(confirm("¿Eliminar este cliente?")){db.clientes=db.clientes.filter(c=>c.id!==id);await guardar();render()}return}
+if(act==="vehiculoBorrar"){if(db.trabajos.some(t=>t.vehiculoId===id)||db.documentos.some(t=>t.vehiculoId===id))return toast("⚠️ El vehículo tiene historial o documentos. No se puede eliminar.");if(confirm("¿Eliminar este vehículo?")){db.vehiculos=db.vehiculos.filter(v=>v.id!==id);await guardar();render()}return}
+if(act==="trabajoBorrar"){if(confirm("¿Eliminar definitivamente este trabajo del historial?")){db.trabajos=db.trabajos.filter(t=>t.id!==id);await guardar();render()}return}
+if(act==="documentoBorrar"){if(confirm("¿Eliminar este documento?")){db.documentos=db.documentos.filter(t=>t.id!==id);await guardar();render()}return}
 const d=db.documentos.find(x=>x.id===id);if(!d)return;
 if(act==="pdf"){download(pdfBlob(d),d.numero+".pdf");toast("✅ PDF descargado.");return}
 if(act==="share"){const file=new File([pdfBlob(d)],d.numero+".pdf",{type:"application/pdf"});if(navigator.share&&(!navigator.canShare||navigator.canShare({files:[file]}))){navigator.share({title:"Scantec - "+d.tipo,files:[file]}).catch(err=>{if(err.name!=="AbortError")toast("No se pudo compartir el PDF: "+err.message)})}else{download(file,d.numero+".pdf");toast("PDF descargado. Adjuntalo desde WhatsApp o tu correo.")}return}
@@ -211,9 +222,69 @@ for(let i=1;i<obj.length;i++){offsets[i]=length;add(i+" 0 obj\n"+obj[i]+"\nendob
 const start=length;add("xref\n0 "+obj.length+"\n0000000000 65535 f \n");for(let i=1;i<obj.length;i++)add(String(offsets[i]).padStart(10,"0")+" 00000 n \n");add("trailer\n<< /Size "+obj.length+" /Root 1 0 R >>\nstartxref\n"+start+"\n%%EOF");
 return new Blob(pieces,{type:"application/pdf"});
 }
-const auth=getAuth(initializeApp(config));
-onAuthStateChanged(auth,user=>{if(!user){el("blockedMsg").textContent="Para entrar a Mi Taller, primero iniciá sesión en Scantec con Google o correo.";el("tallerApp").hidden=true;el("blocked").hidden=false;return}
-storageKey="scantec_mitaller_v1_"+user.uid;db=load(storageKey);el("blocked").hidden=true;el("tallerApp").hidden=false;init();},e=>{el("blockedMsg").textContent="No se pudo validar la sesión: "+(e.code||e.message)});
+const firebaseApp=initializeApp(config),auth=getAuth(firebaseApp);
+function claveLocal(){return usuarioActual?"scantec_bio_v1_"+usuarioActual.uid:""}
+function credencial(){try{return JSON.parse(localStorage.getItem(claveLocal())||"null")}catch{return null}}
+function estadoHuella(){
+ const rec=credencial(),p=el("estadoHuella");
+ if(!disponible()){p.textContent="Este navegador no ofrece WebAuthn; probá Chrome actualizado.";el("activarHuella").disabled=true;return}
+ p.textContent=rec?"Activado en este navegador: Mi Taller pedirá la verificación al volver a entrar.":"Desactivado en este navegador: podés activarlo.";
+ el("bloquearTaller").disabled=!rec;el("desactivarHuella").disabled=!rec;
+}
+async function abrirNube(user){
+ el("lockScreen").hidden=true;el("blocked").hidden=false;el("blockedMsg").textContent="Cargando fichas privadas desde Firebase…";
+ try{
+  const response=await cargarNube(firebaseApp,user.uid);
+  if(auth.currentUser?.uid!==user.uid)return;
+  firestore=response.firestore;ultimaNube=copia(response.datos);db=copia(response.datos);
+  el("blocked").hidden=true;el("tallerApp").hidden=false;
+  init();render();cargarAjustes();estadoHuella();
+ }catch(e){
+  el("blocked").hidden=false;el("tallerApp").hidden=true;
+  el("blockedMsg").textContent="No se pudo abrir Mi Taller: "+(e.code||e.message)+". Revisá que Firestore esté creado y las reglas privadas estén publicadas.";
+ }
+}
+function bloquear(){
+ if(!credencial())return toast("Primero activá el desbloqueo del teléfono.");
+ el("tallerApp").hidden=true;el("blocked").hidden=true;
+ db=null;ultimaNube=null;firestore=null;
+ document.querySelectorAll("#tallerApp .items").forEach(list=>list.replaceChildren());
+ document.querySelectorAll("#tallerApp form").forEach(form=>form.reset());
+ el("lockScreen").hidden=false;el("lockError").textContent="";
+}
+el("desbloquear").onclick=async()=>{
+ if(!usuarioActual)return;
+ el("lockError").textContent="Confirmá tu identidad en el teléfono…";
+ try{await verificar(credencial());el("lockError").textContent="";await abrirNube(usuarioActual)}
+ catch(e){el("lockError").textContent="No se pudo desbloquear: "+(e.message||e.name)}
+};
+el("activarHuella").onclick=async()=>{
+ try{
+  if(!usuarioActual)return;toast("Confirmá el registro del dispositivo…");
+  const nuevo=await enrolar(usuarioActual);
+  localStorage.setItem(claveLocal(),JSON.stringify(nuevo));
+  estadoHuella();toast("✅ Desbloqueo activado. Al volver a Mi Taller se pedirá verificación.");
+ }catch(e){toast("⚠️ No se pudo activar: "+(e.message||e.name))}
+};
+el("desactivarHuella").onclick=()=>{
+ if(!confirm("¿Quitar el bloqueo de este dispositivo? Google y Firebase seguirán protegidos."))return;
+ localStorage.removeItem(claveLocal());estadoHuella();toast("Bloqueo local desactivado.");
+};
+el("bloquearTaller").onclick=bloquear;
+window.addEventListener("pageshow",event=>{if(event.persisted&&usuarioActual&&credencial())bloquear()});
+onAuthStateChanged(auth,async user=>{
+ usuarioActual=user;
+ if(!user){
+  db=null;ultimaNube=null;firestore=null;
+  el("blockedMsg").textContent="Para entrar a Mi Taller, primero iniciá sesión en Scantec con Google o correo.";
+  el("tallerApp").hidden=true;el("lockScreen").hidden=true;el("blocked").hidden=false;return;
+ }
+ if(credencial()){
+  el("blocked").hidden=true;el("tallerApp").hidden=true;el("lockScreen").hidden=false;
+  el("lockError").textContent="";return;
+ }
+ await abrirNube(user);
+},e=>{el("blockedMsg").textContent="No se pudo validar la sesión: "+(e.code||e.message)});
 </script>
 </body>
 </html>
