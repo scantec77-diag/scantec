@@ -149,6 +149,10 @@ async function refresh(){
   render();
   const parcial=stop||queue.length>0;
   show("Biblioteca actualizada. Ya podés buscar tus planos y manuales."+(parcial?" Sincronización parcial: se alcanzó el límite de lectura.":""));
+  // Al completar la conexión, volvemos a la búsqueda principal, no al menú.
+  const menu=$("driveSettings");if(menu)menu.open=false;
+  $("buscar").focus({preventScroll:true});
+  $("buscar").scrollIntoView({behavior:"smooth",block:"center"});
  }catch(e){show("Error al consultar Drive: "+e.message,true);render()}
  finally{$("refresh").disabled=!token;$("connect").disabled=false}
 }
