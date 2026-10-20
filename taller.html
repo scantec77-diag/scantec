@@ -36,6 +36,19 @@ textarea{min-height:78px;resize:vertical}
 @media(max-width:460px){.metric{padding:9px}.metric strong{font-size:23px}.metric small{font-size:11px}}
 #status{position:sticky;bottom:8px;background:#134469;border:1px solid #428db2;padding:10px 13px;border-radius:12px;z-index:5;display:none}
 #status:not(:empty){display:block}footer{color:#93b0c9;text-align:center;font-size:12px;margin-top:22px}
+
+/* Presupuestos: renglones editables y cálculo inmediato */
+.doc-items{display:grid;gap:10px;margin-top:11px}
+.doc-line{border:1px solid #355c7b;border-radius:12px;padding:12px;background:#0a2039}
+.doc-line-head,.doc-line-footer,.doc-total{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.doc-line-head strong{color:#a9e8ff}
+.doc-line-head button{padding:5px 10px;font-size:12px}
+.doc-line-fields{display:grid;grid-template-columns:minmax(0,2fr) minmax(90px,.7fr) minmax(120px,1fr);gap:9px}
+.doc-line-fields label{margin-top:8px}
+.doc-line-footer{margin-top:8px;color:#bcd6ea;font-size:13px}
+.doc-total{margin-top:14px;padding:14px;border:1px solid #4586af;border-radius:12px;background:#0a304c}
+.doc-total strong{color:#8ae0ff;font-size:22px}
+@media(max-width:670px){.doc-line-fields{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.doc-desc{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -89,9 +102,11 @@ textarea{min-height:78px;resize:vertical}
 <section class="panel" id="panel-presupuestos" hidden>
 <div class="card"><h2>📄 Crear presupuesto o comprobante</h2><form id="formDocumento">
 <div class="grid"><div><label>Vehículo *</label><select name="vehiculoId" class="vehiculosOptions" required></select></div><div><label>Documento</label><select name="tipo"><option value="Presupuesto">Presupuesto</option><option value="Comprobante interno (no fiscal)">Comprobante interno (no fiscal)</option></select></div></div>
-<label>Conceptos y precios (uno por renglón) *</label>
-<textarea name="conceptos" required rows="5" placeholder="Escaneo automotor | 1 | 25000&#10;Calibración GNC | 1 | 35000"></textarea>
-<p class="muted">Formato: descripción | cantidad | precio unitario en pesos. Usá números sin separador de miles; para decimales, coma.</p>
+<label>Trabajos o productos del presupuesto *</label>
+<div id="docRenglones" class="doc-items" aria-label="Conceptos del presupuesto"></div>
+<div class="inline-actions"><button id="agregarRenglon" type="button">＋ Agregar otro concepto</button></div>
+<p class="muted">Completá descripción, cantidad y precio de cada concepto. Podés escribir 5000 o 5.000; para centavos usá coma (ej.: 5.000,50).</p>
+<div class="doc-total" aria-live="polite"><span>Total del documento</span><strong id="docTotal">$ 0,00</strong></div>
 <label>Notas y condiciones</label><textarea name="notas" maxlength="2000"></textarea>
 <div class="inline-actions"><button type="submit" class="primary">💾 Crear documento</button><button type="reset">Limpiar</button></div></form></div>
 <div class="card"><h3>Presupuestos y comprobantes</h3><div id="listaDocumentos" class="items"></div><p class="muted">El PDF se genera en tu dispositivo. Para mandar el archivo por WhatsApp usá «Compartir PDF» y elegí WhatsApp. Los botones «WhatsApp» y «Correo» preparan el mensaje; no adjuntan automáticamente el PDF.</p></div>
@@ -196,14 +211,65 @@ el("inicioUltimos").innerHTML=actions(coinciden.slice(0,5).map(jobHtml).join("")
 el("listaTrabajos").innerHTML=actions(coinciden.map(jobHtml).join(""));
 el("listaClientes").innerHTML=actions(db.clientes.filter(clienteCoincide).map(c=>'<article class="item"><strong>'+esc(c.apellido+", "+c.nombre)+'</strong><p>☎ '+esc(c.telefono||"Sin teléfono")+' · '+esc(c.email||"Sin correo")+'</p>'+(c.direccion?'<p>Dirección: '+esc(c.direccion)+'</p>':'')+(c.dni?'<p>DNI: '+esc(c.dni)+'</p>':'')+'<p>🚗 '+(vehiculosDelCliente(c).map(v=>esc(v.patente+' · '+v.marca+' '+v.modelo)).join(' | ')||'Sin vehículos asociados')+'</p><small>'+vehiculosDelCliente(c).length+' vehículo(s)</small><div class="inline-actions"><button class="tiny" data-act="clienteEditar" data-id="'+esc(c.id)+'">Editar</button><button class="tiny danger" data-act="clienteBorrar" data-id="'+esc(c.id)+'">Eliminar</button></div></article>').join(""));
 el("listaVehiculos").innerHTML=actions(db.vehiculos.filter(v=>{const c=cliente(v.clienteId);return textMatch(auto(v),duenio(v),c&&c.telefono,v.gnc,v.notas)}).map(v=>'<article class="item"><strong>'+esc(auto(v))+'</strong><p>Cliente: '+esc(duenio(v))+'</p><p>Año: '+esc(v.anio||"-")+' · Km: '+esc(v.km||"-")+(v.gnc?' · GNC: '+esc(v.gnc):'')+'</p>'+(v.notas?'<p>'+esc(v.notas)+'</p>':'')+'<div class="inline-actions"><button class="tiny" data-act="vehiculoEditar" data-id="'+esc(v.id)+'">Editar</button><button class="tiny" data-act="vehiculoHistorial" data-id="'+esc(v.id)+'">Ver historial</button><button class="tiny danger" data-act="vehiculoBorrar" data-id="'+esc(v.id)+'">Eliminar</button></div></article>').join(""));
-el("listaDocumentos").innerHTML=actions(db.documentos.filter(d=>{const v=vehiculo(d.vehiculoId);return textMatch(d.tipo,d.numero,auto(v),duenio(v),d.notas,(d.items||[]).map(x=>x.descripcion).join(" "))}).slice().reverse().map(d=>{const v=vehiculo(d.vehiculoId);const total=(d.items||[]).reduce((a,x)=>a+x.cantidad*x.precio,0);return '<article class="item"><strong>'+esc(d.tipo)+' · '+esc(d.numero)+'</strong><p>'+esc(formatoFecha(d.fecha))+' · '+esc(auto(v))+' · '+esc(duenio(v))+'</p><p>'+esc((d.items||[]).map(x=>x.descripcion+' × '+x.cantidad).join(" | "))+'</p><strong>Total: '+money(total)+'</strong><div class="inline-actions"><button class="tiny primary" data-act="pdf" data-id="'+esc(d.id)+'">⬇️ PDF</button><button class="tiny" data-act="share" data-id="'+esc(d.id)+'">📤 Compartir PDF</button><button class="tiny" data-act="wa" data-id="'+esc(d.id)+'">WhatsApp</button><button class="tiny" data-act="mail" data-id="'+esc(d.id)+'">Correo</button><button class="tiny danger" data-act="documentoBorrar" data-id="'+esc(d.id)+'">Eliminar</button></div></article>'}).join(""));
+el("listaDocumentos").innerHTML=actions(db.documentos.filter(d=>{const v=vehiculo(d.vehiculoId);return textMatch(d.tipo,d.numero,auto(v),duenio(v),d.notas,(d.items||[]).map(x=>x.descripcion).join(" "))}).slice().reverse().map(d=>{const v=vehiculo(d.vehiculoId);const total=(d.items||[]).reduce((a,x)=>a+x.cantidad*x.precio,0);return '<article class="item"><strong>'+esc(d.tipo)+' · '+esc(d.numero)+'</strong><p>'+esc(formatoFecha(d.fecha))+' · '+esc(auto(v))+' · '+esc(duenio(v))+'</p><p>'+esc((d.items||[]).map(x=>x.descripcion+' × '+x.cantidad).join(" | "))+'</p><strong>Total: '+money(total)+'</strong><div class="inline-actions"><button class="tiny" data-act="pdf" data-id="'+esc(d.id)+'">⬇️ PDF</button><button class="tiny primary" data-act="share" data-id="'+esc(d.id)+'">📤 Compartir PDF</button><button class="tiny" data-act="wa" data-id="'+esc(d.id)+'">Mensaje WhatsApp</button><button class="tiny" data-act="mail" data-id="'+esc(d.id)+'">Mensaje correo</button><button class="tiny danger" data-act="documentoBorrar" data-id="'+esc(d.id)+'">Eliminar</button></div></article>'}).join(""));
 }
 function resetForm(form){form.reset();const hid=form.querySelector('[name="id"]');if(hid)hid.value="";setDefaults()}
 function setDefaults(){el("formTrabajo").elements.fecha.value=hoy()}
 function completar(form,data){Object.keys(data).forEach(k=>{if(form.elements[k]&&typeof data[k]!=="object")form.elements[k].value=data[k]??"";})}
+// Editor simple de presupuestos: cada concepto se carga en tres casilleros.
+function importePresupuesto(valor){
+ let s=String(valor||"").trim().replace(/[\s$]/g,"");
+ if(!s||!/^\d[\d.,]*$/.test(s))return NaN;
+ if(s.includes(",")){
+  if(s.lastIndexOf(",")>s.lastIndexOf("."))s=s.replace(/\./g,"").replace(",",".");
+  else s=s.replace(/,/g,"");
+ }else if(s.includes(".")){
+  const partes=s.split(".");
+  if(partes.length>2||(partes.length===2&&partes[1].length===3))s=s.replace(/\./g,"");
+ }
+ const n=Number(s);
+ return Number.isFinite(n)&&n>=0&&n<=1000000000000?Math.round(n*100)/100:NaN;
+}
+function cantidadPresupuesto(valor){
+ const s=String(valor||"").trim().replace(",",".");
+ const n=Number(s);
+ return s&&Number.isFinite(n)&&n>0&&n<=100000? n:NaN;
+}
+function actualizarTotalesPresupuesto(){
+ const filas=[...el("docRenglones").querySelectorAll(".doc-line")];
+ let total=0;
+ for(const [indice,fila] of filas.entries()){
+  fila.querySelector(".doc-indice").textContent="Concepto "+(indice+1);
+  fila.querySelector(".doc-quitar").hidden=filas.length===1;
+  const cantidad=cantidadPresupuesto(fila.querySelector(".doc-cantidad").value);
+  const precio=importePresupuesto(fila.querySelector(".doc-precio").value);
+  const valido=Number.isFinite(cantidad)&&Number.isFinite(precio);
+  const subtotal=valido?cantidad*precio:NaN;
+  fila.querySelector(".doc-subtotal").textContent=valido?money(subtotal):"—";
+  if(valido)total+=subtotal;
+ }
+ el("docTotal").textContent=money(total);
+}
+function agregarRenglonPresupuesto(){
+ const fila=document.createElement("div");
+ fila.className="doc-line";
+ fila.innerHTML='<div class="doc-line-head"><strong class="doc-indice">Concepto</strong><button class="doc-quitar danger" type="button">Quitar</button></div>'
+ +'<div class="doc-line-fields">'
+ +'<label class="doc-desc">Descripción *<input class="doc-descripcion" type="text" required maxlength="180" placeholder="Ej.: Limpieza de inyectores"></label>'
+ +'<label>Cantidad *<input class="doc-cantidad" type="number" inputmode="decimal" min="0.01" step="any" required value="1"></label>'
+ +'<label>Precio unitario ($) *<input class="doc-precio" type="text" inputmode="decimal" required maxlength="25" placeholder="Ej.: 5000"></label>'
+ +'</div><div class="doc-line-footer"><span>Subtotal</span><strong class="doc-subtotal">—</strong></div>';
+ fila.querySelector(".doc-quitar").addEventListener("click",()=>{fila.remove();actualizarTotalesPresupuesto()});
+ fila.addEventListener("input",actualizarTotalesPresupuesto);
+ el("docRenglones").append(fila);
+ actualizarTotalesPresupuesto();
+}
 function init(){
 if(iniciado)return;iniciado=true;
 setDefaults();
+agregarRenglonPresupuesto();
+el("agregarRenglon").addEventListener("click",()=>{agregarRenglonPresupuesto();el("docRenglones").lastElementChild.querySelector(".doc-descripcion").focus()});
+el("formDocumento").addEventListener("reset",()=>setTimeout(()=>{el("docRenglones").replaceChildren();agregarRenglonPresupuesto()},0));
 document.querySelectorAll("nav [data-tab]").forEach(b=>b.onclick=()=>go(b.dataset.tab));
 document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
 el("busqueda").addEventListener("input",render);
@@ -211,10 +277,30 @@ document.querySelectorAll("form").forEach(f=>f.addEventListener("reset",()=>setT
 el("formCliente").onsubmit=async e=>{e.preventDefault();const f=e.currentTarget;const id=val(f,"id");const x={id:id||uid(),nombre:val(f,"nombre"),apellido:val(f,"apellido"),telefono:val(f,"telefono"),email:val(f,"email"),direccion:val(f,"direccion"),dni:val(f,"dni")};if(!x.nombre||!x.apellido)return toast("Completá nombre y apellido.");const old=db.clientes.findIndex(c=>c.id===x.id);if(old>=0)db.clientes[old]=x;else db.clientes.push(x);if(await guardar()){resetForm(f);render();toast("✅ Cliente guardado en Firebase.");}};
 el("formVehiculo").onsubmit=async e=>{e.preventDefault();const f=e.currentTarget;const id=val(f,"id");const x={id:id||uid(),clienteId:val(f,"clienteId"),patente:val(f,"patente").replace(/\s/g,"").toUpperCase(),marca:val(f,"marca"),modelo:val(f,"modelo"),anio:val(f,"anio"),km:val(f,"km"),gnc:val(f,"gnc"),notas:val(f,"notas")};if(!cliente(x.clienteId))return toast("Elegí un cliente válido.");if(db.vehiculos.some(v=>v.patente===x.patente&&v.id!==x.id))return toast("⚠️ Ya existe esa patente.");const old=db.vehiculos.findIndex(v=>v.id===x.id);if(old>=0)db.vehiculos[old]=x;else db.vehiculos.push(x);if(await guardar()){resetForm(f);render();toast("✅ Vehículo guardado en Firebase.");}};
 el("formTrabajo").onsubmit=async e=>{e.preventDefault();const f=e.currentTarget;const x={id:uid(),vehiculoId:val(f,"vehiculoId"),fecha:val(f,"fecha"),km:val(f,"km"),tipo:val(f,"tipo"),codigos:val(f,"codigos"),detalle:val(f,"detalle"),resultado:val(f,"resultado"),recomendaciones:val(f,"recomendaciones"),importe:Number(val(f,"importe"))||0};if(!vehiculo(x.vehiculoId)||!x.detalle||!x.fecha)return toast("Elegí vehículo, fecha y trabajo realizado.");db.trabajos.push(x);const v=vehiculo(x.vehiculoId);if(v&&x.km)v.km=x.km;if(await guardar()){resetForm(f);render();toast("✅ Trabajo guardado en Firebase.");}};
-el("formDocumento").onsubmit=async e=>{e.preventDefault();const f=e.currentTarget;const v=vehiculo(val(f,"vehiculoId"));if(!v)return toast("Elegí un vehículo.");const filas=val(f,"conceptos").split(/\r?\n/).map(s=>s.trim()).filter(Boolean);const items=[];for(const fila of filas){const p=fila.split("|").map(z=>z.trim());if(p.length!==3||!p[0])return toast("Usá: Descripción | cantidad | precio en cada línea.");const qty=Number(p[1].replace(",","."));const precio=Number(p[2].replace(/\./g,"").replace(",","."));if(!Number.isFinite(qty)||qty<=0||!Number.isFinite(precio)||precio<0)return toast("Revisá cantidades y precios de los conceptos.");items.push({descripcion:p[0].slice(0,180),cantidad:qty,precio});}
-if(!items.length)return toast("Ingresá al menos un concepto.");
-const x={id:uid(),numero:"ST-"+String(Date.now()),fecha:hoy(),vehiculoId:v.id,tipo:val(f,"tipo"),items,notas:val(f,"notas")};
-db.documentos.push(x);if(await guardar()){f.reset();render();toast("✅ Documento guardado en Firebase.");}};
+el("formDocumento").onsubmit=async e=>{
+ e.preventDefault();
+ const f=e.currentTarget,v=vehiculo(val(f,"vehiculoId"));
+ if(!v)return toast("Elegí un vehículo.");
+ const filas=[...el("docRenglones").querySelectorAll(".doc-line")],items=[];
+ for(const [i,fila] of filas.entries()){
+  const descripcion=fila.querySelector(".doc-descripcion").value.trim();
+  const cantidad=cantidadPresupuesto(fila.querySelector(".doc-cantidad").value);
+  const precio=importePresupuesto(fila.querySelector(".doc-precio").value);
+  if(!descripcion||!Number.isFinite(cantidad)||!Number.isFinite(precio)){
+   fila.querySelector(!descripcion?".doc-descripcion":!Number.isFinite(cantidad)?".doc-cantidad":".doc-precio").focus();
+   return toast("⚠️ Revisá descripción, cantidad y precio del concepto "+(i+1)+".");
+  }
+  items.push({descripcion:descripcion.slice(0,180),cantidad,precio});
+ }
+ if(!items.length)return toast("Ingresá al menos un concepto.");
+ const x={id:uid(),numero:"ST-"+String(Date.now()),fecha:hoy(),vehiculoId:v.id,tipo:val(f,"tipo"),items,notas:val(f,"notas")};
+ db.documentos.push(x);
+ if(await guardar()){
+  f.reset();render();
+  toast("✅ Documento guardado. Buscalo debajo y tocá «Compartir PDF» para enviarlo por WhatsApp o correo.");
+  el("listaDocumentos").scrollIntoView({behavior:"smooth",block:"start"});
+ }
+};
 el("formAjustes").onsubmit=async e=>{e.preventDefault();db.ajustes={correo:val(e.currentTarget,"correo"),whatsapp:val(e.currentTarget,"whatsapp")};if(await guardar())toast("✅ Datos de contacto guardados en Firebase.");};
 el("exportar").onclick=()=>{const blob=new Blob([JSON.stringify({app:"Scantec Mi Taller",version:1,exportado:new Date().toISOString(),datos:db},null,2)],{type:"application/json"});download(blob,"Scantec-Mi-Taller-copia-"+hoy()+".json");toast("✅ Copia generada. Guardala en un lugar privado.");};
 el("restaurar").onclick=()=>el("archivoRestaurar").click();
