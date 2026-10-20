@@ -25,3 +25,11 @@ GitHub Pages publica `index.html` desde `main`. La web lee las bases JSON de la 
 **Mi Taller:** usa Firebase Authentication para identificar la cuenta y Cloud Firestore para guardar clientes, vehículos, trabajos, presupuestos y configuración bajo `usuarios/{uid}/`. Las reglas en `firestore.rules` permiten el acceso solo a documentos del usuario autenticado. La sincronización es por recarga y escritura: no hay caché offline ni actualización en tiempo real. La protección WebAuthn es un bloqueo local opcional del navegador, con huella/PIN/patrón según Android, y no sustituye una verificación del servidor. Las antiguas fichas de consultas DTC fuera de Mi Taller siguen en el almacenamiento local del navegador; esas **no** se sincronizan.
 
 Página: https://scantec77-diag.github.io/scantec/
+
+## Guías eléctricas por sensor (octubre de 2026)
+- Al consultar ciertos DTC, la misma ficha incorpora una guía del sensor relacionado: MAP, MAF, ECT, IAT, TPS/APP, lambda, CKP, CMP, detonación y presión de combustible.
+- Muestra **funciones posibles de terminales, condiciones de medición, valores de ejemplo y pruebas paso a paso**, junto con enlace a documentación técnica de HELLA o Bosch. Las guías también se agregan al texto de «Copiar ficha».
+- **No se publican números de pin ni colores de cables sin validación** para vehículo, motor, año, ECU y versión. Una función de terminal no es un pinado.
+- Referencias como NTC 25 °C / 80 °C, alimentación de 5 V o lambda de 0,1–0,9 V se aplican solo a las tecnologías indicadas; nunca son especificaciones universales.
+- Las fichas de diagnóstico no sustituyen la confirmación del código y la comprobación con manual oficial. En sensores Hall/activos, identificar tecnología antes de usar ohmímetro.
+- Implementación de esta primera etapa: `sensores.js` enlazado a `index.html`. No modifica Firebase, Mi Taller ni el formato de presupuestos.
