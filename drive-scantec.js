@@ -32,7 +32,7 @@ function setAuth(on){$("connect").disabled=false;$("refresh").disabled=!on;$("di
 function linkButton(text,url){
  const a=box("a",text,"doc-link");a.href=url;a.target="_blank";a.rel="noopener noreferrer";return a;
 }
-function clearFiles(){items=[];$("results").replaceChildren(box("p","Todavía no hay archivos cargados.","note"));$("summary").textContent="";}
+function clearFiles(){items=[];$("results").replaceChildren(box("p","Conectá Google Drive para consultar tu biblioteca.","note"));$("summary").textContent="";}
 function validateFileUrl(u,id,mime){
  try{const p=new URL(u);if(p.protocol==="https:"&&(/(^|\.)drive\.google\.com$|(^|\.)docs\.google\.com$/).test(p.hostname))return p.href}catch{}
  const safeId=encodeURIComponent(id);
@@ -86,7 +86,7 @@ async function refresh(){
   while(queue.length&&items.length<1500&&folderCount<140){
    const at=queue.shift();
    if(seen.has(at.id))continue;seen.add(at.id);folderCount++;
-   show("Sincronizando índice de Drive… "+folderCount+" carpeta(s), "+items.length+" elemento(s).");
+   show("Sincronizando biblioteca de Drive… "+folderCount+" carpeta(s) revisada(s).");
    const files=await apiList(at.id);
    for(const file of files){
     if(!file?.id||!file.name)continue;
@@ -99,7 +99,7 @@ async function refresh(){
   }
   render();
   const parcial=stop||queue.length>0;
-  show("Índice de Drive cargado: "+items.filter(f=>!f.isFolder).length+" archivo(s) y "+items.filter(f=>f.isFolder).length+" carpeta(s)."+(parcial?" Resultado parcial: se alcanzó el límite de lectura.":""));
+  show("Biblioteca actualizada. Ya podés buscar tus planos y manuales."+(parcial?" Sincronización parcial: se alcanzó el límite de lectura.":""));
  }catch(e){show("Error al consultar Drive: "+e.message,true);render()}
  finally{$("refresh").disabled=!token;$("connect").disabled=false}
 }
@@ -111,10 +111,12 @@ function score(obj,query){
 function render(){
  const host=$("results");host.replaceChildren();
  const search=$("buscar").value.trim();
+ if(!token){$("summary").textContent="";host.appendChild(box("p","Conectá Google Drive para buscar tus planos y manuales.","note"));return}
+ if(!search){$("summary").textContent="";host.appendChild(box("p","Escribí una marca, modelo, motor o código de falla para ver los documentos que coincidan.","note"));return}
  const docs=items.filter(f=>!f.isFolder);
- const visible=(search?docs.map(x=>({x,score:score(x,search)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.x.path.localeCompare(b.x.path)).map(x=>x.x):docs.sort((a,b)=>a.path.localeCompare(b.path,"es"))).slice(0,150);
- $("summary").textContent=search?"Coincidencias para «"+search+"»: "+visible.length+(visible.length===150?" (primeras 150)":""):"Archivos indexados: "+docs.length+". Se muestran hasta 150.";
- if(!visible.length){host.appendChild(box("p",search?"No encontré nombres o carpetas que coincidan. Probá con modelo o marca, por ejemplo «Astra» o «Corsa».":"Todavía no hay PDF u otros archivos en la carpeta seleccionada.","note"));return}
+ const visible=docs.map(x=>({x,score:score(x,search)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.x.path.localeCompare(b.x.path)).map(x=>x.x).slice(0,150);
+ $("summary").textContent="Coincidencias para «"+search+"»: "+visible.length+(visible.length===150?" (primeras 150)":"");
+ if(!visible.length){host.appendChild(box("p","No encontré nombres o carpetas que coincidan. Probá con modelo o marca, por ejemplo «Astra» o «Corsa».","note"));return}
  for(const file of visible){
   const el=box("article",null,"file-row");
   el.appendChild(box("strong",(file.mimeType==="application/pdf"?"📄 ":"📁 ")+file.name));
