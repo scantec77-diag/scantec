@@ -17,7 +17,7 @@ function nodo(tag,contenido,clase){
  return el;
 }
 function urlValida(u){
- try{const x=new URL(u);return x.protocol==='https:'&&['www.opelbook.ru','www.acdelcotds.com','mi.chevrolet.com.ar'].includes(x.hostname);}
+ try{const x=new URL(u);return x.protocol==='https:'&&['www.opelbook.ru','www.acdelcotds.com','mi.chevrolet.com.ar','pt.scribd.com','es.slideshare.net'].includes(x.hostname);}
  catch{return false}
 }
 function enlace(t,u,clase){
@@ -82,7 +82,7 @@ function asegurar(){
  panel=nodo('section',null,'bib-chevrolet');
  panel.id='bibliotecaChevrolet';
  panel.setAttribute('aria-label','Biblioteca Chevrolet de planos eléctricos');
- card.insertBefore(panel,ref);
+ card.insertBefore(panel,$('causesBox')||ref);
  return panel;
 }
 function renglon(doc,estado){
@@ -98,6 +98,50 @@ function renglon(doc,estado){
  return art;
 }
 function etiquetaAnio(doc,year){return !year||!Array.isArray(doc.anios)||year>=doc.anios[0]&&year<=doc.anios[1];}
+
+function circuitoECT(){
+ const envoltura=nodo('div',null,'bib-circuit');
+ const titulo=nodo('strong','📐 Circuito de ECT tipo NTC · referencia funcional');
+ envoltura.appendChild(titulo);
+ envoltura.appendChild(nodo('p','Este dibujo es un circuito orientativo del sensor y la ECU. NO es un plano de Chevrolet ni identifica pines, colores, fusibles o conectores.','result-caption'));
+ const details=nodo('details',null,'bib-schematic');
+ details.open=true;
+ const summary=nodo('summary','Ver circuito ECT en Scantec · normalmente 2 cables');
+ details.appendChild(summary);
+ const svg=nodo('div',null,'bib-svg');
+ // SVG original, no se copia de manuales de terceros. Dibujo de lógica NTC en divisor resistivo.
+ svg.innerHTML='<svg viewBox="0 0 720 280" role="img" aria-label="Esquema funcional del sensor ECT: una resistencia interna ECU desde 5 voltios a una línea de señal; sensor NTC entre señal y retorno a masa de ECU. No muestra números de pines." xmlns="http://www.w3.org/2000/svg">'
+ +'<rect x="16" y="20" width="360" height="232" rx="13" fill="#103453" stroke="#3d9ac8" stroke-width="2"/>'
+ +'<rect x="432" y="20" width="272" height="232" rx="13" fill="#173b50" stroke="#3d9ac8" stroke-width="2"/>'
+ +'<g font-size="18" font-family="system-ui" fill="#effaff"><text x="36" y="50">ECU / computadora</text><text x="456" y="50">Sensor ECT (NTC)</text></g>'
+ +'<g font-size="15" font-family="system-ui" fill="#c9e4f5"><text x="34" y="90">Referencia interna</text><text x="40" y="121">5 V</text><text x="36" y="184">Entrada de señal</text><text x="36" y="226">Retorno sensor</text><text x="548" y="100">NTC</text><text x="562" y="231">Masa ECU</text></g>'
+ +'<g stroke="#80dfff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M115 118H220V130"/><path d="M220 174V178H445H565V129"/><path d="M220 178H178"/><path d="M178 220H570V188"/><path d="M220 130v10m0 25v9"/></g>'
+ +'<g stroke="#ffb56c" stroke-width="3" fill="none"><rect x="207" y="140" width="26" height="25" rx="2"/><path d="M552 128l25 12-25 12 25 12-25 13 13 11"/></g>'
+ +'<g fill="#ecfbff"><circle cx="220" cy="178" r="5"/><circle cx="565" cy="178" r="4"/></g>'
+ +'<g font-size="13" font-family="system-ui" fill="#f7cda7"><text x="248" y="151">Resistencia</text><text x="248" y="167">pull-up</text></g>'
+ +'<g font-size="14" font-family="system-ui" fill="#fff"><text x="385" y="165">Señal</text><text x="383" y="214">Retorno</text></g>'
+ +'</svg>';
+ details.appendChild(svg);
+ details.appendChild(nodo('p','Al subir la temperatura, la resistencia del NTC suele disminuir y cambia la tensión de señal. La curva, valores y conexión real deben verificarse según ECU y sensor.','result-caption'));
+ envoltura.appendChild(details);
+ return envoltura;
+}
+function documentoRegionalCompatible(d,vehiculo,year){
+ if(d.tipo!=='plano_regional'&&d.tipo!=='archivo_regional')return false;
+ if(!etiquetaAnio(d,year))return false;
+ const v=normal(vehiculo);
+ if(d.modelo!=='astra'||!/\bastra\b/.test(v))return false;
+ // El catálogo de esta etapa describe Astra 2.0 8V, no motores distintos.
+ if(/\b16\s*v(?:alvulas)?\b/.test(v)||/\b(1[.,]6|1[.,]8|2[.,]2)\b/.test(v))return false;
+ return true;
+}
+function fichaRegional(d,vehiculo,motorEcu){
+ const f=[vehiculo,motorEcu].join(' ');
+ const confirma8v=/\b2[.,]0\s*8\s*v\b/i.test(f)||/\b2[.,]0\s*8\s*valvulas\b/i.test(f);
+ const diceOtro=!!motorEcu.trim()&&!/m1[.,]5[.,]5|motronic|\b2[.,]0\s*8\s*v/i.test(motorEcu);
+ return confirma8v&&!diceOtro?'Referencia de Astra 2.0 8V · ECU por validar':'Fuente candidata · motor y ECU sin validar';
+}
+
 function renderizar(d,code,vehiculo,motorEcu){
  const el=asegurar();if(!el)return;
  el.replaceChildren();
@@ -107,7 +151,8 @@ function renderizar(d,code,vehiculo,motorEcu){
  const mDesc=mdl?mdl.charAt(0).toUpperCase()+mdl.slice(1):'modelo no especificado';
  el.appendChild(nodo('h4','📚 Biblioteca Chevrolet · Planos eléctricos'));
  el.appendChild(nodo('p','Falla '+code+' · '+(grupos.length?grupos.map(nombreSistema).join(' / '):'Sistema sin correspondencia definida')+' · '+mDesc+(year?' '+year:''),'bib-sub'));
- el.appendChild(nodo('p','⚠️ El código de falla sirve para sugerir el circuito, no para demostrar que un plano coincide con la ECU. Los diagramas Opel son referencias de otras versiones: no medir por sus pines hasta confirmar la equivalencia.','bib-warning'));
+ el.appendChild(nodo('p','⚠️ Un DTC orienta el circuito, no confirma la ECU. Los enlaces externos son referencias sin homologación para el vehículo concreto: no usar sus números de pin sin verificar motor, ECU y mercado.','bib-warning'));
+ if(grupos.includes('ect'))el.appendChild(circuitoECT());
  if(!mdl){
   el.appendChild(nodo('p','Escribí Chevrolet + modelo + año y, si lo conocés, el código del motor o la ECU (ej.: Astra 1999, motor X20XEV). Para vehículos de Argentina puede ser diferente.','result-caption'));
  }else{
@@ -118,6 +163,7 @@ function renderizar(d,code,vehiculo,motorEcu){
    el.appendChild(nodo('p','Classic: las series Opel Corsa B/C de la biblioteca no son automáticamente equivalentes al Chevrolet Classic argentino.','result-caption'));
   }
   const docs=d.planos.filter(a=>a.modelo===mdl&&etiquetaAnio(a,year));
+  const regionales=docs.filter(a=>documentoRegionalCompatible(a,vehiculo,year)&&grupos.length&&a.sistemas?.some(g=>grupos.includes(g)));
   const específicos=docs.filter(a=>a.tipo==='plano'&&
       Array.isArray(a.motores)&&coincidenciaMotor(a.motores,fuente)&&
       !conflictoValvulas(a,fuente)&&
@@ -125,11 +171,16 @@ function renderizar(d,code,vehiculo,motorEcu){
   const generales=docs.filter(a=>a.tipo==='sistema'&&grupos.length&&a.sistemas?.some(g=>grupos.includes(g)));
   const indices=docs.filter(a=>a.tipo==='indice');
   const manuales=docs.filter(a=>a.tipo==='manual');
+  if(regionales.length){
+   el.appendChild(nodo('h5','📄 Planos eléctricos del Astra 2.0 8V publicados para consulta'));
+   el.appendChild(nodo('p','Encontré documentación para esta versión regional. El enlace abre el documento original en otra pestaña; puede requerir cuenta. Revisá la identificación Bosch Motronic M1.5.5 antes de usar los pines.','result-caption'));
+   regionales.forEach(a=>el.appendChild(renglon(a,fichaRegional(a,vehiculo,motorEcu))));
+  }
   if(específicos.length){
    el.appendChild(nodo('h5','Esquemas relacionados con el motor declarado (validar ECU y mercado)'));
    específicos.forEach(a=>el.appendChild(renglon(a,'Referencia Opel · motor declarado')));
   }else{
-   el.appendChild(nodo('p','No hay un plano de motor/ECU confirmado para esta consulta. No se muestran planos específicos de otras motorizaciones como si fueran compatibles.','result-caption'));
+   el.appendChild(nodo('p',regionales.length?'Aún no hay un pinado de ECU confirmado para este vehículo. La documentación regional de arriba es una referencia pendiente de validación.':'No hay un plano de motor/ECU confirmado para esta consulta. No se muestran planos de otras motorizaciones como si fueran compatibles.','result-caption'));
    if(!motorEcu.trim())el.appendChild(nodo('p','Para afinar: completá el campo «Motor / ECU» con el código de motor real (por ejemplo X20XEV), no solo cilindrada.','result-caption'));
   }
   if(generales.length){
