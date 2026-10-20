@@ -33,3 +33,6 @@ Página: https://scantec77-diag.github.io/scantec/
 - Referencias como NTC 25 °C / 80 °C, alimentación de 5 V o lambda de 0,1–0,9 V se aplican solo a las tecnologías indicadas; nunca son especificaciones universales.
 - Las fichas de diagnóstico no sustituyen la confirmación del código y la comprobación con manual oficial. En sensores Hall/activos, identificar tecnología antes de usar ohmímetro.
 - Implementación de esta primera etapa: `sensores.js` enlazado a `index.html`. No modifica Firebase, Mi Taller ni el formato de presupuestos.
+
+### Imágenes y cables habituales
+Las fichas de las diez familias de sensores incorporan una visualización orientativa y cantidad de conductores habitual, con variantes (CKP Hall/inductivo, lambda convencional/AFR, IAT y MAP/MAF combinados, etc.). Los esquemas vectoriales se generan localmente en `sensores.js` para funcionar sin cargar imágenes remotas. Las fotografías de referencia de MAF, TPS y lambda, con atribución y enlace a sus fichas de licencia de Wikimedia Commons, se cargan si hay internet; si fallan, aparece automáticamente la ilustración local. Estas imágenes **no identifican una pieza exacta de un vehículo ni la posición de sus pines**. La cantidad de conductores no equivale a un pinado validado.
