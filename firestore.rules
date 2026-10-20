@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Solo el dueño autenticado puede acceder a sus fichas de Mi Taller.
+    function esDueno(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+    match /usuarios/{uid}/clientes/{id} {
+      allow read, write: if esDueno(uid);
+    }
+    match /usuarios/{uid}/vehiculos/{id} {
+      allow read, write: if esDueno(uid);
+    }
+    match /usuarios/{uid}/trabajos/{id} {
+      allow read, write: if esDueno(uid);
+    }
+    match /usuarios/{uid}/documentos/{id} {
+      allow read, write: if esDueno(uid);
+    }
+    match /usuarios/{uid}/configuracion/{id} {
+      allow read, write: if esDueno(uid) && id == "general";
+    }
+    // Todo lo demás permanece cerrado.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
