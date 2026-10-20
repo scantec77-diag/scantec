@@ -73,6 +73,7 @@ footer{text-align:center;color:#7e9ab5;font-size:12px;margin-top:30px}
 <section class="card"><h3>🗂️ Mis consultas guardadas</h3><div id="records"></div><p class="note">Las fichas y borradores se conservan en este navegador. Todavía no se sincronizan con otros dispositivos ni con Drive.</p></section>
 <footer>Scantec · Diagnóstico Automotor</footer>
 <div style="text-align:center;margin-top:14px"><button type="button" id="authLogout">Cerrar sesión</button></div></main></div>
+<script src="./sensores.js"></script>
 <script>
 
 (()=>{'use strict';
@@ -177,6 +178,7 @@ function showResult(r){
  $('brandsNote').textContent=r.brandsNote||'';
  $('brandsNote').hidden=!r.brandsNote;
  $('resultCaution').textContent=r.caution;
+ if(window.ScantecSensores)window.ScantecSensores.mostrar(r.code,x.vehicle,r.kind);
 }
 function hideResult(){currentResult=null;$('resultCard').hidden=true}
 async function resolveCode(){
@@ -256,9 +258,9 @@ $('search').addEventListener('click',resolveCode);
 $('save').addEventListener('click',saveRecord);
 $('saveResult').addEventListener('click',saveRecord);
 $('web').addEventListener('click',()=>{const x=data();if(!x.code&&!x.vehicle){status('Ingresá un código o vehículo antes de buscar.');return}const q=[x.code,x.vehicle,'diagnóstico automotor código DTC'].filter(Boolean).join(' ');window.open('https://www.google.com/search?q='+encodeURIComponent(q),'_blank','noopener');storeDraft()});
-$('copyResult').addEventListener('click',async()=>{if(!currentResult)return;const r=currentResult,x=data();const content=['Scantec · Ficha de diagnóstico','Vehículo: '+(x.vehicle||'No especificado'),'Código: '+r.code,'Descripción: '+r.description,'Interpretaciones por marca:',...(r.brands||[]).map(b=>'• '+b.name+': '+b.description),'Posibles causas:',...(r.causes||[]).map(s=>'• '+s),'Comprobaciones:',...(r.checks||[]).map(s=>'• '+s),'Notas: '+(x.notes||'Sin notas'),r.caution].join('\n');try{await navigator.clipboard.writeText(content);status('Ficha copiada al portapapeles.')}catch{status('El navegador no permitió copiar automáticamente.')}});
+$('copyResult').addEventListener('click',async()=>{if(!currentResult)return;const r=currentResult,x=data();const content=['Scantec · Ficha de diagnóstico','Vehículo: '+(x.vehicle||'No especificado'),'Código: '+r.code,'Descripción: '+r.description,'Interpretaciones por marca:',...(r.brands||[]).map(b=>'• '+b.name+': '+b.description),'Posibles causas:',...(r.causes||[]).map(s=>'• '+s),'Comprobaciones:',...(r.checks||[]).map(s=>'• '+s),(window.ScantecSensores?window.ScantecSensores.texto(r.code,x.vehicle):''),'Notas: '+(x.notes||'Sin notas'),r.caution].join('\n');try{await navigator.clipboard.writeText(content);status('Ficha copiada al portapapeles.')}catch{status('El navegador no permitió copiar automáticamente.')}});
 $('chat').addEventListener('click',async()=>{const p=prompt();storeDraft();let copied=false;try{await navigator.clipboard.writeText(p);copied=true}catch{const t=document.createElement('textarea');t.value=p;document.body.appendChild(t);t.select();try{copied=document.execCommand('copy')}catch{}t.remove()}window.open('https://chatgpt.com/','_blank','noopener');status(copied?'Consulta copiada. Pegala en ChatGPT para empezar.':'ChatGPT abierto. Copiá tu consulta manualmente para enviarla.')});
-['vehicle','code','notes'].forEach(id=>$(id).addEventListener('input',()=>{if(id==='code'&&currentResult&&currentResult.code!==$('code').value.trim().toUpperCase().replace(/\s+/g,'')){searchSerial++;hideResult()}storeDraft()}));
+['vehicle','code','notes'].forEach(id=>$(id).addEventListener('input',()=>{if(id==='code'&&currentResult&&currentResult.code!==$('code').value.trim().toUpperCase().replace(/\s+/g,'')){searchSerial++;hideResult()}if(id==='vehicle'&&currentResult){$('resultVehicle').textContent='Vehículo: '+($('vehicle').value.trim()||'No especificado');if(window.ScantecSensores)window.ScantecSensores.mostrar(currentResult.code,$('vehicle').value,currentResult.kind)}storeDraft()}));
 const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
 if(!Recognition){$('mic').disabled=true;$('mic').textContent='🎙️ Dictado no disponible'}else{$('mic').addEventListener('click',()=>{const r=new Recognition();r.lang='es-AR';r.interimResults=false;r.maxAlternatives=1;status('Escuchando... hablá ahora.');r.onresult=e=>{const said=e.results[0][0].transcript;const match=said.match(/\b[PCBU][0-9]{4}\b/i);if(match&&!$('code').value.trim()){$('code').value=match[0].toUpperCase();hideResult()}else $('notes').value=($('notes').value.trim()+' '+said).trim();storeDraft();status('Dictado recibido: '+said)};r.onerror=e=>status('No se pudo usar el micrófono: '+e.error);try{r.start()}catch{status('El micrófono no está disponible ahora.')}})}
 restoreDraft();render();
