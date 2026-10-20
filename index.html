@@ -24,6 +24,20 @@ button,a.button{border:0;border-radius:12px;background:#1b3a59;color:#effaff;pad
 #records{display:grid;gap:10px}.record{background:#081b34;border:1px solid #344d6b;border-radius:12px;padding:13px}.record small{color:#a9bbce}.record p{white-space:pre-wrap;overflow-wrap:anywhere;margin:7px 0}.record button{font-size:12px;padding:8px 11px;margin-top:7px;background:#50304a}
 footer{text-align:center;color:#7e9ab5;font-size:12px;margin-top:30px}
 @media(max-width:380px){h1{font-size:25px}.mark{height:62px;width:62px}.actions{grid-template-columns:1fr}}
+
+.result-card{border-color:#277aaa}
+.result-card[hidden]{display:none}
+.result-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pill{padding:5px 9px;border-radius:99px;font-size:12px;font-weight:700;background:#153c50;color:#b9ecff}
+.pill.warn{background:#63421e;color:#ffe5b7}
+.result-box{padding:13px;background:#071b32;border:1px solid #365576;border-radius:12px;margin:12px 0}
+.result-box h4{margin:0 0 8px;color:#88dcff}
+.result-box p{margin:0;line-height:1.5;white-space:pre-wrap}
+.result-box ul{margin:5px 0 0;padding-left:22px;line-height:1.55}
+.result-caption{font-size:13px;color:#b2c3d9;line-height:1.5}
+#code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.record-summary{font-size:13px;color:#b2c3d9}
+.secondary{background:#17334e}
 </style>
 </head>
 <body><main>
@@ -36,35 +50,110 @@ footer{text-align:center;color:#7e9ab5;font-size:12px;margin-top:30px}
 <label for="notes">Notas de diagnóstico</label><textarea id="notes" placeholder="Síntomas, mediciones, pruebas..."></textarea>
 <div class="actions">
 <button id="mic" type="button">🎙️ Dictar consulta</button>
-<button id="search" class="primary" type="button">🌐 Buscar en la web</button>
-<button id="save" type="button">💾 Guardar consulta</button>
+<button id="search" class="primary" type="button">🔎 Consultar código</button>
+<button id="save" type="button">💾 Guardar ficha</button>
 <button id="chat" type="button">✨ Consultar en ChatGPT</button>
+<button id="web" class="secondary wide" type="button">🌐 Buscar en Google (opcional)</button>
 </div>
 <p class="message" id="message" role="status" aria-live="polite"></p>
-<p class="note">El dictado funciona en navegadores compatibles y puede solicitar permiso para usar el micrófono. La búsqueda abre Google. La opción ChatGPT copia tu consulta y abre ChatGPT para que la pegues allí.</p>
+<p class="note">El dictado funciona en navegadores compatibles y puede solicitar permiso para usar el micrófono. La consulta busca primero en la base integrada de Scantec y muestra el resultado acá mismo. Google y ChatGPT son opciones adicionales: sus resultados no se importan automáticamente.</p>
 </section>
-<section class="card"><h3>🗂️ Mis consultas guardadas</h3><div id="records"></div><p class="note">Los datos se guardan únicamente en este navegador. No se sincronizan automáticamente con otros dispositivos.</p></section>
+<section class="card result-card" id="resultCard" hidden aria-live="polite">
+  <div class="result-top"><h3 id="resultHeading">📋 Ficha de diagnóstico</h3><span class="pill" id="resultTag">Base Scantec</span></div>
+  <p class="result-caption" id="resultVehicle"></p>
+  <div class="result-box"><h4>Descripción</h4><p id="resultDescription"></p></div>
+  <div class="result-box" id="causesBox"><h4>Posibles causas</h4><ul id="resultCauses"></ul></div>
+  <div class="result-box"><h4>Comprobaciones recomendadas</h4><ul id="resultChecks"></ul></div>
+  <p class="result-caption" id="resultCaution"></p>
+  <div class="actions"><button class="primary" id="saveResult" type="button">💾 Guardar esta ficha</button><button id="copyResult" type="button">📋 Copiar ficha</button></div>
+</section>
+<section class="card"><h3>🗂️ Mis consultas guardadas</h3><div id="records"></div><p class="note">Las fichas y borradores se conservan en este navegador. Todavía no se sincronizan con otros dispositivos ni con Drive.</p></section>
 <footer>Scantec · Diagnóstico Automotor</footer>
 </main>
 <script>
+
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 const greeting=(()=>{const h=new Date().getHours();return h<12?'Buen día':h<19?'Buenas tardes':'Buenas noches'})();
 $('greeting').textContent=greeting+', bienvenido a Scantec';
 const key='scantec_diagnosticos_v1';
+const draftKey='scantec_borrador_v2';
+const dtc={"P0010":{"desc":"Circuito del actuador de posición del árbol de levas A (banco 1)","family":"timing"},"P0011":{"desc":"Posición del árbol de levas A demasiado adelantada o rendimiento del sistema (banco 1)","family":"timing"},"P0012":{"desc":"Posición del árbol de levas A demasiado atrasada (banco 1)","family":"timing"},"P0016":{"desc":"Correlación entre posición de cigüeñal y árbol de levas A (banco 1)","family":"timing"},"P0100":{"desc":"Circuito del sensor de masa o caudal de aire (MAF)","family":"air"},"P0101":{"desc":"Rango o rendimiento del sensor MAF","family":"air"},"P0102":{"desc":"Señal baja en circuito MAF","family":"air"},"P0103":{"desc":"Señal alta en circuito MAF","family":"air"},"P0105":{"desc":"Circuito del sensor de presión absoluta del múltiple (MAP/BARO)","family":"air"},"P0106":{"desc":"Rango o rendimiento del sensor MAP/BARO","family":"air"},"P0107":{"desc":"Señal baja del sensor MAP/BARO","family":"air"},"P0108":{"desc":"Señal alta del sensor MAP/BARO","family":"air"},"P0110":{"desc":"Circuito del sensor de temperatura de aire de admisión (IAT)","family":"air"},"P0112":{"desc":"Señal baja del sensor IAT","family":"air"},"P0113":{"desc":"Señal alta del sensor IAT","family":"air"},"P0115":{"desc":"Circuito del sensor de temperatura de refrigerante (ECT)","family":"coolant"},"P0116":{"desc":"Rango o rendimiento del sensor ECT","family":"coolant"},"P0117":{"desc":"Señal baja del sensor ECT","family":"coolant"},"P0118":{"desc":"Señal alta del sensor ECT","family":"coolant"},"P0120":{"desc":"Circuito del sensor de posición de mariposa o pedal A","family":"air"},"P0121":{"desc":"Rango o rendimiento del sensor de mariposa o pedal A","family":"air"},"P0122":{"desc":"Señal baja del sensor de mariposa o pedal A","family":"air"},"P0123":{"desc":"Señal alta del sensor de mariposa o pedal A","family":"air"},"P0128":{"desc":"Temperatura de refrigerante por debajo de la regulación del termostato","family":"coolant"},"P0130":{"desc":"Circuito de sonda de oxígeno (banco 1, sensor 1)","family":"oxygen"},"P0131":{"desc":"Tensión baja de sonda de oxígeno (banco 1, sensor 1)","family":"oxygen"},"P0132":{"desc":"Tensión alta de sonda de oxígeno (banco 1, sensor 1)","family":"oxygen"},"P0133":{"desc":"Respuesta lenta de sonda de oxígeno (banco 1, sensor 1)","family":"oxygen"},"P0134":{"desc":"Sin actividad de sonda de oxígeno (banco 1, sensor 1)","family":"oxygen"},"P0135":{"desc":"Circuito de calefacción de sonda de oxígeno (banco 1, sensor 1)","family":"oxygen"},"P0136":{"desc":"Circuito de sonda de oxígeno (banco 1, sensor 2)","family":"oxygen"},"P0141":{"desc":"Circuito de calefacción de sonda de oxígeno (banco 1, sensor 2)","family":"oxygen"},"P0171":{"desc":"Mezcla demasiado pobre (banco 1)","family":"mixture"},"P0172":{"desc":"Mezcla demasiado rica (banco 1)","family":"mixture"},"P0174":{"desc":"Mezcla demasiado pobre (banco 2)","family":"mixture"},"P0175":{"desc":"Mezcla demasiado rica (banco 2)","family":"mixture"},"P0200":{"desc":"Circuito de inyectores: funcionamiento eléctrico","family":"injection"},"P0201":{"desc":"Circuito del inyector del cilindro 1","family":"injection"},"P0202":{"desc":"Circuito del inyector del cilindro 2","family":"injection"},"P0203":{"desc":"Circuito del inyector del cilindro 3","family":"injection"},"P0204":{"desc":"Circuito del inyector del cilindro 4","family":"injection"},"P0230":{"desc":"Circuito primario de la bomba de combustible","family":"injection"},"P0300":{"desc":"Fallas de combustión aleatorias o en múltiples cilindros","family":"misfire"},"P0301":{"desc":"Falla de combustión detectada en el cilindro 1","family":"misfire"},"P0302":{"desc":"Falla de combustión detectada en el cilindro 2","family":"misfire"},"P0303":{"desc":"Falla de combustión detectada en el cilindro 3","family":"misfire"},"P0304":{"desc":"Falla de combustión detectada en el cilindro 4","family":"misfire"},"P0325":{"desc":"Circuito del sensor de detonación 1 (banco 1)","family":"timing"},"P0335":{"desc":"Circuito del sensor de posición del cigüeñal A","family":"timing"},"P0336":{"desc":"Rango o rendimiento del sensor de posición del cigüeñal A","family":"timing"},"P0340":{"desc":"Circuito del sensor de posición del árbol de levas A (banco 1 o sensor único)","family":"timing"},"P0341":{"desc":"Rango o rendimiento del sensor de posición del árbol de levas A","family":"timing"},"P0351":{"desc":"Circuito primario o secundario de bobina de encendido A","family":"misfire"},"P0352":{"desc":"Circuito primario o secundario de bobina de encendido B","family":"misfire"},"P0353":{"desc":"Circuito primario o secundario de bobina de encendido C","family":"misfire"},"P0354":{"desc":"Circuito primario o secundario de bobina de encendido D","family":"misfire"},"P0400":{"desc":"Funcionamiento del sistema de recirculación de gases de escape (EGR)","family":"exhaust"},"P0401":{"desc":"Flujo insuficiente del sistema EGR","family":"exhaust"},"P0402":{"desc":"Flujo excesivo del sistema EGR","family":"exhaust"},"P0403":{"desc":"Circuito de control del sistema EGR","family":"exhaust"},"P0420":{"desc":"Eficiencia del sistema catalizador por debajo del umbral (banco 1)","family":"exhaust"},"P0430":{"desc":"Eficiencia del sistema catalizador por debajo del umbral (banco 2)","family":"exhaust"},"P0440":{"desc":"Falla del sistema de control de vapores de combustible (EVAP)","family":"evap"},"P0441":{"desc":"Flujo incorrecto de purga del sistema EVAP","family":"evap"},"P0442":{"desc":"Fuga pequeña detectada en el sistema EVAP","family":"evap"},"P0443":{"desc":"Circuito de válvula de control de purga EVAP","family":"evap"},"P0446":{"desc":"Circuito de control de ventilación EVAP","family":"evap"},"P0455":{"desc":"Fuga grande detectada en el sistema EVAP","family":"evap"},"P0456":{"desc":"Fuga muy pequeña detectada en el sistema EVAP","family":"evap"},"P0500":{"desc":"Circuito del sensor de velocidad del vehículo","family":"speed"},"P0505":{"desc":"Funcionamiento del sistema de control de ralentí","family":"idle"},"P0506":{"desc":"Régimen de ralentí más bajo de lo esperado","family":"idle"},"P0507":{"desc":"Régimen de ralentí más alto de lo esperado","family":"idle"},"P0560":{"desc":"Funcionamiento anormal de la tensión del sistema","family":"voltage"},"P0562":{"desc":"Tensión baja del sistema","family":"voltage"},"P0563":{"desc":"Tensión alta del sistema","family":"voltage"},"P0600":{"desc":"Falla del enlace de comunicación serie","family":"network"},"P0601":{"desc":"Error de comprobación de memoria interna del módulo de control","family":"network"},"P0700":{"desc":"El control de transmisión solicitó encender el testigo de avería","family":"trans"},"P0715":{"desc":"Circuito del sensor de velocidad de entrada/turbina de la transmisión","family":"trans"},"P0720":{"desc":"Circuito del sensor de velocidad de salida de la transmisión","family":"trans"},"P0740":{"desc":"Circuito de embrague del convertidor de par","family":"trans"},"P0750":{"desc":"Circuito o funcionamiento del solenoide de cambio A","family":"trans"},"P0755":{"desc":"Circuito o funcionamiento del solenoide de cambio B","family":"trans"},"U0100":{"desc":"Pérdida de comunicación con módulo de control del motor o tren motriz","family":"network"},"U0121":{"desc":"Pérdida de comunicación con módulo ABS","family":"network"},"U0140":{"desc":"Pérdida de comunicación con módulo de control de carrocería","family":"network"}};
+const groups={"timing":{"causes":["Sensor o actuador y su conector","Cableado, alimentación, masa o señal fuera de rango","Sincronización mecánica, distribución o aceite (según el código y el motor)"],"checks":["Registrar el DTC y los datos congelados (freeze frame)","Comprobar alimentación, masa y señal según el diagrama eléctrico del motor","Comparar lecturas en vivo y verificar sincronización antes de reemplazar piezas"]},"air":{"causes":["Sensor, conector o cableado","Fugas u obstrucciones en admisión, según el código","Alimentación, masa o lectura de señal incorrecta"],"checks":["Revisar admisión, mangueras y conectores","Comparar datos en vivo con las condiciones reales del motor","Verificar alimentación, masa y señal con el esquema específico"]},"coolant":{"causes":["Sensor ECT o su cableado","Termostato, nivel o circulación del refrigerante, según el código","Lectura de temperatura fuera de rango"],"checks":["Comparar temperatura en frío con la temperatura ambiente","Controlar nivel y funcionamiento del sistema de refrigeración con el motor frío","Revisar termostato y mediciones del sensor según el vehículo"]},"oxygen":{"causes":["Sonda o calefactor, conector o cableado","Fugas de escape o alteraciones de mezcla","Problemas de alimentación o control del calefactor, si aplica"],"checks":["Leer datos en vivo y correcciones de combustible","Inspeccionar fugas de escape y conexiones","Medir alimentación y control según el circuito específico, sin cambiar la sonda sin confirmar"]},"mixture":{"causes":["Entrada de aire no medida o admisión defectuosa","Presión de combustible, inyección o sensor de oxígeno","Fugas en escape o medición incorrecta de caudal/presión de aire"],"checks":["Consultar correcciones de combustible a ralentí y aceleración","Inspeccionar admisión y fugas","Verificar presión de combustible y lecturas de sensores antes de sustituir piezas"]},"injection":{"causes":["Inyector, relé o bomba según el código","Conector, cableado o alimentación","Problema de comando del módulo, menos frecuente"],"checks":["Comprobar fusibles, alimentación y masa según esquema","Revisar continuidad y conectores sin dañar módulos","Correlacionar DTC con pruebas seguras de actuadores o presión"]},"misfire":{"causes":["Encendido: bujías, bobina o conexiones","Inyección o presión de combustible","Compresión o problemas mecánicos; posible pérdida de chispa"],"checks":["Identificar cilindro y datos congelados","Comprobar encendido, combustible y compresión según el caso","Si el testigo titila, evitar exigir el motor por riesgo para el catalizador"]},"exhaust":{"causes":["EGR, catalizador o sensores, según el código","Fugas y conexiones de admisión o escape","Combustión deficiente o mezcla fuera de control"],"checks":["Revisar otros DTC antes de culpar al catalizador","Controlar fugas y lecturas de oxígeno/mezcla","Ejecutar pruebas del fabricante para EGR o eficiencia del catalizador"]},"evap":{"causes":["Tapa del tanque o sellos, cuando corresponda","Mangueras y conductos EVAP","Electroválvulas de purga o ventilación y sus circuitos"],"checks":["Comprobar cierre de tapa y estado de mangueras","Revisar comando eléctrico de válvulas según esquema","Usar método de detección de fugas indicado por fabricante"]},"idle":{"causes":["Mariposa sucia o control de ralentí","Entrada de aire no medida","Actuadores, sensores o adaptaciones"],"checks":["Buscar fugas de admisión","Leer posición de mariposa y valores de ralentí","Verificar limpieza y aprendizaje según procedimiento del fabricante"]},"speed":{"causes":["Sensor y cableado de velocidad","Señal desde ABS o transmisión según el vehículo","Conectores o red de comunicación"],"checks":["Comparar velocidad indicada con datos en vivo","Comprobar circuito según diagrama específico","Revisar DTC del ABS/transmisión que puedan estar relacionados"]},"voltage":{"causes":["Batería o alternador","Bornes, masas y cables con caída de tensión","Regulador o sistema de carga"],"checks":["Medir tensión de batería con motor detenido y encendido","Comprobar caídas de tensión en alimentación y masa","Evaluar sistema de carga según especificaciones"]},"network":{"causes":["Alimentación o masa de algún módulo","Cableado o conectores de red","Falla de comunicación o del propio módulo"],"checks":["Hacer escaneo de todos los módulos","Verificar fusibles, alimentaciones, masas y conectores","Inspeccionar red CAN según procedimiento del fabricante; no reemplazar módulos sin pruebas"]},"trans":{"causes":["Fluido, conexiones o sensor/solenoide, según el código","Cableado, alimentación o módulo de transmisión","Falla mecánica o hidráulica"],"checks":["Leer códigos específicos del TCM y datos congelados","Comprobar nivel/estado de fluido siguiendo especificaciones del fabricante","Revisar cableado, sensores y pruebas de solenoides según manual"]}};
+let currentResult=null;
 const status=s=>{$('message').textContent=s};
-function data(){return{vehicle:$('vehicle').value.trim(),code:$('code').value.trim(),notes:$('notes').value.trim()}}
+const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function data(){return{vehicle:$('vehicle').value.trim(),code:$('code').value.trim().toUpperCase(),notes:$('notes').value.trim()}}
 function prompt(){const x=data();return 'Ayudame con un diagnóstico automotor. Vehículo: '+(x.vehicle||'sin especificar')+'. Consulta o código: '+(x.code||'sin especificar')+'. Notas y síntomas: '+(x.notes||'sin especificar')+'. Explicá posibles causas y pruebas seguras para confirmar el problema.'}
-function getRecords(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch{return[]}}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function render(){const records=getRecords();$('records').innerHTML=records.length?records.map(r=>'<article class="record"><strong>'+escapeHtml(r.vehicle||'Sin vehículo')+'</strong> · '+escapeHtml(r.code||'Consulta')+'<br><small>'+escapeHtml(r.date)+'</small>'+(r.notes?'<p>'+escapeHtml(r.notes)+'</p>':'')+'<button data-delete="'+escapeHtml(r.id)+'" type="button">Eliminar</button></article>').join(''):'<p class="note">Todavía no guardaste consultas.</p>'}
-$('records').addEventListener('click',e=>{const b=e.target.closest('button[data-delete]');if(!b)return;localStorage.setItem(key,JSON.stringify(getRecords().filter(r=>r.id!==b.dataset.delete)));render();status('Consulta eliminada.')});
-$('save').addEventListener('click',()=>{const x=data();if(!x.vehicle&&!x.code&&!x.notes){status('Escribí un dato antes de guardar.');return}const r={...x,id:String(Date.now())+'-'+Math.random().toString(36).slice(2),date:new Date().toLocaleString('es-AR')};const all=getRecords();all.unshift(r);try{localStorage.setItem(key,JSON.stringify(all.slice(0,100)));render();status('Consulta guardada en este celular.')}catch{status('No se pudo guardar: revisá el almacenamiento del navegador.')}});
-$('search').addEventListener('click',()=>{const x=data();if(!x.code&&!x.vehicle){status('Ingresá un código, un vehículo o una consulta.');return}const q=[x.code,x.vehicle,'diagnóstico automotor causas comprobación'].filter(Boolean).join(' ');window.open('https://www.google.com/search?q='+encodeURIComponent(q),'_blank','noopener')});
-$('chat').addEventListener('click',async()=>{const p=prompt();let copied=false;try{await navigator.clipboard.writeText(p);copied=true}catch{const t=document.createElement('textarea');t.value=p;document.body.appendChild(t);t.select();try{copied=document.execCommand('copy')}catch{}t.remove()}window.open('https://chatgpt.com/','_blank','noopener');status(copied?'Consulta copiada. Pegala en ChatGPT para empezar.':'ChatGPT abierto. Copiá tu consulta manualmente para enviarla.')});
+function getRecords(){try{const v=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(v)?v:[]}catch{return[]}}
+function showResult(r){
+ currentResult=r;
+ const x=data();
+ $('resultCard').hidden=false;
+ $('resultTag').textContent=r.kind==='found'?'Código identificado':'Revisar código';
+ $('resultTag').className=r.kind==='found'?'pill':'pill warn';
+ $('resultHeading').textContent='📋 '+r.code+' · Ficha de diagnóstico';
+ $('resultVehicle').textContent='Vehículo: '+(x.vehicle||'No especificado');
+ $('resultDescription').textContent=r.description;
+ $('causesBox').hidden=!r.causes.length;
+ $('resultCauses').innerHTML=r.causes.map(t=>'<li>'+escapeHtml(t)+'</li>').join('');
+ $('resultChecks').innerHTML=r.checks.map(t=>'<li>'+escapeHtml(t)+'</li>').join('');
+ $('resultCaution').textContent=r.caution;
+}
+function hideResult(){currentResult=null;$('resultCard').hidden=true}
+function resolveCode(){
+ const x=data(),code=x.code.replace(/\s+/g,'');
+ if(!code){hideResult();status('Ingresá un código de falla para consultar, por ejemplo P0340.');return}
+ const found=dtc[code];
+ if(found){
+  const group=groups[found.family];
+  showResult({kind:'found',code,description:found.desc,causes:group.causes,checks:group.checks,caution:'Referencia general OBD-II. Confirmá la descripción y las pruebas con el manual y la ECU del vehículo. Un DTC orienta; por sí solo no demuestra qué pieza está averiada.'});
+  status('Ficha encontrada en la base integrada. Podés guardarla sin salir de Scantec.');
+ }else if(!/^[PCBU][0-3][0-9A-F]{3}$/.test(code)){
+  const maybe=/^[PCBU][0-3][0-9A-F]{2}$/.test(code)?' ¿Quisiste escribir '+code[0]+'0'+code.slice(1)+'? Confirmalo en el escáner antes de corregirlo.':'';
+  showResult({kind:'invalid',code,description:'El código ingresado no tiene el formato OBD-II habitual: una letra P, C, B o U seguida de cuatro caracteres válidos.'+maybe,causes:[],checks:['Volvé a leer el código completo en el escáner.','Revisá si hay un cero inicial omitido y la letra correcta.','No interpretes una falla sin validar primero el código.'],caution:'No se asignó una descripción técnica porque el código no está confirmado.'});
+  status('Verificá el código ingresado.');
+ }else{
+  showResult({kind:'unknown',code,description:'El código tiene un formato válido, pero todavía no está identificado en la base integrada de Scantec. Eso NO significa que no exista.',causes:[],checks:['Confirmá código, marca, modelo, año y central electrónica.','Consultá documentación técnica del fabricante si es específico de esa marca.','Podés guardar esta ficha y completar tus hallazgos en Notas.'],caution:'Esta versión incluye códigos OBD-II frecuentes, no todos los códigos de cada fabricante.'});
+  status('No está en la base incorporada. Verificá el código y la documentación específica.');
+ }
+ storeDraft();
+ $('resultCard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function storeDraft(){try{localStorage.setItem(draftKey,JSON.stringify({...data(),result:currentResult}))}catch{}}
+function restoreDraft(){try{const x=JSON.parse(localStorage.getItem(draftKey)||'null');if(!x)return;$('vehicle').value=x.vehicle||'';$('code').value=x.code||'';$('notes').value=x.notes||'';if(x.result&&x.result.code===String(x.code||'').replace(/\s+/g,'').toUpperCase())showResult(x.result)}catch{}}
+function render(){
+ const records=getRecords();
+ $('records').innerHTML=records.length?records.map(r=>'<article class="record"><strong>'+escapeHtml(r.vehicle||'Sin vehículo')+'</strong> · '+escapeHtml(r.code||'Consulta')+'<br><small>'+escapeHtml(r.date||'')+'</small>'+(r.result?'<p class="record-summary">'+escapeHtml(r.result.description)+'</p>':'')+(r.notes?'<p>'+escapeHtml(r.notes)+'</p>':'')+'<button data-open="'+escapeHtml(r.id)+'" type="button">Abrir ficha</button> <button data-delete="'+escapeHtml(r.id)+'" type="button">Eliminar</button></article>').join(''):'<p class="note">Todavía no guardaste consultas.</p>';
+}
+function saveRecord(){
+ const x=data();
+ if(!x.vehicle&&!x.code&&!x.notes){status('Completá al menos un dato antes de guardar.');return}
+ const snapshot=currentResult&&currentResult.code===x.code.replace(/\s+/g,'')?currentResult:null;
+ const r={...x,result:snapshot,id:String(Date.now())+'-'+Math.random().toString(36).slice(2),date:new Date().toLocaleString('es-AR')};
+ const all=getRecords();all.unshift(r);
+ try{localStorage.setItem(key,JSON.stringify(all.slice(0,100)));render();storeDraft();status('Ficha guardada en este dispositivo, incluso si cerrás la aplicación.')}catch{status('No se pudo guardar: revisá el almacenamiento del navegador.')}
+}
+$('records').addEventListener('click',e=>{
+ const del=e.target.closest('button[data-delete]');
+ if(del){localStorage.setItem(key,JSON.stringify(getRecords().filter(r=>r.id!==del.dataset.delete)));render();status('Ficha eliminada.');return}
+ const op=e.target.closest('button[data-open]');if(!op)return;
+ const r=getRecords().find(x=>x.id===op.dataset.open);if(!r)return;
+ $('vehicle').value=r.vehicle||'';$('code').value=r.code||'';$('notes').value=r.notes||'';
+ if(r.result)showResult(r.result);else hideResult();
+ storeDraft();status('Ficha cargada desde el historial.');
+ (r.result?$('resultCard'):$('vehicle')).scrollIntoView({behavior:'smooth',block:'start'});
+});
+$('search').addEventListener('click',resolveCode);
+$('save').addEventListener('click',saveRecord);
+$('saveResult').addEventListener('click',saveRecord);
+$('web').addEventListener('click',()=>{const x=data();if(!x.code&&!x.vehicle){status('Ingresá un código o vehículo antes de buscar.');return}const q=[x.code,x.vehicle,'diagnóstico automotor código DTC'].filter(Boolean).join(' ');window.open('https://www.google.com/search?q='+encodeURIComponent(q),'_blank','noopener');storeDraft()});
+$('copyResult').addEventListener('click',async()=>{if(!currentResult)return;const r=currentResult,x=data();const content=['Scantec · Ficha de diagnóstico','Vehículo: '+(x.vehicle||'No especificado'),'Código: '+r.code,'Descripción: '+r.description,'Posibles causas:',...r.causes.map(s=>'• '+s),'Comprobaciones:',...r.checks.map(s=>'• '+s),'Notas: '+(x.notes||'Sin notas'),r.caution].join('\n');try{await navigator.clipboard.writeText(content);status('Ficha copiada al portapapeles.')}catch{status('El navegador no permitió copiar automáticamente.')}});
+$('chat').addEventListener('click',async()=>{const p=prompt();storeDraft();let copied=false;try{await navigator.clipboard.writeText(p);copied=true}catch{const t=document.createElement('textarea');t.value=p;document.body.appendChild(t);t.select();try{copied=document.execCommand('copy')}catch{}t.remove()}window.open('https://chatgpt.com/','_blank','noopener');status(copied?'Consulta copiada. Pegala en ChatGPT para empezar.':'ChatGPT abierto. Copiá tu consulta manualmente para enviarla.')});
+['vehicle','code','notes'].forEach(id=>$(id).addEventListener('input',()=>{if(id==='code'&&currentResult&&currentResult.code!==$('code').value.trim().toUpperCase().replace(/\s+/g,''))hideResult();storeDraft()}));
 const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(!Recognition){$('mic').disabled=true;$('mic').textContent='🎙️ Dictado no disponible'}else{$('mic').addEventListener('click',()=>{const r=new Recognition();r.lang='es-AR';r.interimResults=false;r.maxAlternatives=1;status('Escuchando... hablá ahora.');r.onresult=e=>{const said=e.results[0][0].transcript;const match=said.match(/\b[PCBU][0-9]{4}\b/i);if(match&&!$('code').value.trim())$('code').value=match[0].toUpperCase();else $('notes').value=($('notes').value.trim()+' '+said).trim();status('Dictado recibido: '+said)};r.onerror=e=>status('No se pudo usar el micrófono: '+e.error);r.onend=()=>{};try{r.start()}catch{status('El micrófono no está disponible ahora.')}})}
-render();
+if(!Recognition){$('mic').disabled=true;$('mic').textContent='🎙️ Dictado no disponible'}else{$('mic').addEventListener('click',()=>{const r=new Recognition();r.lang='es-AR';r.interimResults=false;r.maxAlternatives=1;status('Escuchando... hablá ahora.');r.onresult=e=>{const said=e.results[0][0].transcript;const match=said.match(/\b[PCBU][0-9]{4}\b/i);if(match&&!$('code').value.trim()){$('code').value=match[0].toUpperCase();hideResult()}else $('notes').value=($('notes').value.trim()+' '+said).trim();storeDraft();status('Dictado recibido: '+said)};r.onerror=e=>status('No se pudo usar el micrófono: '+e.error);try{r.start()}catch{status('El micrófono no está disponible ahora.')}})}
+restoreDraft();render();
 })();
 </script> <script type="module">
   // Import the functions you need from the SDKs you need
