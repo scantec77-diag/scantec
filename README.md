@@ -22,6 +22,6 @@ Aplicación web de ayuda técnica para celular y computadora.
 ## Arquitectura
 GitHub Pages publica `index.html` desde `main`. La web lee las bases JSON de la misma carpeta `db/` bajo el mismo sitio, **sin cuentas ni secretos**. Usa el catálogo local inicial de 87 DTC como respaldo cuando la biblioteca externa no esté disponible; en ese caso marca los resultados como **parciales**.
 
-Las fichas guardadas se mantienen en el navegador y **no se sincronizan entre dispositivos**. La inicialización de Firebase existente todavía no implementa almacenamiento, acceso de usuarios ni sincronización.
+**Mi Taller:** usa Firebase Authentication para identificar la cuenta y Cloud Firestore para guardar clientes, vehículos, trabajos, presupuestos y configuración bajo `usuarios/{uid}/`. Las reglas en `firestore.rules` permiten el acceso solo a documentos del usuario autenticado. La sincronización es por recarga y escritura: no hay caché offline ni actualización en tiempo real. La protección WebAuthn es un bloqueo local opcional del navegador, con huella/PIN/patrón según Android, y no sustituye una verificación del servidor. Las antiguas fichas de consultas DTC fuera de Mi Taller siguen en el almacenamiento local del navegador; esas **no** se sincronizan.
 
 Página: https://scantec77-diag.github.io/scantec/
