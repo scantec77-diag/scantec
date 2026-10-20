@@ -126,11 +126,15 @@ function circuitoECT(){
  envoltura.appendChild(details);
  return envoltura;
 }
-function documentoRegionalCompatible(d,vehiculo,year){
+function documentoRegionalCompatible(d,vehiculo,year,motorEcu){
  if(d.tipo!=='plano_regional'&&d.tipo!=='archivo_regional')return false;
  if(!etiquetaAnio(d,year))return false;
  const v=normal(vehiculo);
  if(d.modelo!=='astra'||!/\bastra\b/.test(v))return false;
+ const ecu=normal(motorEcu);
+ // Impedir ofrecer diagramas Motronic M1.5.5 cuando la ECU/motorización declarada sea otra.
+ if(/\b(x20xev|x18xe1|z18xe|z14xe|x16szr|x16xel|simtec|multec)\b/.test(ecu))return false;
+ if(/\b16\s*v(?:alvulas)?\b/.test(ecu))return false;
  // El catálogo de esta etapa describe Astra 2.0 8V, no motores distintos.
  if(/\b16\s*v(?:alvulas)?\b/.test(v)||/\b(1[.,]6|1[.,]8|2[.,]2)\b/.test(v))return false;
  return true;
@@ -163,7 +167,7 @@ function renderizar(d,code,vehiculo,motorEcu){
    el.appendChild(nodo('p','Classic: las series Opel Corsa B/C de la biblioteca no son automáticamente equivalentes al Chevrolet Classic argentino.','result-caption'));
   }
   const docs=d.planos.filter(a=>a.modelo===mdl&&etiquetaAnio(a,year));
-  const regionales=docs.filter(a=>documentoRegionalCompatible(a,vehiculo,year)&&grupos.length&&a.sistemas?.some(g=>grupos.includes(g)));
+  const regionales=docs.filter(a=>documentoRegionalCompatible(a,vehiculo,year,motorEcu)&&grupos.length&&a.sistemas?.some(g=>grupos.includes(g)));
   const específicos=docs.filter(a=>a.tipo==='plano'&&
       Array.isArray(a.motores)&&coincidenciaMotor(a.motores,fuente)&&
       !conflictoValvulas(a,fuente)&&
