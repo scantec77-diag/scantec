@@ -328,7 +328,14 @@ function fail(e){const c=e.code||"desconocido";msg(({"auth/operation-not-allowed
 $("authGoogle").onclick=async()=>{msg("Conectando con Google…");try{await signInWithPopup(auth,new GoogleAuthProvider())}catch(e){if(["auth/popup-blocked","auth/operation-not-supported-in-this-environment"].includes(e.code)){try{await signInWithRedirect(auth,new GoogleAuthProvider())}catch(err){fail(err)}}else fail(e)}};
 $("authLogin").onclick=async()=>{try{await signInWithEmailAndPassword(auth,$("authEmail").value.trim(),$("authPassword").value)}catch(e){fail(e)}};
 $("authRegister").onclick=async()=>{try{await createUserWithEmailAndPassword(auth,$("authEmail").value.trim(),$("authPassword").value)}catch(e){fail(e)}};
-$("authLogout").onclick=()=>signOut(auth);
+$("authLogout").onclick=()=>{
+ const uid=auth.currentUser?.uid;
+ if(uid){
+  try{localStorage.removeItem("scantec_drive_indice_local_v2:"+uid)}catch{}
+  try{sessionStorage.removeItem("scantec_drive_indice_sesion_v1:"+uid)}catch{}
+ }
+ signOut(auth);
+};
 $("abrirMiTaller").addEventListener("click",async event=>{
  // Pedir la credencial en el clic conserva la activación del usuario que
  // Chrome puede requerir para abrir el selector de huella/PIN.
