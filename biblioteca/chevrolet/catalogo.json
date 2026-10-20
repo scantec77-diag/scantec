@@ -1,0 +1,349 @@
+{
+  "version": 1,
+  "marca": "Chevrolet",
+  "aviso": "Material Opel disponible como REFERENCIA para ciertas plataformas GM; no se garantiza equivalencia con Chevrolet de Argentina/Brasil. Confirmar número de motor, ECU, ramal, mercado y esquema antes de medir pines.",
+  "fuentes": [
+    {
+      "id": "gm-si",
+      "modelo": "general",
+      "titulo": "GM / ACDelco TDS — información técnica de servicio",
+      "tipo": "portal_oficial",
+      "url": "https://www.acdelcotds.com/",
+      "nota": "Portal oficial, con suscripción; la cobertura depende del mercado y del vehículo. No es un enlace directo a un plano."
+    }
+  ],
+  "planos": [
+    {
+      "id": "astra-g-indice",
+      "modelo": "astra",
+      "titulo": "Astra G — índice de diagramas eléctricos",
+      "tipo": "indice",
+      "plataforma": "Opel Astra G (Europa)",
+      "anios": [
+        1998,
+        2004
+      ],
+      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra",
+      "nota": "Colección externa Opel, no plano homologado de Chevrolet argentino."
+    },
+    {
+      "id": "astra-x14xe-x16xel",
+      "modelo": "astra",
+      "titulo": "Gestión del motor X14XE / X16XEL (diagrama 3)",
+      "tipo": "plano",
+      "plataforma": "Opel Astra G (Europa)",
+      "anios": [
+        1998,
+        2004
+      ],
+      "motores": [
+        "X14XE",
+        "X16XEL"
+      ],
+      "sistemas": [
+        "map",
+        "ect",
+        "iat",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump"
+      ],
+      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra/shema-3-sistemy-upravleniya-dvigatelyami-h14he-i-h16xel",
+      "nota": "Multec: verificar ECU y los conectores X53/X54."
+    },
+    {
+      "id": "astra-x16szr",
+      "modelo": "astra",
+      "titulo": "Gestión del motor X16SZR (diagrama 5)",
+      "tipo": "plano",
+      "plataforma": "Opel Astra G (Europa)",
+      "anios": [
+        1998,
+        2004
+      ],
+      "motores": [
+        "X16SZR"
+      ],
+      "sistemas": [
+        "map",
+        "ect",
+        "iat",
+        "tps",
+        "ckp",
+        "oxygen",
+        "injectors",
+        "fuelpump"
+      ],
+      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra/shema-5-sistema-upravleniya-dvigatelem-x16szr",
+      "nota": "Solo referencia para motor con identificación X16SZR; verificar ECU."
+    },
+    {
+      "id": "astra-x18xe1",
+      "modelo": "astra",
+      "titulo": "Gestión del motor X18XE-1 (diagrama 6)",
+      "tipo": "plano",
+      "plataforma": "Opel Astra G (Europa)",
+      "anios": [
+        1998,
+        2004
+      ],
+      "motores": [
+        "X18XE1"
+      ],
+      "sistemas": [
+        "maf",
+        "ect",
+        "iat",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump"
+      ],
+      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra/shema-6-sistema-upravleniya-dvigatelem-x18xe-1",
+      "nota": "Verificar identificación exacta X18XE-1 y ECU."
+    },
+    {
+      "id": "astra-x20xev-1",
+      "modelo": "astra",
+      "titulo": "Gestión del motor X20XEV — parte 1 (diagrama 8)",
+      "tipo": "plano",
+      "plataforma": "Opel Astra G (Europa)",
+      "anios": [
+        1998,
+        2004
+      ],
+      "motores": [
+        "X20XEV"
+      ],
+      "sistemas": [
+        "maf",
+        "ect",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "misfire"
+      ],
+      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra/shema-8-sistema-upravleniya-dvigatelem-x20xev",
+      "nota": "Motor X20XEV (16 válvulas), Simtec, conectores X57/X58. NO es el esquema del Chevrolet 2.0 8V."
+    },
+    {
+      "id": "astra-x20xev-2",
+      "modelo": "astra",
+      "titulo": "Gestión del motor X20XEV — continuación (diagrama 9)",
+      "tipo": "plano",
+      "plataforma": "Opel Astra G (Europa)",
+      "anios": [
+        1998,
+        2004
+      ],
+      "motores": [
+        "X20XEV"
+      ],
+      "sistemas": [
+        "maf",
+        "ect",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "misfire"
+      ],
+      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra/shema-9-sistema-upravleniya-dvigatelem-x20xev-prodolzhenie",
+      "nota": "Segunda parte del mismo esquema X20XEV; verificar centralita."
+    },
+    {
+      "id": "astra-refrigeracion",
+      "modelo": "astra",
+      "titulo": "Circuito de refrigeración Astra G — referencia",
+      "tipo": "sistema",
+      "plataforma": "Opel Astra G (Europa)",
+      "anios": [
+        1998,
+        2004
+      ],
+      "sistemas": [
+        "cooling"
+      ],
+      "url": "https://www.opelbook.ru/en/astra/G_g/electrics/astra/shema-10-sistema-ohlazhdeniya-dvigatelya-informacionnyy-displey",
+      "nota": "Sistema de refrigeración de Opel europeo. No identifica relés ni fusibles del Astra Chevrolet regional."
+    },
+    {
+      "id": "corsa-b-indice",
+      "modelo": "corsa",
+      "titulo": "Corsa B — índice de esquemas",
+      "tipo": "indice",
+      "plataforma": "Opel Corsa B (Europa)",
+      "anios": [
+        1993,
+        2000
+      ],
+      "url": "https://www.opelbook.ru/en/corsa/B/electrics/schemes",
+      "nota": "Corsa B europeo; no asumir compatibilidad con Chevrolet Corsa / Classic local."
+    },
+    {
+      "id": "corsa-c-indice",
+      "modelo": "corsa",
+      "titulo": "Corsa C — índice de esquemas",
+      "tipo": "indice",
+      "plataforma": "Opel Corsa C (Europa)",
+      "anios": [
+        2000,
+        2006
+      ],
+      "url": "https://www.opelbook.ru/en/corsa/C_g/electrics/schemes",
+      "nota": "Corsa C europeo; no asumir compatibilidad con Chevrolet Corsa / Classic local."
+    },
+    {
+      "id": "corsa-z14xe-1",
+      "modelo": "corsa",
+      "titulo": "Gestión Z14XE — Multec S(F), parte 1 (diagrama 8)",
+      "tipo": "plano",
+      "plataforma": "Opel Corsa C (Europa)",
+      "anios": [
+        2000,
+        2006
+      ],
+      "motores": [
+        "Z14XE"
+      ],
+      "sistemas": [
+        "ect",
+        "iat",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "misfire"
+      ],
+      "url": "https://www.opelbook.ru/en/corsa/C_g/electrics/schemes/shema-8-dvigatel-z14xe-multec-s-f-chast-1",
+      "nota": "Incluye ECT, CKP, CMP, inyectores y sonda lambda, según leyenda."
+    },
+    {
+      "id": "corsa-z14xe-2",
+      "modelo": "corsa",
+      "titulo": "Gestión Z14XE — MAP, Multec S(F), parte 2 (diagrama 9)",
+      "tipo": "plano",
+      "plataforma": "Opel Corsa C (Europa)",
+      "anios": [
+        2000,
+        2006
+      ],
+      "motores": [
+        "Z14XE"
+      ],
+      "sistemas": [
+        "map"
+      ],
+      "url": "https://www.opelbook.ru/en/corsa/C_g/electrics/schemes/shema-9-dvigatel-z14xe-multec-s-f-chast-2",
+      "nota": "En la leyenda figura sensor de presión absoluta B67."
+    },
+    {
+      "id": "corsa-z18xe-1",
+      "modelo": "corsa",
+      "titulo": "Gestión Z18XE — Simtec 71, parte 1 (diagrama 11)",
+      "tipo": "plano",
+      "plataforma": "Opel Corsa C (Europa)",
+      "anios": [
+        2000,
+        2006
+      ],
+      "motores": [
+        "Z18XE"
+      ],
+      "sistemas": [
+        "maf",
+        "ect",
+        "iat",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "misfire"
+      ],
+      "url": "https://www.opelbook.ru/en/corsa/C_g/electrics/schemes/shema-11-dvigatel-z18xe-simtec-71-chast-1",
+      "nota": "Referencia exclusiva del Z18XE con Simtec 71; confirmar ECU."
+    },
+    {
+      "id": "corsa-z18xe-2",
+      "modelo": "corsa",
+      "titulo": "Gestión Z18XE — Simtec 71, parte 2 (diagrama 12)",
+      "tipo": "plano",
+      "plataforma": "Opel Corsa C (Europa)",
+      "anios": [
+        2000,
+        2006
+      ],
+      "motores": [
+        "Z18XE"
+      ],
+      "sistemas": [
+        "maf",
+        "ect",
+        "iat",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "misfire"
+      ],
+      "url": "https://www.opelbook.ru/en/corsa/C_g/electrics/schemes/shema-12-dvigatel-z18xe-simtec-71-chast-2",
+      "nota": "Segunda parte; confirmar ECU y conectores antes de medir."
+    },
+    {
+      "id": "corsa-refrigeracion",
+      "modelo": "corsa",
+      "titulo": "Refrigeración Z14XE / Z18XE con A/A (diagrama 16)",
+      "tipo": "plano",
+      "plataforma": "Opel Corsa C (Europa)",
+      "anios": [
+        2000,
+        2006
+      ],
+      "motores": [
+        "Z14XE",
+        "Z18XE"
+      ],
+      "sistemas": [
+        "cooling"
+      ],
+      "url": "https://www.opelbook.ru/en/corsa/C_g/electrics/schemes/shema-16-sistema-ohlazhdeniya-dvigatelya-z14-xe-z18xe-s-kondicionerom",
+      "nota": "Aplica al sistema indicado en Opel Corsa C con A/A; no asumir equivalencia regional."
+    },
+    {
+      "id": "meriva-manual-prop",
+      "modelo": "meriva",
+      "titulo": "Chevrolet Meriva MY2012 — manual del propietario (Argentina)",
+      "tipo": "manual",
+      "plataforma": "Chevrolet Meriva (Argentina)",
+      "anios": [
+        2012,
+        2012
+      ],
+      "url": "https://mi.chevrolet.com.ar/content/dam/gmownercenter/gmsa/gmar/dynamic/manuals/2012/chevrolet/Meriva/es/om_ng-chevrolet_Meriva_my12-es_AR.pdf.pdf",
+      "nota": "Manual oficial Chevrolet Argentina de propietario; NO contiene un esquema detallado de ECU/pinado."
+    }
+  ]
+}
