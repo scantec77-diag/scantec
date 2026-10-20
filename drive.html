@@ -56,7 +56,7 @@ small{color:var(--muted)}
 <div id="driveApp" hidden>
 <section class="card">
 <h2>📚 Mis planos y manuales sincronizados</h2>
-<label for="buscar">Buscar por nombre de archivo o carpeta (marca, modelo, año)</label>
+<label for="buscar">🔎 Buscar manuales y planos por marca, modelo, año o código de falla</label>
 <input id="buscar" placeholder="Ej.: Astra, Chevrolet, Corsa, 2.0 8V, P0117" autocomplete="off">
 <p id="summary" class="note"></p>
 <div id="results"><p class="note">Conectá tu Drive para consultar la biblioteca.</p></div>
@@ -71,7 +71,7 @@ small{color:var(--muted)}
 <input id="clientId" placeholder="123456789-xxxxxxxx.apps.googleusercontent.com" spellcheck="false" autocomplete="off">
 <label for="folderId">Carpeta raíz de ScanTec 77 (enlace o ID)</label>
 <input id="folderId" spellcheck="false" autocomplete="off">
-<p class="note">Vinculamos únicamente la carpeta raíz que indiques y sus subcarpetas. El ID del cliente y la carpeta se recuerdan en este navegador; <strong>el token de Google no se almacena</strong>.</p>
+<p class="note">Vinculamos únicamente la carpeta raíz que indiques y sus subcarpetas. El ID del cliente y la carpeta se recuerdan en este navegador. La autorización temporal de Google se conserva solo durante esta sesión del navegador y hasta su vencimiento; no es un acceso permanente.</p>
 <div class="actions">
 <button id="save" type="button">💾 Guardar configuración</button>
 <button id="connect" type="button" class="primary">🔐 Conectar Drive con Google</button>
