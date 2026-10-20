@@ -28,7 +28,7 @@ let token="",expiresAt=0,tokenClient=null,items=[],lastRoot="";
 const signinURL="https://console.cloud.google.com/auth/clients";
 const directRoot="https://drive.google.com/drive/folders/"+DEFAULT_FOLDER;
 function show(t,err){const s=$("estado");s.textContent=String(t);s.className=err?"error":"note status"}
-function setAuth(on){$("connect").disabled=false;$("refresh").disabled=!on;$("disconnect").disabled=!on;$("authLabel").textContent=on?"Google Drive autorizado (lectura de metadatos)":"Drive sin conectar";}
+function setAuth(on){$("connect").disabled=false;$("refresh").disabled=!on;$("disconnect").disabled=!on;$("authLabel").textContent=on?"Google Drive autorizado (lectura de metadatos)":"Drive sin conectar";const estadoPublico=$("drivePublicStatus");if(estadoPublico)estadoPublico.textContent=on?"Drive conectado. Buscá por marca, modelo, motor o código de falla.":"Drive sin conectar. Abrí ⚙️ Configuración de Mi Drive para autorizarlo.";}
 function linkButton(text,url){
  const a=box("a",text,"doc-link");a.href=url;a.target="_blank";a.rel="noopener noreferrer";return a;
 }
