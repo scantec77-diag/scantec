@@ -5,7 +5,6 @@
 (function(){
 'use strict';
 const BASE='./biblioteca/chevrolet/catalogo.json';
-const GM_SI='https://www.acdelcotds.com/';
 let panel=null, solicitud=0, promesa=null;
 const $=id=>document.getElementById(id);
 function normal(t){return String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
@@ -216,12 +215,6 @@ function renderizar(d,code,vehiculo,motorEcu){
   }
   if(!docs.length)el.appendChild(nodo('p','Por ahora no hay diagramas enlazados para este modelo y año. Se seguirá ampliando la biblioteca Chevrolet.','result-caption'));
  }
- const oficina=nodo('div',null,'bib-oficial');
- oficina.appendChild(nodo('strong','Fuente de servicio GM'));
- oficina.appendChild(nodo('p','Acceso a información de servicio de GM mediante ACDelco TDS. Requiere suscripción y la cobertura argentina debe verificarse. No abre directamente el diagrama.','result-caption'));
- oficina.appendChild(enlace('🔗 Ir al portal técnico oficial GM ↗',GM_SI));
- el.appendChild(oficina);
- el.appendChild(nodo('p','La documentación externa requiere conexión a internet. Scantec enlaza el material en su sitio de origen; no copia ni redistribuye planos de terceros.','result-caption'));
 }
 async function mostrar(code,vehiculo,kind,motorEcu){
  const seq=++solicitud,el=asegurar();
