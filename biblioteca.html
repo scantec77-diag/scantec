@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07152b">
+<title>Biblioteca Chevrolet · Planos y manuales | Scantec</title>
+<style>
+:root{color-scheme:dark;--bg:#07152b;--card:#102540;--line:#396283;--blue:#34baff;--muted:#c2d6e9;--fg:#f0f8ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#173c62,var(--bg) 52%);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+main{max-width:760px;margin:0 auto;padding:20px 14px 60px}
+h1{font-size:25px;margin:0;color:#a7e7ff}h2{font-size:18px;margin:0 0 9px}h3{font-size:15px;margin:12px 0 5px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:15px}
+header img{width:55px;height:55px;border-radius:50%;border:2px solid #47baff}
+a{color:#99dfff}header a{margin-left:auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:17px;margin:14px 0}
+.note{font-size:13px;color:var(--muted);line-height:1.5}
+label{display:block;font-size:13px;color:#cde7fa;margin:10px 0 5px}
+input{border:1px solid #3d6280;background:#081a30;color:#fff;border-radius:10px;padding:12px;width:100%;min-width:0;font:16px system-ui}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:570px){.fields{grid-template-columns:1fr}header{flex-wrap:wrap}}
+button,.link-btn{display:inline-block;border:0;background:linear-gradient(120deg,#188abf,#61d1ff);color:#022038;border-radius:10px;font:700 15px system-ui;padding:13px;text-decoration:none;cursor:pointer;text-align:center}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #fff}
+button{width:100%;margin-top:13px}
+.found{background:#0c1e34;border:1px solid #385b78;padding:13px;border-radius:12px;margin:12px 0}
+.found h3{color:#a6e6ff}
+.found .link-btn{width:100%;margin-top:9px}
+.tag{font-size:12px;border:1px solid #5988a4;border-radius:99px;padding:4px 9px;color:#b9e6f5;display:inline-block}
+.warn{border-left:4px solid #e5ab55;padding:10px 13px;background:#3e3325;color:#ffe6b7;border-radius:6px;font-size:13px}
+.small{font-size:12px}
+#status{color:#ade6ff}
+</style>
+</head>
+<body><main>
+<header><img src="./icons/scantec-logo.jpg" alt="Logo Scantec"><div><h1>📚 Biblioteca Chevrolet</h1><div class="note">Planos y manuales por falla</div></div><a href="./">← Volver</a></header>
+<section class="card">
+ <p>Esta sección se abre directamente, aunque todavía no hayas consultado un DTC.</p>
+ <form id="buscar">
+ <div class="fields">
+  <div><label for="modelo">Vehículo / modelo / año</label><input id="modelo" placeholder="Chevrolet Corsa 2004" autocomplete="off"></div>
+  <div><label for="motor">Código motor / ECU, si lo conocés</label><input id="motor" placeholder="Z14XE o M1.5.5" autocomplete="off"></div>
+  <div><label for="dtc">Código de falla</label><input id="dtc" placeholder="P0107" autocapitalize="characters"></div>
+ </div><button type="submit">🔎 Buscar planos y manuales</button>
+ </form>
+ <p id="status" role="status" class="note"></p>
+</section>
+<section class="card" aria-label="Acceso directo a un plano comprobado">
+ <h2>🔌 Plano de prueba que podés abrir ahora</h2>
+ <p><strong>MAP / P0107 · Opel Corsa C Z14XE — Diagrama Nº 9</strong></p>
+ <p class="note">Incluye el sensor B67 y el módulo Multec A84A. Es un diagrama Opel europeo, no el pinado validado del Chevrolet argentino.</p>
+ <a class="link-btn" href="https://www.opelbook.ru/en/corsa/C_g/electrics/schemes/shema-9-dvigatel-z14xe-multec-s-f-chast-2" target="_blank" rel="noopener noreferrer">📄 ABRIR PLANO DEL SENSOR MAP ↗</a>
+</section>
+<section class="card" aria-live="polite"><h2>Resultados de tu búsqueda</h2><div id="resultados" class="note">Completá los datos y tocá «Buscar planos y manuales».</div></section>
+<section class="card">
+ <h2>Sobre esta biblioteca</h2>
+ <p class="warn">Atención: los diagramas de Opel son referencias de plataforma, no pruebas de que coincidan conectores, colores o número de pin de tu Chevrolet en Argentina. Confirmar código de motor y ECU antes de medir.</p>
+ <p class="note">En esta etapa la biblioteca conecta referencias de páginas externas. No todos los modelos tienen aún un manual de taller o PDF cargado; cuando falta el plano exacto se informa expresamente.</p>
+ <a href="https://www.acdelcotds.com/" target="_blank" rel="noopener noreferrer">Portal oficial GM / ACDelco TDS (puede requerir suscripción) ↗</a>
+</section>
+</main>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const fallback=[
+ {id:'corsa-z14xe-2',modelo:'corsa',titulo:'Gestión Z14XE — MAP, Multec S(F), diagrama 9',tipo:'plano',anios:[2000,2006],motores:['Z14XE'],sistemas:['map'],url:'https://www.opelbook.ru/en/corsa/C_g/electrics/schemes/shema-9-dvigatel-z14xe-multec-s-f-chast-2',plataforma:'Opel Corsa C (Europa)',nota:'Sensor MAP B67; referencia Opel no homologada para Chevrolet de Argentina.'},
+ {id:'astra-g-indice',modelo:'astra',titulo:'Astra G — índice de diagramas eléctricos',tipo:'indice',anios:[1998,2004],url:'https://www.opelbook.ru/en/astra/G_g/electrics/astra',plataforma:'Opel Astra G (Europa)',nota:'Índice para comparar; no pinado confirmado de Chevrolet Argentina.'},
+ {id:'corsa-c-indice',modelo:'corsa',titulo:'Corsa C — índice de diagramas eléctricos',tipo:'indice',anios:[2000,2006],url:'https://www.opelbook.ru/en/corsa/C_g/electrics/schemes',plataforma:'Opel Corsa C (Europa)',nota:'No usar como plano específico sin identificar el motor y la ECU.'}
+];
+const safeUrl=u=>{try{const url=new URL(u);return url.protocol==='https:'&&['www.opelbook.ru','pt.scribd.com','es.slideshare.net','mi.chevrolet.com.ar','www.acdelcotds.com'].includes(url.hostname)}catch{return false}};
+const plain=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+const getModelo=s=>{const v=plain(s);if(v.includes('astra'))return 'astra';if(v.includes('corsa')||v.includes('classic'))return 'corsa';if(v.includes('meriva'))return 'meriva';return ''};
+const year=s=>Number((s.match(/\b(19[89]\d|20[0-3]\d)\b/)||[])[0])||0;
+const matchesYears=(p,anio)=>!anio||!p.anios||anio>=p.anios[0]&&anio<=p.anios[1];
+const sys=c=>{c=c.trim().toUpperCase();return /^P010[5-9]$/.test(c)?'map':/^P011[5-9]$/.test(c)?'ect':/^P010[0-4]$/.test(c)?'maf':/^P012[0-4]$/.test(c)?'tps':/^P033[5-9]$/.test(c)?'ckp':/^P034[0-9]$/.test(c)?'cmp':/^P01(?:3[0-9]|4[0-1]|5[0-9]|6[0-1])$/.test(c)?'oxygen':/^P020[0-9]$/.test(c)?'injectors':/^P023[0-4]$/.test(c)?'fuelpump':''};
+const element=(tag,t,cls)=>{const el=document.createElement(tag);if(t!=null)el.textContent=t;if(cls)el.className=cls;return el};
+function addLink(el,doc,tag){
+ const card=element('article',null,'found');
+ card.appendChild(element('span',tag,'tag'));
+ card.appendChild(element('h3',doc.titulo));
+ card.appendChild(element('p',doc.plataforma||'', 'note'));
+ if(doc.nota)card.appendChild(element('p',doc.nota,'note'));
+ if(safeUrl(doc.url)){const a=element('a',doc.tipo==='indice'?'📚 ABRIR ÍNDICE DE PLANOS ↗':doc.tipo==='manual'?'📖 ABRIR MANUAL ↗':'📄 ABRIR PLANO ↗','link-btn');a.href=doc.url;a.target='_blank';a.rel='noopener noreferrer';card.appendChild(a)}
+ el.appendChild(card);
+}
+async function buscar(){
+ const v=$('modelo').value.trim(),m=$('motor').value.trim(),c=$('dtc').value.trim().toUpperCase(),mdl=getModelo(v),yy=year(v),sistema=sys(c),out=$('resultados');
+ out.replaceChildren();$('status').textContent='Buscando referencias de diagramas…';
+ let docs=fallback;
+ try{const r=await fetch('./biblioteca/chevrolet/catalogo.json',{cache:'no-store'});if(!r.ok)throw new Error('catálogo');const parsed=await r.json();if(Array.isArray(parsed.planos))docs=parsed.planos;}
+ catch{$('status').textContent='Biblioteca remota no disponible: mostrando enlaces básicos guardados en esta página.'}
+ if(!mdl){
+  out.appendChild(element('p','Escribí Astra, Corsa o Meriva en vehículo para filtrar. Abajo tenés acceso directo al plano MAP de prueba y al portal GM.'));
+  return;
+ }
+ const dados=(docs||[]).filter(d=>d.modelo===mdl&&matchesYears(d,yy));
+ const rs=[];
+ for(const d of dados){
+  const isIndex=d.tipo==='indice',isManual=d.tipo==='manual',isRegional=['plano_regional','archivo_regional'].includes(d.tipo);
+  const motorExact=(d.motores||[]).some(t=>plain(m).replace(/[^a-z0-9]/g,'')===plain(t).replace(/[^a-z0-9]/g,'')&&m.trim());
+  const engineDeclared=!!m.trim();
+  const engineConflict=d.motores?.length&&engineDeclared&&!motorExact;
+  const specifiedOther=mdl==='astra'&&/\b8\s*v\b/i.test(v)&&d.motores?.includes('X20XEV');
+  const domain=Array.isArray(d.sistemas)?d.sistemas:[];
+  const related=!sistema||domain.includes(sistema)||(sistema==='ect'&&domain.includes('cooling'));
+  if(specifiedOther)continue;
+  if(isIndex||isManual){rs.push({doc:d,label:isIndex?'Colección no validada':'Manual original; puede no incluir el plano'});continue}
+  if(!related)continue;
+  if(isRegional){
+   if(m&&/\b(x20xev|simtec|multec|z18xe|z14xe)\b/i.test(m))continue;
+   rs.push({doc:d,label:'Documentación regional candidata: ECU por confirmar'});continue;
+  }
+  if(engineConflict)continue;
+  if(engineDeclared&&motorExact)rs.unshift({doc:d,label:'Coincide motor declarado; confirmar ECU y mercado'});
+  else if(!engineDeclared)rs.push({doc:d,label:'Referencia por sistema, NO confirmada para tu motor'});
+ }
+ if(!rs.length){
+  out.appendChild(element('p','No hay plano específico confirmado para esa combinación. Podés probar sin motor para ver referencias por sistema, o consultar la documentación oficial GM.'));
+ } else {
+  rs.slice(0,18).forEach(({doc,label})=>addLink(out,doc,label));
+ }
+ $('status').textContent=rs.length+' referencia(s) disponible(s). Abrí el documento en su fuente externa.';
+}
+$('buscar').addEventListener('submit',e=>{e.preventDefault();buscar()});
+const q=new URLSearchParams(location.search);
+$('modelo').value=q.get('vehiculo')||'Chevrolet Corsa 2004';
+$('motor').value=q.get('motor')||'Z14XE';
+$('dtc').value=q.get('codigo')||'P0107';
+buscar();
+})();
+</script>
+</body></html>
