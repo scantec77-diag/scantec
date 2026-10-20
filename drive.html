@@ -26,6 +26,9 @@ button:disabled{opacity:.5;cursor:not-allowed}
 button.primary{background:linear-gradient(110deg,#128ec9,#5cd2ff);color:#061b2b;border:0}
 button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff}
 #authLabel{font-weight:650;color:#9be9ff}
+details>summary{cursor:pointer;color:#c2eaff;font-weight:750;padding:3px 0;list-style-position:inside}
+.settings-body{padding-top:12px}
+#driveLock{margin-top:22px}
 #results{display:grid;gap:10px;margin-top:14px}
 .file-row{border:1px solid #375879;background:#0a2037;border-radius:11px;padding:12px;overflow-wrap:anywhere}
 .file-row strong{color:#d5efff}
@@ -44,8 +47,25 @@ small{color:var(--muted)}
 <div><h1>☁️ Google Drive · ScanTec 77</h1><div class="note">Biblioteca privada de manuales, diagramas y archivos técnicos</div></div>
 <a href="./">← Volver</a>
 </header>
+<section id="driveLock" class="card" hidden>
+<h2>🔐 Mi Drive · acceso privado</h2>
+<p id="lockDriveMessage" class="note" role="status" aria-live="polite">Comprobando la sesión de Scantec…</p>
+<div class="actions"><button id="unlockDrive" type="button" class="primary">🫆 Desbloquear con mi teléfono</button><a class="doc-link" href="./">← Ir a Scantec</a></div>
+<p class="note">Si activaste el desbloqueo en Mi Taller, podés usar la misma huella, PIN o patrón. Esta verificación local complementa los permisos de Google Drive.</p>
+</section>
+<div id="driveApp" hidden>
 <section class="card">
-<h2>1. Autorizar Scantec en Google</h2>
+<h2>📚 Mis planos y manuales sincronizados</h2>
+<label for="buscar">Buscar por nombre de archivo o carpeta (marca, modelo, año)</label>
+<input id="buscar" placeholder="Ej.: Astra, Chevrolet, Corsa, 2.0 8V, P0117" autocomplete="off">
+<p id="summary" class="note"></p>
+<div id="results"><p class="note">Conectá tu Drive para consultar la biblioteca.</p></div>
+</section>
+<p id="drivePublicStatus" class="note" role="status">Google Drive sin conectar. Abrí Configuración para autorizarlo.</p>
+<details id="driveSettings" class="card">
+<summary>⚙️ Configuración de Mi Drive</summary>
+<div class="settings-body">
+<p class="note">Conexión y permisos de Google · Estas opciones se muestran solo cuando abrís este menú.</p>
 <p class="note">Esta conexión es independiente del inicio de sesión de Firebase. Pedirá permiso para ver <strong>nombres, carpetas y metadatos</strong> de tu Drive, no para borrar ni subir archivos. Los documentos se abren en una pestaña de Google Drive con tu propia cuenta.</p>
 <label for="clientId">ID de cliente OAuth 2.0 · Aplicación web</label>
 <input id="clientId" placeholder="123456789-xxxxxxxx.apps.googleusercontent.com" spellcheck="false" autocomplete="off">
@@ -61,16 +81,17 @@ small{color:var(--muted)}
 <p id="authLabel">Drive sin conectar</p>
 <p id="estado" class="status note" role="status" aria-live="polite"></p>
 <p class="note"><a id="rootLink" target="_blank" rel="noopener noreferrer">Abrir carpeta ScanTec 77 en Drive ↗</a></p>
-</section>
-<section class="card">
-<h2>2. Mis planos y manuales sincronizados</h2>
-<label for="buscar">Buscar por nombre de archivo o carpeta (marca, modelo, año)</label>
-<input id="buscar" placeholder="Ej.: Astra, Chevrolet, Corsa, 2.0 8V, P0117" autocomplete="off">
-<p id="summary" class="note"></p>
-<div id="results"><p class="note">Conectá tu Drive para mostrar la biblioteca.</p></div>
-</section>
-<section class="card">
-<h2>¿Dónde consigo el ID de cliente?</h2>
+
+<div class="card" style="margin-top:14px">
+<h3>🫆 Acceso con huella o desbloqueo del teléfono</h3>
+<p class="note">El mismo desbloqueo local de Mi Taller también protege la entrada a Mi Drive. Android puede ofrecer huella, PIN o patrón.</p>
+<div class="actions"><button id="activateDriveBiometric" type="button">🫆 Activar desbloqueo</button><button id="deactivateDriveBiometric" type="button">Quitar desbloqueo local</button></div>
+<p id="driveBioStatus" class="note" role="status"></p>
+</div>
+<details class="card" style="margin-top:14px">
+<summary>Ayuda para conectar Google Drive</summary>
+<div class="settings-body">
+<h3>¿Dónde consigo el ID de cliente?</h3>
 <ol>
 <li>Entrá a <a id="cloudLink" target="_blank" rel="noopener noreferrer">Google Cloud Console → Google Auth Platform → Clientes ↗</a> y seleccioná el proyecto de Scantec.</li>
 <li>Activá la <a href="https://console.cloud.google.com/apis/library/drive.googleapis.com" target="_blank" rel="noopener noreferrer">Google Drive API</a> para el mismo proyecto.</li>
@@ -82,9 +103,16 @@ small{color:var(--muted)}
 </ol>
 <p class="note">Scantec recorre la carpeta cuando conectás o pulsás «Actualizar biblioteca». Esta primera etapa no realiza copias automáticas en segundo plano, ni sincroniza los clientes de Mi Taller. Eso continúa funcionando mediante Firebase y lo ampliaremos por separado.</p>
 </section>
+</div>
+</details>
+</div>
+</details>
+</div>
+
 </main>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="./drive-scantec.js"></script>
 <script>window.ScantecDrive?.init();</script>
+<script type="module" src="./drive-acceso.js"></script>
 </body>
 </html>
