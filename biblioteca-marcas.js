@@ -211,7 +211,20 @@ function renderizar(d,code,vehiculo,motorEcu){
 async function mostrar(code,vehiculo,kind,motorEcu){
  const seq=++solicitud,el=asegurar();
  if(!el)return;
- if(kind==='invalid'||!esChevrolet(vehiculo)){el.hidden=true;el.replaceChildren();return;}
+ if(kind==='invalid'){el.hidden=true;el.replaceChildren();return;}
+ const c=String(code||'').toUpperCase().replace(/\s+/g,'');
+ if(!esChevrolet(vehiculo)){
+  // Permitir que se vea al menos el circuito ECT aunque el usuario
+  // haya buscado un DTC sin completar todavía la marca/modelo.
+  if(/^P011[5-9]$/.test(c)){
+   el.hidden=false;
+   el.replaceChildren();
+   el.appendChild(nodo('h4','📐 Plano funcional · Sensor ECT'));
+   el.appendChild(circuitoECT());
+   el.appendChild(nodo('p','Para enlazar planos publicados del vehículo, completá arriba Chevrolet, modelo y año (por ejemplo: Chevrolet Astra 2.0 8V 1999). El diagrama anterior es solo orientativo.','result-caption'));
+  }else{el.hidden=true;el.replaceChildren();}
+  return;
+ }
  el.hidden=false;
  el.replaceChildren(nodo('p','Buscando diagramas en la biblioteca Chevrolet…','result-caption'));
  try{
