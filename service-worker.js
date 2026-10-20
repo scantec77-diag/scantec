@@ -1,8 +1,8 @@
 /* Scantec: guardado básico de la aplicación y biblioteca DTC para consultas offline.
    Los documentos privados de Drive no se guardan en caché. */
-const SHELL="scantec-v1-shell-20261020-ect-diagrama-regional2";
+const SHELL="scantec-v1-shell-20261020-manuales-v2";
 const STATIC=[
- "./","./index.html","./manifest.webmanifest","./icons/scantec-logo.jpg","./icons/scantec-icon.svg",
+ "./","./index.html","./biblioteca.html","./manifest.webmanifest","./icons/scantec-logo.jpg","./icons/scantec-icon.svg",
  "./sensores.js","./biblioteca-marcas.js","./biblioteca/chevrolet/catalogo.json", "./db/genericos.json","./db/marcas-a.json","./db/marcas-b.json","./db/marcas-c.json","./db/marcas-d.json"
 ];
 self.addEventListener("install",event=>{
