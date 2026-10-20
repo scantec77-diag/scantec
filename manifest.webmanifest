@@ -1,0 +1,25 @@
+{
+  "name": "Scantec · Diagnóstico Automotor",
+  "short_name": "Scantec",
+  "description": "Consulta códigos DTC y guardá fichas de diagnóstico automotor.",
+  "lang": "es-AR",
+  "start_url": "/scantec/",
+  "scope": "/scantec/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#07152b",
+  "background_color": "#07152b",
+  "icons": [
+    {
+      "src": "icons/scantec-logo.jpg",
+      "sizes": "96x96",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "icons/scantec-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
