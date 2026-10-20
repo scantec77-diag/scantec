@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07152b">
+<title>Mi Taller | Scantec</title>
+<style>
+:root{color-scheme:dark;--bg:#07152b;--card:#102440;--line:#335272;--blue:#36baff;--text:#eef8ff;--muted:#adc3d9}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at top,#183e62,#07152b 60%);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:990px;margin:auto;padding:18px 14px 70px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+header img{width:62px;height:62px;object-fit:cover;border-radius:50%;border:2px solid var(--blue);flex-shrink:0}
+h1{font-size:26px;line-height:1.05;margin:0}h1 span{color:var(--blue)}h2{font-size:21px;margin:0 0 10px}h3{font-size:17px;margin:0 0 8px}
+small,.muted{color:var(--muted)}a{color:#a9e6ff}a.back{margin-left:auto;text-decoration:none;border:1px solid var(--line);padding:8px 11px;border-radius:10px}
+.card{padding:18px;background:#102440f0;border:1px solid var(--line);border-radius:16px;margin:14px 0;box-shadow:0 8px 25px #0002}
+.callout{border-left:3px solid var(--blue);padding:10px 13px;background:#0b2843;border-radius:9px;margin:12px 0}
+nav{display:flex;gap:7px;overflow-x:auto;padding:5px 0 10px;scrollbar-width:thin}
+button,.btn{background:#1a395b;color:#f2faff;border:1px solid #3d6283;border-radius:11px;padding:11px 13px;font:600 14px system-ui;cursor:pointer;text-decoration:none;display:inline-block}
+button:hover,.btn:hover{border-color:#48c8ff}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #8ae0ff;outline-offset:2px}
+button.primary,.primary{background:linear-gradient(110deg,#087eaf,#24b8f2);color:#031c33;border:0}
+nav button{white-space:nowrap}nav button.active{color:#031c33;background:#5acaff;border-color:#5acaff}
+button.danger{background:#593041;border-color:#805060}button.tiny{padding:6px 9px;font-size:12px}
+.panel[hidden],#tallerApp[hidden],#blocked[hidden]{display:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:670px){.grid,.grid.three{grid-template-columns:1fr}header h1{font-size:23px}header img{width:54px;height:54px}.card{padding:14px}}
+label{display:block;color:#cce6f6;font-size:13px;font-weight:600;margin:10px 0 5px}
+input,textarea,select{width:100%;background:#081b32;color:#f2f9ff;border:1px solid #3c6080;border-radius:10px;padding:11px 12px;font:16px system-ui;min-width:0}
+textarea{min-height:78px;resize:vertical}
+.inline-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.items{display:grid;gap:10px;margin-top:14px}
+.item{border:1px solid #355473;background:#0b1c35;padding:12px;border-radius:12px;overflow-wrap:anywhere}
+.item p{margin:4px 0;white-space:pre-wrap}.item strong{color:#a9e8ff}.item .inline-actions{margin-top:8px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.metric{background:#0b2c48;border:1px solid #335e7a;border-radius:12px;padding:13px}.metric strong{display:block;font-size:29px;color:#8bdfff}
+@media(max-width:460px){.metric{padding:9px}.metric strong{font-size:23px}.metric small{font-size:11px}}
+#status{position:sticky;bottom:8px;background:#134469;border:1px solid #428db2;padding:10px 13px;border-radius:12px;z-index:5;display:none}
+#status:not(:empty){display:block}footer{color:#93b0c9;text-align:center;font-size:12px;margin-top:22px}
+</style>
+</head>
+<body>
+<main>
+<header><img src="./icons/scantec-logo.jpg" alt="Logo de Scantec"><div><h1>SCAN<span>TEC</span> · Mi Taller</h1><small>Diagnóstico automotor · © 2026</small></div><a class="back" href="./">← Volver a Scantec</a></header>
+<div id="blocked" class="card"><h2>🔐 Comprobando tu sesión</h2><p id="blockedMsg">Verificando la cuenta de Scantec…</p><a class="btn" href="./">Ingresar a Scantec</a></div>
+<div id="tallerApp" hidden>
+<div class="callout"><strong>🔒 Acceso con cuenta Scantec.</strong> En esta primera versión, las fichas se guardan <strong>solo en este navegador</strong>, separadas por usuario. Todavía <strong>no se sincronizan</strong> con Firebase, Drive ni otros dispositivos. Hacé copias de seguridad desde Configuración.</div>
+<nav aria-label="Secciones de Mi Taller">
+<button type="button" data-tab="inicio" class="active">🏠 Inicio</button>
+<button type="button" data-tab="clientes">👤 Clientes</button>
+<button type="button" data-tab="vehiculos">🚗 Vehículos</button>
+<button type="button" data-tab="trabajos">🛠️ Historial</button>
+<button type="button" data-tab="presupuestos">📄 Presupuestos</button>
+<button type="button" data-tab="ajustes">⚙️ Configuración</button>
+</nav>
+<div class="card"><label for="busqueda">🔎 Buscar en Mi Taller por patente, cliente o teléfono</label><input id="busqueda" type="search" placeholder="Ej.: AA123BB, Astra, Juan, 11…" autocomplete="off"></div>
+<section class="panel" id="panel-inicio">
+<div class="card"><h2>Mi Taller</h2><div class="metrics"><div class="metric"><strong id="nClientes">0</strong><small>Clientes</small></div><div class="metric"><strong id="nVehiculos">0</strong><small>Vehículos</small></div><div class="metric"><strong id="nTrabajos">0</strong><small>Trabajos</small></div></div><div class="inline-actions"><button class="primary" type="button" data-go="clientes">+ Cliente</button><button type="button" data-go="vehiculos">+ Vehículo</button><button type="button" data-go="trabajos">+ Trabajo</button><button type="button" data-go="presupuestos">+ Presupuesto</button></div></div>
+<div class="card"><h3>Últimos trabajos</h3><div id="inicioUltimos" class="items"></div></div>
+</section>
+<section class="panel" id="panel-clientes" hidden>
+<div class="card"><h2>👤 Ficha del cliente</h2><form id="formCliente">
+<input type="hidden" name="id"><div class="grid"><div><label>Nombre *</label><input name="nombre" maxlength="100" required></div><div><label>Apellido *</label><input name="apellido" maxlength="100" required></div><div><label>Teléfono / WhatsApp</label><input name="telefono" type="tel" maxlength="40" placeholder="+54 9 11..."></div><div><label>Correo electrónico</label><input name="email" type="email" maxlength="150"></div><div><label>Dirección</label><input name="direccion" maxlength="200"></div><div><label>DNI (opcional)</label><input name="dni" inputmode="numeric" maxlength="24"></div></div>
+<div class="inline-actions"><button type="submit" class="primary">💾 Guardar cliente</button><button type="reset">Limpiar</button></div></form><p class="muted">Guardá únicamente los datos personales necesarios para atender al cliente.</p></div>
+<div class="card"><h3>Clientes registrados</h3><div id="listaClientes" class="items"></div></div>
+</section>
+<section class="panel" id="panel-vehiculos" hidden>
+<div class="card"><h2>🚗 Ficha del vehículo</h2><form id="formVehiculo"><input type="hidden" name="id"><div class="grid">
+<div><label>Cliente *</label><select name="clienteId" class="clientesOptions" required></select></div>
+<div><label>Patente *</label><input name="patente" required maxlength="20" placeholder="AA123BB" autocapitalize="characters"></div>
+<div><label>Marca *</label><input name="marca" maxlength="80" required></div><div><label>Modelo *</label><input name="modelo" maxlength="100" required></div>
+<div><label>Año</label><input name="anio" type="number" min="1900" max="2100"></div>
+<div><label>Kilometraje actual</label><input name="km" type="number" min="0" step="1"></div></div>
+<label>Equipo GNC (opcional)</label><input name="gnc" maxlength="120" placeholder="Marca / ECU / generación"><label>Observaciones</label><textarea name="notas" maxlength="2000"></textarea>
+<div class="inline-actions"><button type="submit" class="primary">💾 Guardar vehículo</button><button type="reset">Limpiar</button></div></form></div>
+<div class="card"><h3>Vehículos registrados</h3><div id="listaVehiculos" class="items"></div></div>
+</section>
+<section class="panel" id="panel-trabajos" hidden>
+<div class="card"><h2>🛠️ Registrar trabajo o diagnóstico</h2><form id="formTrabajo">
+<div class="grid"><div><label>Vehículo *</label><select name="vehiculoId" class="vehiculosOptions" required></select></div><div><label>Fecha *</label><input name="fecha" type="date" required></div>
+<div><label>Kilometraje</label><input name="km" type="number" min="0"></div><div><label>Tipo de trabajo</label><select name="tipo"><option>Diagnóstico automotor</option><option>Diagnóstico GNC</option><option>Calibración / programación</option><option>Reparación</option><option>Control preventivo</option><option>Otro</option></select></div>
+<div><label>Códigos de falla</label><input name="codigos" maxlength="200" placeholder="P0300, P0171…"></div><div><label>Importe cobrado (ARS, opcional)</label><input name="importe" type="number" min="0" step="0.01"></div></div>
+<label>Trabajo realizado *</label><textarea name="detalle" required maxlength="5000" placeholder="Escaneo, mediciones, pruebas y trabajos realizados"></textarea>
+<label>Resultado / observaciones</label><textarea name="resultado" maxlength="4000"></textarea>
+<label>Recomendaciones para el cliente</label><textarea name="recomendaciones" maxlength="2000"></textarea>
+<div class="inline-actions"><button class="primary" type="submit">💾 Agregar al historial</button><button type="reset">Limpiar</button></div></form></div>
+<div class="card"><h3>Historial de trabajos</h3><div id="listaTrabajos" class="items"></div></div>
+</section>
+<section class="panel" id="panel-presupuestos" hidden>
+<div class="card"><h2>📄 Crear presupuesto o comprobante</h2><form id="formDocumento">
+<div class="grid"><div><label>Vehículo *</label><select name="vehiculoId" class="vehiculosOptions" required></select></div><div><label>Documento</label><select name="tipo"><option value="Presupuesto">Presupuesto</option><option value="Comprobante interno (no fiscal)">Comprobante interno (no fiscal)</option></select></div></div>
+<label>Conceptos y precios (uno por renglón) *</label>
+<textarea name="conceptos" required rows="5" placeholder="Escaneo automotor | 1 | 25000&#10;Calibración GNC | 1 | 35000"></textarea>
+<p class="muted">Formato: descripción | cantidad | precio unitario en pesos. Usá números sin separador de miles; para decimales, coma.</p>
+<label>Notas y condiciones</label><textarea name="notas" maxlength="2000"></textarea>
+<div class="inline-actions"><button type="submit" class="primary">💾 Crear documento</button><button type="reset">Limpiar</button></div></form></div>
+<div class="card"><h3>Presupuestos y comprobantes</h3><div id="listaDocumentos" class="items"></div><p class="muted">El PDF se genera en tu dispositivo. Para mandar el archivo por WhatsApp usá «Compartir PDF» y elegí WhatsApp. Los botones «WhatsApp» y «Correo» preparan el mensaje; no adjuntan automáticamente el PDF.</p></div>
+</section>
+<section class="panel" id="panel-ajustes" hidden>
+<div class="card"><h2>⚙️ Datos de contacto Scantec</h2><form id="formAjustes"><label>Correo de Scantec</label><input name="correo" type="email" placeholder="scantec@ejemplo.com"><label>WhatsApp de Scantec (formato internacional)</label><input name="whatsapp" type="tel" placeholder="+54 9 11..."><div class="inline-actions"><button type="submit" class="primary">Guardar datos de contacto</button></div></form><p class="muted">Estos datos figuran en documentos. El botón Correo abre la aplicación de correo configurada en tu teléfono; no selecciona automáticamente la cuenta de Scantec.</p></div>
+<div class="card"><h3>☁️ Copia de seguridad y sincronización</h3><p>La cuenta de Google controla el acceso a Mi Taller, pero <strong>las fichas aún se guardan en el navegador</strong>. No está activo el guardado remoto en Firebase ni Drive. La siguiente etapa será Firestore con reglas privadas por usuario y sincronización entre dispositivos.</p>
+<div class="inline-actions"><button id="exportar" class="primary" type="button">⬇️ Descargar copia JSON</button><button id="restaurar" type="button">📂 Restaurar copia</button><input id="archivoRestaurar" type="file" accept=".json,application/json" hidden></div>
+<p class="muted">La copia contiene nombres, teléfonos, direcciones, matrículas y trabajos: guardala en un lugar privado. Restaurar reemplaza todas las fichas del usuario actual en este navegador.</p></div>
+</section>
+<div id="status" role="status" aria-live="polite"></div>
+<footer>Scantec · Diagnóstico Automotor · Mi Taller · By Ariel Jacob · © 2026</footer>
+</div>
+</main>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+const config={apiKey:"AIzaSyBdnsyW2len_vQesuPY9tyjjxrCvl7zVow",authDomain:"scantec-7e3e9.firebaseapp.com",projectId:"scantec-7e3e9",storageBucket:"scantec-7e3e9.firebasestorage.app",messagingSenderId:"293382540",appId:"1:293382540:web:39a3dcbc70e3e921b38ea9"};
+const el=id=>document.getElementById(id);
+const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=n=>new Intl.NumberFormat("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:2}).format(Number(n)||0);
+const uid=()=>((globalThis.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Date.now())+Math.random().toString(36).slice(2));
+const hoy=()=>new Date().toISOString().slice(0,10);
+const formatoFecha=v=>{if(!v)return "";const d=new Date(v+"T12:00:00");return isNaN(d.getTime())?v:d.toLocaleDateString("es-AR")};
+const toast=t=>{el("status").textContent=t;};
+const val=(form,n)=>String(new FormData(form).get(n)||"").trim();
+let db=null,storageKey="",iniciado=false;
+function load(key){try{const o=JSON.parse(localStorage.getItem(key)||"null");if(o&&Array.isArray(o.clientes)&&Array.isArray(o.vehiculos)&&Array.isArray(o.trabajos)&&Array.isArray(o.documentos))return o;}catch(e){}return {clientes:[],vehiculos:[],trabajos:[],documentos:[],ajustes:{correo:"",whatsapp:""}};}
+function guardar(){try{localStorage.setItem(storageKey,JSON.stringify(db));return true;}catch(e){toast("⚠️ No se pudo guardar. Revisá el espacio y permisos del navegador.");return false}}
+function cliente(id){return db.clientes.find(x=>x.id===id)}
+function vehiculo(id){return db.vehiculos.find(x=>x.id===id)}
+function duenio(v){const c=v&&cliente(v.clienteId);return c?(c.nombre+" "+c.apellido):"Cliente no disponible"}
+function auto(v){return v?(v.patente+" · "+v.marca+" "+v.modelo):"Vehículo no disponible"}
+function textMatch(...parts){const q=el("busqueda").value.trim().toLocaleLowerCase("es-AR");return !q||parts.join(" ").toLocaleLowerCase("es-AR").includes(q)}
+function go(name){document.querySelectorAll(".panel").forEach(p=>p.hidden=p.id!=="panel-"+name);document.querySelectorAll("nav [data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));render();window.scrollTo({top:0,behavior:"smooth"})}
+function opciones(){
+document.querySelectorAll(".clientesOptions").forEach(select=>{const anterior=select.value;select.innerHTML='<option value="">Seleccioná cliente</option>'+db.clientes.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.apellido+", "+c.nombre)+'</option>').join("");select.value=anterior||"";});
+document.querySelectorAll(".vehiculosOptions").forEach(select=>{const anterior=select.value;select.innerHTML='<option value="">Seleccioná vehículo</option>'+db.vehiculos.map(v=>'<option value="'+esc(v.id)+'">'+esc(auto(v)+" · "+duenio(v))+'</option>').join("");select.value=anterior||"";});
+}
+function actions(list){return list||'<p class="muted">Todavía no hay registros que coincidan.</p>'}
+function render(){
+if(!db)return;
+opciones();
+el("nClientes").textContent=db.clientes.length;el("nVehiculos").textContent=db.vehiculos.length;el("nTrabajos").textContent=db.trabajos.length;
+const trabajos=[...db.trabajos].sort((a,b)=>(b.fecha||"").localeCompare(a.fecha||""));
+const jobHtml=t=>{const v=vehiculo(t.vehiculoId);return '<article class="item"><strong>'+esc(formatoFecha(t.fecha))+' · '+esc(t.tipo)+'</strong><p>'+esc(auto(v))+' · '+esc(duenio(v))+'</p><p>'+esc(t.detalle)+'</p>'+(t.codigos?'<p>Códigos: '+esc(t.codigos)+'</p>':'')+(t.resultado?'<p>Resultado: '+esc(t.resultado)+'</p>':'')+(t.recomendaciones?'<p>Recomendaciones: '+esc(t.recomendaciones)+'</p>':'')+(t.importe?'<p>Importe: '+money(t.importe)+'</p>':'')+'<div class="inline-actions"><button class="tiny danger" data-act="trabajoBorrar" data-id="'+esc(t.id)+'">Eliminar</button></div></article>'};
+const coinciden=trabajos.filter(t=>{const v=vehiculo(t.vehiculoId);return textMatch(auto(v),duenio(v),t.detalle,t.tipo,t.codigos)});
+el("inicioUltimos").innerHTML=actions(coinciden.slice(0,5).map(jobHtml).join(""));
+el("listaTrabajos").innerHTML=actions(coinciden.map(jobHtml).join(""));
+el("listaClientes").innerHTML=actions(db.clientes.filter(c=>textMatch(c.nombre,c.apellido,c.telefono,c.email,c.direccion,c.dni)).map(c=>'<article class="item"><strong>'+esc(c.apellido+", "+c.nombre)+'</strong><p>☎ '+esc(c.telefono||"Sin teléfono")+' · '+esc(c.email||"Sin correo")+'</p>'+(c.direccion?'<p>Dirección: '+esc(c.direccion)+'</p>':'')+(c.dni?'<p>DNI: '+esc(c.dni)+'</p>':'')+'<small>'+db.vehiculos.filter(v=>v.clienteId===c.id).length+' vehículo(s)</small><div class="inline-actions"><button class="tiny" data-act="clienteEditar" data-id="'+esc(c.id)+'">Editar</button><button class="tiny danger" data-act="clienteBorrar" data-id="'+esc(c.id)+'">Eliminar</button></div></article>').join(""));
+el("listaVehiculos").innerHTML=actions(db.vehiculos.filter(v=>{const c=cliente(v.clienteId);return textMatch(auto(v),duenio(v),c&&c.telefono,v.gnc,v.notas)}).map(v=>'<article class="item"><strong>'+esc(auto(v))+'</strong><p>Cliente: '+esc(duenio(v))+'</p><p>Año: '+esc(v.anio||"-")+' · Km: '+esc(v.km||"-")+(v.gnc?' · GNC: '+esc(v.gnc):'')+'</p>'+(v.notas?'<p>'+esc(v.notas)+'</p>':'')+'<div class="inline-actions"><button class="tiny" data-act="vehiculoEditar" data-id="'+esc(v.id)+'">Editar</button><button class="tiny" data-act="vehiculoHistorial" data-id="'+esc(v.id)+'">Ver historial</button><button class="tiny danger" data-act="vehiculoBorrar" data-id="'+esc(v.id)+'">Eliminar</button></div></article>').join(""));
+el("listaDocumentos").innerHTML=actions(db.documentos.filter(d=>{const v=vehiculo(d.vehiculoId);return textMatch(d.tipo,d.numero,auto(v),duenio(v),d.notas,(d.items||[]).map(x=>x.descripcion).join(" "))}).slice().reverse().map(d=>{const v=vehiculo(d.vehiculoId);const total=(d.items||[]).reduce((a,x)=>a+x.cantidad*x.precio,0);return '<article class="item"><strong>'+esc(d.tipo)+' · '+esc(d.numero)+'</strong><p>'+esc(formatoFecha(d.fecha))+' · '+esc(auto(v))+' · '+esc(duenio(v))+'</p><p>'+esc((d.items||[]).map(x=>x.descripcion+' × '+x.cantidad).join(" | "))+'</p><strong>Total: '+money(total)+'</strong><div class="inline-actions"><button class="tiny primary" data-act="pdf" data-id="'+esc(d.id)+'">⬇️ PDF</button><button class="tiny" data-act="share" data-id="'+esc(d.id)+'">📤 Compartir PDF</button><button class="tiny" data-act="wa" data-id="'+esc(d.id)+'">WhatsApp</button><button class="tiny" data-act="mail" data-id="'+esc(d.id)+'">Correo</button><button class="tiny danger" data-act="documentoBorrar" data-id="'+esc(d.id)+'">Eliminar</button></div></article>'}).join(""));
+}
+function resetForm(form){form.reset();const hid=form.querySelector('[name="id"]');if(hid)hid.value="";setDefaults()}
+function setDefaults(){el("formTrabajo").elements.fecha.value=hoy()}
+function completar(form,data){Object.keys(data).forEach(k=>{if(form.elements[k]&&typeof data[k]!=="object")form.elements[k].value=data[k]??"";})}
+function init(){
+if(iniciado)return;iniciado=true;
+setDefaults();
+document.querySelectorAll("nav [data-tab]").forEach(b=>b.onclick=()=>go(b.dataset.tab));
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
+el("busqueda").addEventListener("input",render);
+document.querySelectorAll("form").forEach(f=>f.addEventListener("reset",()=>setTimeout(setDefaults,0)));
+el("formCliente").onsubmit=e=>{e.preventDefault();const f=e.currentTarget;const id=val(f,"id");const x={id:id||uid(),nombre:val(f,"nombre"),apellido:val(f,"apellido"),telefono:val(f,"telefono"),email:val(f,"email"),direccion:val(f,"direccion"),dni:val(f,"dni")};if(!x.nombre||!x.apellido)return toast("Completá nombre y apellido.");const old=db.clientes.findIndex(c=>c.id===x.id);if(old>=0)db.clientes[old]=x;else db.clientes.push(x);if(guardar()){resetForm(f);render();toast("✅ Cliente guardado.");}};
+el("formVehiculo").onsubmit=e=>{e.preventDefault();const f=e.currentTarget;const id=val(f,"id");const x={id:id||uid(),clienteId:val(f,"clienteId"),patente:val(f,"patente").replace(/\s/g,"").toUpperCase(),marca:val(f,"marca"),modelo:val(f,"modelo"),anio:val(f,"anio"),km:val(f,"km"),gnc:val(f,"gnc"),notas:val(f,"notas")};if(!cliente(x.clienteId))return toast("Elegí un cliente válido.");if(db.vehiculos.some(v=>v.patente===x.patente&&v.id!==x.id))return toast("⚠️ Ya existe esa patente.");const old=db.vehiculos.findIndex(v=>v.id===x.id);if(old>=0)db.vehiculos[old]=x;else db.vehiculos.push(x);if(guardar()){resetForm(f);render();toast("✅ Vehículo guardado.");}};
+el("formTrabajo").onsubmit=e=>{e.preventDefault();const f=e.currentTarget;const x={id:uid(),vehiculoId:val(f,"vehiculoId"),fecha:val(f,"fecha"),km:val(f,"km"),tipo:val(f,"tipo"),codigos:val(f,"codigos"),detalle:val(f,"detalle"),resultado:val(f,"resultado"),recomendaciones:val(f,"recomendaciones"),importe:Number(val(f,"importe"))||0};if(!vehiculo(x.vehiculoId)||!x.detalle||!x.fecha)return toast("Elegí vehículo, fecha y trabajo realizado.");db.trabajos.push(x);const v=vehiculo(x.vehiculoId);if(v&&x.km)v.km=x.km;if(guardar()){resetForm(f);render();toast("✅ Trabajo agregado al historial.");}};
+el("formDocumento").onsubmit=e=>{e.preventDefault();const f=e.currentTarget;const v=vehiculo(val(f,"vehiculoId"));if(!v)return toast("Elegí un vehículo.");const filas=val(f,"conceptos").split(/\r?\n/).map(s=>s.trim()).filter(Boolean);const items=[];for(const fila of filas){const p=fila.split("|").map(z=>z.trim());if(p.length!==3||!p[0])return toast("Usá: Descripción | cantidad | precio en cada línea.");const qty=Number(p[1].replace(",","."));const precio=Number(p[2].replace(/\./g,"").replace(",","."));if(!Number.isFinite(qty)||qty<=0||!Number.isFinite(precio)||precio<0)return toast("Revisá cantidades y precios de los conceptos.");items.push({descripcion:p[0].slice(0,180),cantidad:qty,precio});}
+if(!items.length)return toast("Ingresá al menos un concepto.");
+const x={id:uid(),numero:"ST-"+String(Date.now()),fecha:hoy(),vehiculoId:v.id,tipo:val(f,"tipo"),items,notas:val(f,"notas")};
+db.documentos.push(x);if(guardar()){f.reset();render();toast("✅ Documento creado. Ya podés descargarlo en PDF.");}};
+el("formAjustes").onsubmit=e=>{e.preventDefault();db.ajustes={correo:val(e.currentTarget,"correo"),whatsapp:val(e.currentTarget,"whatsapp")};if(guardar())toast("✅ Datos de contacto guardados.");};
+el("exportar").onclick=()=>{const blob=new Blob([JSON.stringify({app:"Scantec Mi Taller",version:1,exportado:new Date().toISOString(),datos:db},null,2)],{type:"application/json"});download(blob,"Scantec-Mi-Taller-copia-"+hoy()+".json");toast("✅ Copia generada. Guardala en un lugar privado.");};
+el("restaurar").onclick=()=>el("archivoRestaurar").click();
+el("archivoRestaurar").onchange=async e=>{const f=e.currentTarget.files[0];if(!f)return;try{if(f.size>10000000)throw Error("Archivo demasiado grande");const o=JSON.parse(await f.text());const datos=o.datos;if(o.app!=="Scantec Mi Taller"||!datos||!Array.isArray(datos.clientes)||!Array.isArray(datos.vehiculos)||!Array.isArray(datos.trabajos)||!Array.isArray(datos.documentos))throw Error("La copia no tiene el formato de Scantec.");if(!confirm("¿Reemplazar TODOS los datos de Mi Taller guardados en este navegador por la copia seleccionada?"))return;db=datos;if(!db.ajustes||typeof db.ajustes!=="object")db.ajustes={correo:"",whatsapp:""};guardar();render();cargarAjustes();toast("✅ Copia restaurada.");}catch(err){toast("⚠️ "+err.message)}finally{e.currentTarget.value="";}};
+document.querySelectorAll("#listaClientes,#listaVehiculos,#listaTrabajos,#inicioUltimos,#listaDocumentos").forEach(box=>box.onclick=clickItem);
+cargarAjustes();render();
+}
+function cargarAjustes(){const f=el("formAjustes");f.elements.correo.value=(db.ajustes||{}).correo||"";f.elements.whatsapp.value=(db.ajustes||{}).whatsapp||"";}
+function clickItem(event){const b=event.target.closest("button[data-act]");if(!b)return;const id=b.dataset.id;const act=b.dataset.act;
+if(act==="clienteEditar"){const c=cliente(id);if(c){go("clientes");completar(el("formCliente"),c);el("formCliente").scrollIntoView({block:"start",behavior:"smooth"})}return}
+if(act==="vehiculoEditar"){const v=vehiculo(id);if(v){go("vehiculos");completar(el("formVehiculo"),v);el("formVehiculo").scrollIntoView({block:"start",behavior:"smooth"})}return}
+if(act==="vehiculoHistorial"){const v=vehiculo(id);if(v){el("busqueda").value=v.patente;go("trabajos")}return}
+if(act==="clienteBorrar"){if(db.vehiculos.some(v=>v.clienteId===id))return toast("⚠️ Este cliente tiene vehículos. No se puede eliminar.");if(confirm("¿Eliminar este cliente?")){db.clientes=db.clientes.filter(c=>c.id!==id);guardar();render()}return}
+if(act==="vehiculoBorrar"){if(db.trabajos.some(t=>t.vehiculoId===id)||db.documentos.some(t=>t.vehiculoId===id))return toast("⚠️ El vehículo tiene historial o documentos. No se puede eliminar.");if(confirm("¿Eliminar este vehículo?")){db.vehiculos=db.vehiculos.filter(v=>v.id!==id);guardar();render()}return}
+if(act==="trabajoBorrar"){if(confirm("¿Eliminar definitivamente este trabajo del historial?")){db.trabajos=db.trabajos.filter(t=>t.id!==id);guardar();render()}return}
+if(act==="documentoBorrar"){if(confirm("¿Eliminar este documento?")){db.documentos=db.documentos.filter(t=>t.id!==id);guardar();render()}return}
+const d=db.documentos.find(x=>x.id===id);if(!d)return;
+if(act==="pdf"){download(pdfBlob(d),d.numero+".pdf");toast("✅ PDF descargado.");return}
+if(act==="share"){const file=new File([pdfBlob(d)],d.numero+".pdf",{type:"application/pdf"});if(navigator.share&&(!navigator.canShare||navigator.canShare({files:[file]}))){navigator.share({title:"Scantec - "+d.tipo,files:[file]}).catch(err=>{if(err.name!=="AbortError")toast("No se pudo compartir el PDF: "+err.message)})}else{download(file,d.numero+".pdf");toast("PDF descargado. Adjuntalo desde WhatsApp o tu correo.")}return}
+if(act==="wa"||act==="mail"){const v=vehiculo(d.vehiculoId),c=v&&cliente(v.clienteId);if(!c)return toast("No se encontró el cliente.");const total=d.items.reduce((a,x)=>a+x.cantidad*x.precio,0);const texto="Hola "+c.nombre+", te compartimos el "+d.tipo.toLowerCase()+" "+d.numero+" de Scantec para "+auto(v)+". Total: "+money(total)+". Si necesitás el PDF, te lo enviamos adjunto.";if(act==="wa"){const tel=whatsappNumber(c.telefono);if(!tel)return toast("El cliente no tiene un WhatsApp válido.");window.open("https://wa.me/"+tel+"?text="+encodeURIComponent(texto),"_blank","noopener")}else{if(!c.email)return toast("El cliente no tiene correo cargado.");window.location.href="mailto:"+encodeURIComponent(c.email)+"?subject="+encodeURIComponent("Scantec · "+d.tipo+" "+d.numero)+"&body="+encodeURIComponent(texto+"\n\nAdjuntá el PDF descargado antes de enviar.")}return}
+}
+function whatsappNumber(s){let n=String(s||"").replace(/\D/g,"");if(n.startsWith("00"))n=n.slice(2);if(n.length===10&&n.startsWith("11"))n="549"+n;else if(n.length===12&&n.startsWith("54")&&!n.startsWith("549"))n="549"+n.slice(2);else if(n.length===13&&n.startsWith("549")){}return n.length>=10&&n.length<=15?n:""}
+function download(blob,name){const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000)}
+function pdfBlob(d){
+const v=vehiculo(d.vehiculoId),c=v&&cliente(v.clienteId),a=db.ajustes||{};
+const total=d.items.reduce((sum,x)=>sum+x.cantidad*x.precio,0);
+const lines=["SCANTEC - DIAGNOSTICO AUTOMOTOR", "MI TALLER | "+d.tipo.toUpperCase(), "Documento: "+d.numero+"   Fecha: "+formatoFecha(d.fecha),"","CLIENTE: "+(c?c.nombre+" "+c.apellido:"No disponible"),"Telefono: "+(c&&c.telefono||"-"),"Correo: "+(c&&c.email||"-"),"Direccion: "+(c&&c.direccion||"-"),"VEHICULO: "+auto(v),"","DETALLE"];
+d.items.forEach((x,i)=>{lines.push(String(i+1)+". "+x.descripcion);lines.push("    Cantidad: "+x.cantidad+"   Unitario: "+money(x.precio)+"   Subtotal: "+money(x.precio*x.cantidad))});
+lines.push("","TOTAL: "+money(total),"");
+if(d.notas)lines.push("Observaciones: "+d.notas);
+lines.push("","Contacto Scantec: "+(a.correo||"No configurado"),"WhatsApp: "+(a.whatsapp||"No configurado"),"","Documento generado por Scantec Mi Taller.");
+if(d.tipo.startsWith("Comprobante"))lines.push("COMPROBANTE INTERNO - NO VALIDO COMO FACTURA FISCAL.");
+return makePDF(lines);
+}
+// Generador PDF autocontenido (sin servicios externos). Texto WinAnsi en A4.
+function makePDF(lines){
+const clean=s=>String(s).replace(/\r/g," ").replace(/[\u2010-\u2015]/g,"-").replace(/[\u2018\u2019]/g,"'").replace(/[\u201c\u201d]/g,'"').replace(/[^\u0020-\u00ff]/g,"?");
+const wrap=(s,max=83)=>{s=clean(s);if(!s)return [""];const a=[];while(s.length>max){let at=s.lastIndexOf(" ",max);if(at<25)at=max;a.push(s.slice(0,at));s=s.slice(at).trimStart()}a.push(s);return a};
+const all=lines.flatMap(x=>wrap(x));const chunks=[];for(let i=0;i<all.length;i+=54)chunks.push(all.slice(i,i+54));if(!chunks.length)chunks.push([]);
+const obj=[];obj[1]="<< /Type /Catalog /Pages 2 0 R >>";obj[3]="<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>";
+const refs=[];for(let i=0;i<chunks.length;i++){const p=4+2*i,cont=p+1;refs.push(p+" 0 R");const drawing=chunks[i].map((s,j)=>{const safe=clean(s).replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)");return "BT /F1 "+(j<2?"14":"10")+" Tf 39 "+(800-14*j)+" Td ("+safe+") Tj ET"}).join("\n");obj[p]="<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents "+cont+" 0 R >>";obj[cont]="<< /Length "+byteLen(drawing)+" >>\nstream\n"+drawing+"\nendstream"}
+obj[2]="<< /Type /Pages /Count "+chunks.length+" /Kids ["+refs.join(" ")+"] >>";
+const pieces=[],offsets=[0];let length=0;
+function add(str){const b=Uint8Array.from(Array.from(str,ch=>{const c=ch.charCodeAt(0);return c<=255?c:63}));pieces.push(b);length+=b.length}
+function byteLen(s){return Array.from(s).length}
+add("%PDF-1.4\n%\xE2\xE3\xCF\xD3\n");
+for(let i=1;i<obj.length;i++){offsets[i]=length;add(i+" 0 obj\n"+obj[i]+"\nendobj\n")}
+const start=length;add("xref\n0 "+obj.length+"\n0000000000 65535 f \n");for(let i=1;i<obj.length;i++)add(String(offsets[i]).padStart(10,"0")+" 00000 n \n");add("trailer\n<< /Size "+obj.length+" /Root 1 0 R >>\nstartxref\n"+start+"\n%%EOF");
+return new Blob(pieces,{type:"application/pdf"});
+}
+const auth=getAuth(initializeApp(config));
+onAuthStateChanged(auth,user=>{if(!user){el("blockedMsg").textContent="Para entrar a Mi Taller, primero iniciá sesión en Scantec con Google o correo.";el("tallerApp").hidden=true;el("blocked").hidden=false;return}
+storageKey="scantec_mitaller_v1_"+user.uid;db=load(storageKey);el("blocked").hidden=true;el("tallerApp").hidden=false;init();},e=>{el("blockedMsg").textContent="No se pudo validar la sesión: "+(e.code||e.message)});
+</script>
+</body>
+</html>
