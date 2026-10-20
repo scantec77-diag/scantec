@@ -46,3 +46,10 @@ Las fichas de las diez familias de sensores incorporan una visualización orient
 - Las fuentes externas incluyen diagramas de OpelBook y el portal oficial GM/ACDelco TDS (general, potencialmente pago). Estos enlaces no implican equivalencia verificada con los Chevrolet fabricados/comercializados en Argentina o Brasil.
 - No se descargan, rehostean ni se redistribuyen los manuales de terceros; se abren las fuentes externas. El catálogo y el código están en la caché de la app, pero los planos remotos necesitan conexión.
 - Para ampliar con planos propios/autorizados, agregar documentos con metadatos confiables de vehículo, año, código motor, identificación ECU, mercado y circuito. No cargar pinouts de otra motorización como si fuesen iguales.
+
+### Corrección de consulta P0117 / ECT
+- La biblioteca aparece en la parte superior de la ficha de resultados, antes de posibles causas.
+- `P0117` y otros DTC de ECT muestran un **circuito funcional NTC ilustrativo dentro de Scantec**, incluso aunque no se haya indicado la marca del automóvil. El usuario no necesita abrir un sitio externo para este dibujo orientativo.
+- Al introducir `Chevrolet Astra 2.0 8V 1999` aparecen enlaces a dos fuentes de esquemas de la familia Bosch Motronic M1.5.5 (Scribd y SlideShare). La segunda es una colección y requiere navegar a la sección del Astra. Los sitios pueden solicitar iniciar sesión. Sus contenidos no se rehostean.
+- **No se dispone todavía de pinado exacto confirmado para un Astra argentino específico**: identificar código de ECU y motor antes de usar el esquema de terceros. El dibujo local NO muestra pines ni colores y nunca debe interpretarse como plano oficial de GM.
+- El circuito funcional se desplaza horizontalmente en pantallas pequeñas. `P017` no es un DTC OBD-II completo; el ejemplo de ECT es `P0117`.
