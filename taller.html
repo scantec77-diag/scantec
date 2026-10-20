@@ -315,6 +315,16 @@ onAuthStateChanged(auth,async user=>{
   el("tallerApp").hidden=true;el("lockScreen").hidden=true;el("blocked").hidden=false;return;
  }
  if(credencial()){
+  // Si ya se verificó WebAuthn en el clic «Entrar a Mi Taller»,
+  // consumir el pase de navegación sin volver a solicitar la huella.
+  const paseKey="scantec_bio_pase_"+user.uid;
+  let pase=null;
+  try{pase=JSON.parse(sessionStorage.getItem(paseKey)||"null")}catch{}
+  sessionStorage.removeItem(paseKey);
+  if(pase?.uid===user.uid&&typeof pase.vence==="number"&&pase.vence>Date.now()&&pase.vence<Date.now()+20000){
+   await abrirNube(user);
+   return;
+  }
   el("blocked").hidden=true;el("tallerApp").hidden=true;el("lockScreen").hidden=false;
   el("lockError").textContent="";
   solicitarDesbloqueo(true);
