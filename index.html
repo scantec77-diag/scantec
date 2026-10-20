@@ -65,6 +65,14 @@ footer{text-align:center;color:#7e9ab5;font-size:12px;margin-top:30px}
 .bib-link{display:block;text-decoration:none;padding:11px;margin-top:10px;color:#051625!important;text-align:center;font-size:14px;font-weight:700;background:#61cafa;border-radius:9px}
 .bib-oficial{border-top:1px solid #3a5a77;margin-top:16px;padding:15px 0 3px}
 .bib-oficial strong{color:#d5edff}
+
+/* Circuito eléctrico funcional integrado: desplazamiento horizontal para pantalla chica */
+.bib-circuit{margin:14px 0;padding:12px;border:1px solid #4784a0;border-radius:12px;background:#102d46}
+.bib-circuit>strong{display:block;color:#a7edff;margin-bottom:8px}
+.bib-schematic{padding:10px;border-radius:9px;border:1px solid #47718a;background:#0d2135}
+.bib-schematic>summary{font-size:14px;font-weight:700;cursor:pointer;color:#a9e9ff;padding:4px 0 12px}
+.bib-svg{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;border-radius:9px}
+.bib-svg svg{display:block;min-width:600px;width:100%;height:auto}
 </style>
 </head>
 <body><section id="authScreen"><div class="card"><h2>🔐 Scantec · Iniciar sesión</h2><p class="note">Accedé con Google o correo electrónico.</p><button id="authGoogle" class="primary">Continuar con Google</button><label>Correo electrónico</label><input id="authEmail" type="email" autocomplete="username"><label>Contraseña</label><input id="authPassword" type="password" autocomplete="current-password" minlength="6"><div class="actions"><button id="authLogin" class="primary">Ingresar</button><button id="authRegister">Crear cuenta</button></div><p id="authMessage" class="message" role="status"></p><p class="note">La autenticación por huella o PIN al abrir la app requiere una próxima versión Android nativa; todavía no está activa.</p></div></section><div id="appShell" hidden><main>
