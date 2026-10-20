@@ -21,55 +21,62 @@ const clientValid=s=>/^\d+-[A-Za-z0-9_-]+\.apps\.googleusercontent\.com$/.test(S
 function settings(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")||{}}catch{return{}}}
 function saveSettings(){
  const clientId=$("clientId").value.trim(),folder=folderId($("folderId").value);
- const loginHint=$("driveAccountHint").value.trim().toLowerCase();
+ const remember=$("rememberDriveAccount").checked;
+ const loginHint=remember?$("driveRememberEmail").value.trim().toLowerCase():"";
  if(!clientValid(clientId)){show("Pegá un ID de cliente OAuth de aplicación web válido (termina en .apps.googleusercontent.com).",true);return false}
  if(!folder){show("Pegá el enlace de la carpeta raíz ScanTec 77 o su ID.",true);return false}
+ if(remember&&!loginHint){show("Ingresá el correo de Google Drive que querés recordar.",true);$("driveRememberEmail").focus();return false}
  if(loginHint&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginHint)){
   show("Revisá el correo de la cuenta preferida o dejalo vacío.",true);return false
  }
  const previous=settings();
  const changed=previous.clientId!==clientId||previous.folder!==folder||(previous.loginHint||"")!==loginHint;
- localStorage.setItem(STORAGE_KEY,JSON.stringify({clientId,folder,loginHint}));
+ localStorage.setItem(STORAGE_KEY,JSON.stringify({clientId,folder,loginHint,rememberAccount:remember}));
  $("folderId").value=folder;
  if(changed){token="";expiresAt=0;tokenClient=null;forgetSession();clearFiles();setAuth(false)}
- show("Configuración guardada. Podés conectarte a Drive con tu cuenta preferida.");
+ show(remember?"Cuenta preferida guardada. Scantec intentará utilizar "+loginHint+" al reconectar.":"Configuración guardada. Podés elegir tu cuenta al conectar.");
  return true;
 }
-let token="",expiresAt=0,tokenClient=null,items=[],lastRoot="";
-function forgetSession(){
- try{sessionStorage.removeItem(SESSION_KEY);sessionStorage.removeItem(INDEX_KEY)}catch{}
+let token="",expiresAt=0,tokenClient=null,items=[],lastRoot="",activeUid="";
+function indexKey(){return INDEX_KEY+":"+activeUid}
+function forgetSession(keepIndex=false){
+ try{
+  sessionStorage.removeItem(SESSION_KEY);
+  if(!keepIndex && activeUid)sessionStorage.removeItem(indexKey());
+  sessionStorage.removeItem(INDEX_KEY); // limpiar formato antiguo sin identificación de usuario
+ }catch{}
 }
 function rememberSession(){
  // Token OAuth de corta duración: solo en sessionStorage, nunca en localStorage.
  try{sessionStorage.setItem(SESSION_KEY,JSON.stringify({
-  token,expiresAt,clientId:$("clientId").value.trim(),folder:folderId($("folderId").value)
+  token,expiresAt,clientId:$("clientId").value.trim(),folder:folderId($("folderId").value),uid:activeUid
  }))}catch{}
 }
 function restoreSession(){
  try{
   const data=JSON.parse(sessionStorage.getItem(SESSION_KEY)||"null");
-  if(data&&typeof data.token==="string"&&data.token&&Number.isFinite(data.expiresAt)
+  if(data&&activeUid&&data.uid===activeUid&&typeof data.token==="string"&&data.token&&Number.isFinite(data.expiresAt)
      &&data.expiresAt>Date.now()+30000
      &&data.clientId===$("clientId").value.trim()
      &&data.folder===folderId($("folderId").value)){
    token=data.token;expiresAt=data.expiresAt;return true;
   }
-  forgetSession();
- }catch{forgetSession()}
+  forgetSession(true);
+ }catch{forgetSession(true)}
  return false;
 }
 function rememberIndex(){
  try{
-  sessionStorage.setItem(INDEX_KEY,JSON.stringify({
-   root:lastRoot,created:Date.now(),items
+  sessionStorage.setItem(indexKey(),JSON.stringify({
+   uid:activeUid,root:lastRoot,created:Date.now(),items
   }));
  }catch{} // El listado puede superar el límite de sessionStorage.
 }
 function restoreIndex(){
  try{
-  const data=JSON.parse(sessionStorage.getItem(INDEX_KEY)||"null");
-  if(data?.root===folderId($("folderId").value)
-    &&typeof data.created==="number"&&data.created>Date.now()-15*60*1000
+  const data=JSON.parse(sessionStorage.getItem(indexKey())||"null");
+  if(data?.uid===activeUid&&data?.root===folderId($("folderId").value)
+    &&typeof data.created==="number"
     &&Array.isArray(data.items)){
    items=data.items.filter(f=>f&&typeof f.name==="string"&&typeof f.path==="string");
    lastRoot=data.root;return true;
@@ -91,8 +98,9 @@ function validateFileUrl(u,id,mime){
  return mime==="application/vnd.google-apps.folder"?"https://drive.google.com/drive/folders/"+safeId:"https://drive.google.com/open?id="+safeId;
 }
 function expire(){
- token="";expiresAt=0;forgetSession();clearFiles();setAuth(false);
- show("La autorización de Google venció. Abrí ⚙️ Configuración de Mi Drive para renovarla.",true);
+ token="";expiresAt=0;forgetSession(true);setAuth(false);
+ restoreIndex();render();
+ show("La autorización de Google venció. Seguís pudiendo buscar en el índice de esta sesión. Para actualizar los archivos, tocá 🔄 Reconectar Mi Drive.",true);
 }
 function connect(){
  if(!saveSettings())return;
@@ -161,7 +169,7 @@ async function refresh(){
   const menu=$("driveSettings");if(menu)menu.open=false;
   $("buscar").focus({preventScroll:true});
   $("buscar").scrollIntoView({behavior:"smooth",block:"center"});
- }catch(e){show("Error al consultar Drive: "+e.message,true);render()}
+ }catch(e){restoreIndex();render();show("Error al consultar Drive: "+e.message+(items.length?" · Se muestra el último índice guardado en esta sesión.":""),true)}
  finally{$("refresh").disabled=!token;$("connect").disabled=false}
 }
 function score(obj,query){
@@ -172,11 +180,11 @@ function score(obj,query){
 function render(){
  const host=$("results");host.replaceChildren();
  const search=$("buscar").value.trim();
- if(!token){$("summary").textContent="";host.appendChild(box("p","Conectá Google Drive para buscar tus planos y manuales.","note"));return}
+ if(!token&&!items.length){$("summary").textContent="";host.appendChild(box("p","Conectá Google Drive para buscar tus planos y manuales.","note"));return}
  if(!search){$("summary").textContent="";host.appendChild(box("p","Escribí una marca, modelo, motor o código de falla para ver los documentos que coincidan.","note"));return}
  const docs=items.filter(f=>!f.isFolder);
  const visible=docs.map(x=>({x,score:score(x,search)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.x.path.localeCompare(b.x.path)).map(x=>x.x).slice(0,150);
- $("summary").textContent="Coincidencias para «"+search+"»: "+visible.length+(visible.length===150?" (primeras 150)":"");
+ $("summary").textContent=(token?"":"Índice guardado de esta sesión (sin conexión actual) · ")+"Coincidencias para «"+search+"»: "+visible.length+(visible.length===150?" (primeras 150)":"");
  if(!visible.length){host.appendChild(box("p","No encontré nombres o carpetas que coincidan. Probá con modelo o marca, por ejemplo «Astra» o «Corsa».","note"));return}
  for(const file of visible){
   const el=box("article",null,"file-row");
@@ -192,11 +200,16 @@ function disconnect(){
  if(t&&window.google?.accounts?.oauth2?.revoke)window.google.accounts.oauth2.revoke(t,()=>{});
  show("Drive desconectado de este navegador. La carpeta y el ID de cliente quedan guardados; los archivos no fueron modificados.");
 }
+function updateRememberUI(){
+ $("rememberDriveDetails").hidden=!$("rememberDriveAccount").checked;
+}
 function init(){
  const s=settings();
  $("clientId").value=s.clientId||"";
  $("folderId").value=s.folder||DEFAULT_FOLDER;
- $("driveAccountHint").value=s.loginHint||"";
+ $("rememberDriveAccount").checked=s.rememberAccount===undefined?!!s.loginHint:!!s.rememberAccount;
+ $("driveRememberEmail").value=s.loginHint||"";
+ updateRememberUI();
  $("rootLink").href=directRoot;
  $("cloudLink").href=signinURL;
  const qs=new URLSearchParams(location.search);
@@ -205,6 +218,8 @@ function init(){
  $("buscar").value=query||"";
  $("connect").addEventListener("click",connect);
  $("reconnectDrive").addEventListener("click",connect);
+ $("rememberDriveAccount").addEventListener("change",updateRememberUI);
+ $("saveRememberAccount").addEventListener("click",saveSettings);
  $("save").addEventListener("click",saveSettings);
  $("refresh").addEventListener("click",refresh);
  $("disconnect").addEventListener("click",disconnect);
@@ -213,8 +228,10 @@ function init(){
  show("Verificando acceso privado a Mi Drive…");
 }
 let activated=false;
-function activate(){
+function activate(uid){
  if(activated)return;
+ activeUid=String(uid||"");
+ if(!activeUid)return;
  activated=true;
  // Los documentos y el índice se cargan recién después del desbloqueo local.
  const s=settings();
@@ -229,8 +246,11 @@ function activate(){
   }
  }else if(!s.clientId){
   show("Falta configurar el ID de cliente OAuth. Abrí Configuración de Mi Drive.");
+ }else if(restoreIndex()){
+  render();
+  show("Podés buscar en el último índice guardado de esta sesión. Para revisar archivos nuevos, tocá 🔄 Reconectar Mi Drive.");
  }else{
-  show("Google Drive necesita autorización. Abrí ⚙️ Configuración de Mi Drive para conectarlo.");
+  show("Google Drive necesita autorización. Tocá 🔄 Reconectar Mi Drive para conectarlo.");
  }
 }
 window.ScantecDrive=Object.freeze({init,activate,folderId,score});
