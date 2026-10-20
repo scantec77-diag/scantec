@@ -4,6 +4,9 @@
 "use strict";
 const SCOPE="https://www.googleapis.com/auth/drive.metadata.readonly";
 const STORAGE_KEY="scantec_drive_preferencias_v1";
+// Persistencia temporal en esta pestaña (nunca un permiso permanente de Google).
+const SESSION_KEY="scantec_drive_token_sesion_v1";
+const INDEX_KEY="scantec_drive_indice_sesion_v1";
 const DEFAULT_FOLDER="1MKX6ueCTknpmrPp3oryXAE5lck0HTrAv";
 const $=id=>document.getElementById(id);
 const box=(tag,text,className)=>{const x=document.createElement(tag);if(text!==undefined&&text!==null)x.textContent=String(text);if(className)x.className=className;return x};
@@ -25,6 +28,47 @@ function saveSettings(){const clientId=$("clientId").value.trim(),folder=folderI
  return true;
 }
 let token="",expiresAt=0,tokenClient=null,items=[],lastRoot="";
+function forgetSession(){
+ try{sessionStorage.removeItem(SESSION_KEY);sessionStorage.removeItem(INDEX_KEY)}catch{}
+}
+function rememberSession(){
+ // Token OAuth de corta duración: solo en sessionStorage, nunca en localStorage.
+ try{sessionStorage.setItem(SESSION_KEY,JSON.stringify({
+  token,expiresAt,clientId:$("clientId").value.trim(),folder:folderId($("folderId").value)
+ }))}catch{}
+}
+function restoreSession(){
+ try{
+  const data=JSON.parse(sessionStorage.getItem(SESSION_KEY)||"null");
+  if(data&&typeof data.token==="string"&&data.token&&Number.isFinite(data.expiresAt)
+     &&data.expiresAt>Date.now()+30000
+     &&data.clientId===$("clientId").value.trim()
+     &&data.folder===folderId($("folderId").value)){
+   token=data.token;expiresAt=data.expiresAt;return true;
+  }
+  forgetSession();
+ }catch{forgetSession()}
+ return false;
+}
+function rememberIndex(){
+ try{
+  sessionStorage.setItem(INDEX_KEY,JSON.stringify({
+   root:lastRoot,created:Date.now(),items
+  }));
+ }catch{} // El listado puede superar el límite de sessionStorage.
+}
+function restoreIndex(){
+ try{
+  const data=JSON.parse(sessionStorage.getItem(INDEX_KEY)||"null");
+  if(data?.root===folderId($("folderId").value)
+    &&typeof data.created==="number"&&data.created>Date.now()-15*60*1000
+    &&Array.isArray(data.items)){
+   items=data.items.filter(f=>f&&typeof f.name==="string"&&typeof f.path==="string");
+   lastRoot=data.root;return true;
+  }
+ }catch{}
+ return false;
+}
 const signinURL="https://console.cloud.google.com/auth/clients";
 const directRoot="https://drive.google.com/drive/folders/"+DEFAULT_FOLDER;
 function show(t,err){const s=$("estado");s.textContent=String(t);s.className=err?"error":"note status"}
@@ -38,7 +82,10 @@ function validateFileUrl(u,id,mime){
  const safeId=encodeURIComponent(id);
  return mime==="application/vnd.google-apps.folder"?"https://drive.google.com/drive/folders/"+safeId:"https://drive.google.com/open?id="+safeId;
 }
-function expire(){token="";expiresAt=0;setAuth(false);show("Tu autorización temporal venció. Volvé a pulsar «Conectar Drive» para continuar.",true);}
+function expire(){
+ token="";expiresAt=0;forgetSession();clearFiles();setAuth(false);
+ show("La autorización de Google venció. Abrí ⚙️ Configuración de Mi Drive para renovarla.",true);
+}
 function connect(){
  if(!saveSettings())return;
  if(!window.google?.accounts?.oauth2?.initTokenClient){show("Todavía no cargó el sistema de autorización de Google. Esperá unos segundos y reintentá.",true);return}
@@ -49,6 +96,7 @@ function connect(){
    if(response.error||!response.access_token){show("Google no autorizó el acceso: "+(response.error||"intento cancelado"),true);return}
    token=response.access_token;
    expiresAt=Date.now()+Math.max(0,Number(response.expires_in||3500)-90)*1000;
+   rememberSession();
    setAuth(true);show("¡Conectado! Leyendo la biblioteca privada ScanTec 77…");
    await refresh();
   },
@@ -97,6 +145,7 @@ async function refresh(){
    }
    if(stop)break;
   }
+  rememberIndex();
   render();
   const parcial=stop||queue.length>0;
   show("Biblioteca actualizada. Ya podés buscar tus planos y manuales."+(parcial?" Sincronización parcial: se alcanzó el límite de lectura.":""));
@@ -127,7 +176,7 @@ function render(){
  }
 }
 function disconnect(){
- const t=token;token="";expiresAt=0;tokenClient=null;clearFiles();setAuth(false);
+ const t=token;token="";expiresAt=0;tokenClient=null;forgetSession();clearFiles();setAuth(false);
  if(t&&window.google?.accounts?.oauth2?.revoke)window.google.accounts.oauth2.revoke(t,()=>{});
  show("Drive desconectado de este navegador. La carpeta y el ID de cliente quedan guardados; los archivos no fueron modificados.");
 }
@@ -147,8 +196,20 @@ function init(){
  $("disconnect").addEventListener("click",disconnect);
  $("buscar").addEventListener("input",render);
  setAuth(false);clearFiles();
- if(!s.clientId)show("Falta configurar el ID de cliente OAuth de Google Cloud. Encontrá las instrucciones debajo.");
- else show("Configuración lista. Tocá «Conectar Drive con Google» para aprobar el permiso.");
+ if(restoreSession()){
+  setAuth(true);
+  if(restoreIndex()){
+   render();
+   show("Drive conectado. Biblioteca disponible para buscar tus planos y manuales.");
+  }else{
+   show("Sesión de Google recuperada. Actualizando el índice de la biblioteca…");
+   refresh();
+  }
+ }else if(!s.clientId){
+  show("Falta configurar el ID de cliente OAuth de Google Cloud. Abrí Configuración de Mi Drive.");
+ }else{
+  show("Google Drive necesita autorización. Abrí ⚙️ Configuración de Mi Drive para conectarlo.");
+ }
 }
 window.ScantecDrive=Object.freeze({init,folderId,score});
 })();
