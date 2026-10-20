@@ -344,6 +344,65 @@
       ],
       "url": "https://mi.chevrolet.com.ar/content/dam/gmownercenter/gmsa/gmar/dynamic/manuals/2012/chevrolet/Meriva/es/om_ng-chevrolet_Meriva_my12-es_AR.pdf.pdf",
       "nota": "Manual oficial Chevrolet Argentina de propietario; NO contiene un esquema detallado de ECU/pinado."
+    },
+    {
+      "id": "astra-20-8v-m155-esquema",
+      "modelo": "astra",
+      "titulo": "Astra 2.0 8V desde 1999 — Bosch Motronic M1.5.5 (esquema + pruebas)",
+      "tipo": "plano_regional",
+      "plataforma": "Chevrolet Astra 2.0 8V · documentación publicada en Brasil",
+      "anios": [
+        1999,
+        2004
+      ],
+      "motores": [
+        "2.0 8V"
+      ],
+      "ecu": "Bosch Motronic M1.5.5 (a confirmar en el vehículo)",
+      "sistemas": [
+        "ect",
+        "cooling",
+        "map",
+        "iat",
+        "tps",
+        "ckp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "maf"
+      ],
+      "url": "https://pt.scribd.com/document/453268970/Astra-2-0-8V-de-1999-em-diante-BOSCH-MOTRONIC-M1-5-5",
+      "nota": "Material de tercero, con esquemas Astra 1.8/2.0 8V y tabla de mediciones ECT. Requiere verificar si la ECU es Motronic M1.5.5. Scribd puede pedir cuenta o suscripción. NO confirmado para el ramal argentino."
+    },
+    {
+      "id": "astra-20-8v-m155-alternativo",
+      "modelo": "astra",
+      "titulo": "Colección Chevrolet — Astra 2.0 8V 1999+ Motronic M1.5.5",
+      "tipo": "archivo_regional",
+      "plataforma": "Biblioteca compartida de inyección Chevrolet, Brasil",
+      "anios": [
+        1999,
+        2004
+      ],
+      "motores": [
+        "2.0 8V"
+      ],
+      "ecu": "Bosch Motronic M1.5.5 (según índice del documento)",
+      "sistemas": [
+        "ect",
+        "cooling",
+        "map",
+        "iat",
+        "tps",
+        "ckp",
+        "oxygen",
+        "maf",
+        "injectors",
+        "fuelpump"
+      ],
+      "url": "https://es.slideshare.net/slideshow/chevrolet-diagramas-electricos-varios-autos/271853979",
+      "nota": "Colección extensa de varios modelos. Buscar la sección Astra 2.0 8V / M1.5.5; NO abre el circuito en una página específica y puede requerir iniciar sesión. Verificar correspondencia antes de medir."
     }
   ]
 }
