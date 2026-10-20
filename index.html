@@ -50,6 +50,21 @@ footer{text-align:center;color:#7e9ab5;font-size:12px;margin-top:30px}
 .visual-sensor-info ul{padding-left:20px;margin:8px 0;line-height:1.45}
 .visual-sensor-info li{margin-bottom:7px}
 @media(max-width:500px){.visual-sensor{grid-template-columns:1fr}.visual-sensor-foto img{max-height:220px}}
+
+/* Biblioteca contextual Chevrolet / planos y catálogos */
+.bib-chevrolet{background:#0d2540;border:1px solid #28769b;border-radius:15px;padding:15px;margin:14px 0;}
+.bib-chevrolet[hidden]{display:none}.bib-chevrolet h4{color:#9bdcff;margin:3px 0 10px}
+.bib-chevrolet h5{font-size:14px;letter-spacing:.01em;color:#b9eafa;margin:17px 0 10px}
+.bib-sub{font-size:13px;color:#c1d4e9;line-height:1.5}
+.bib-warning{font-size:13px;line-height:1.55;background:#3d3223;color:#ffe3a6;padding:11px;border:1px solid #6d542e;border-radius:9px}
+.bib-doc{background:#091a30;border:1px solid #355677;border-radius:11px;padding:12px;margin:9px 0}
+.bib-doc-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+.bib-doc-head strong{color:#d7f2ff;flex:1;min-width:180px}
+.bib-doc p{margin:6px 0}
+.bib-status{font-size:11px;padding:4px 7px;border-radius:7px;background:#21435d;color:#baddf0}
+.bib-link{display:block;text-decoration:none;padding:11px;margin-top:10px;color:#051625!important;text-align:center;font-size:14px;font-weight:700;background:#61cafa;border-radius:9px}
+.bib-oficial{border-top:1px solid #3a5a77;margin-top:16px;padding:15px 0 3px}
+.bib-oficial strong{color:#d5edff}
 </style>
 </head>
 <body><section id="authScreen"><div class="card"><h2>🔐 Scantec · Iniciar sesión</h2><p class="note">Accedé con Google o correo electrónico.</p><button id="authGoogle" class="primary">Continuar con Google</button><label>Correo electrónico</label><input id="authEmail" type="email" autocomplete="username"><label>Contraseña</label><input id="authPassword" type="password" autocomplete="current-password" minlength="6"><div class="actions"><button id="authLogin" class="primary">Ingresar</button><button id="authRegister">Crear cuenta</button></div><p id="authMessage" class="message" role="status"></p><p class="note">La autenticación por huella o PIN al abrir la app requiere una próxima versión Android nativa; todavía no está activa.</p></div></section><div id="appShell" hidden><main>
@@ -58,7 +73,8 @@ footer{text-align:center;color:#7e9ab5;font-size:12px;margin-top:30px}
 <section class="card" id="accesoMiTaller" style="border-color:#2e85b3"><h3>🛠️ MI TALLER</h3><p class="note">Registrá clientes y vehículos por patente, seguí cada trabajo y prepará presupuestos y comprobantes. Acceso con tu cuenta de Scantec.</p><a href="./taller.html" id="abrirMiTaller" class="button primary" style="margin-top:12px">🚗 Entrar a Mi Taller</a><p class="note" id="mensajeMiTaller" role="status" aria-live="polite">Mi Taller utiliza Firebase para guardar las fichas en tu cuenta. Con el desbloqueo activado, intentaremos pedirte la huella al tocar «Entrar a Mi Taller».</p></section>
 <section class="card">
 <h3>🔎 Nueva consulta</h3>
-<label for="vehicle">Vehículo / modelo / año</label><input id="vehicle" placeholder="Ej.: Chevrolet Astra 2.0 1999" autocomplete="off">
+<label for="vehicle">Vehículo / modelo / año</label><input id="vehicle" placeholder="Ej.: Chevrolet Astra 2.0 8V 1999" autocomplete="off">
+<label for="engineEcu">Motor / ECU (opcional, recomendado para planos)</label><input id="engineEcu" placeholder="Ej.: X20XEV / Simtec; si no sabés, dejalo vacío" autocomplete="off">
 <label for="code">Código de falla o consulta</label><input id="code" placeholder="Ej.: P0300, falla de encendido" autocomplete="off">
 <label for="notes">Notas de diagnóstico</label><textarea id="notes" placeholder="Síntomas, mediciones, pruebas..."></textarea>
 <div class="actions">
@@ -86,6 +102,7 @@ footer{text-align:center;color:#7e9ab5;font-size:12px;margin-top:30px}
 <footer>Scantec · Diagnóstico Automotor</footer>
 <div style="text-align:center;margin-top:14px"><button type="button" id="authLogout">Cerrar sesión</button></div></main></div>
 <script src="./sensores.js"></script>
+<script src="./biblioteca-marcas.js"></script>
 <script>
 
 (()=>{'use strict';
@@ -168,8 +185,8 @@ function matchManufacturers(code,brand){
 let currentResult=null;
 const status=s=>{$('message').textContent=s};
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function data(){return{vehicle:$('vehicle').value.trim(),code:$('code').value.trim().toUpperCase(),notes:$('notes').value.trim()}}
-function prompt(){const x=data();return 'Ayudame con un diagnóstico automotor. Vehículo: '+(x.vehicle||'sin especificar')+'. Consulta o código: '+(x.code||'sin especificar')+'. Notas y síntomas: '+(x.notes||'sin especificar')+'. Explicá posibles causas y pruebas seguras para confirmar el problema.'}
+function data(){return{vehicle:$('vehicle').value.trim(),motor:$('engineEcu').value.trim(),code:$('code').value.trim().toUpperCase(),notes:$('notes').value.trim()}}
+function prompt(){const x=data();return 'Ayudame con un diagnóstico automotor. Vehículo: '+(x.vehicle||'sin especificar')+'. Motor/ECU: '+(x.motor||'sin especificar')+'. Consulta o código: '+(x.code||'sin especificar')+'. Notas y síntomas: '+(x.notes||'sin especificar')+'. Explicá posibles causas y pruebas seguras para confirmar el problema.'}
 function getRecords(){try{const v=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(v)?v:[]}catch{return[]}}
 
 function showResult(r){
@@ -179,7 +196,7 @@ function showResult(r){
  $('resultTag').textContent=r.kind==='found'?'Código encontrado':r.kind==='partial'?'Información parcial':'Verificar código';
  $('resultTag').className=r.kind==='found'?'pill':'pill warn';
  $('resultHeading').textContent='📋 '+r.code+' · Ficha de diagnóstico';
- $('resultVehicle').textContent='Vehículo: '+(x.vehicle||'No especificado');
+ $('resultVehicle').textContent='Vehículo: '+(x.vehicle||'No especificado')+(x.motor?' · Motor/ECU: '+x.motor:'');
  $('resultDescription').textContent=r.description;
  $('causesBox').hidden=!(r.causes||[]).length;
  $('resultCauses').innerHTML=(r.causes||[]).map(t=>'<li>'+escapeHtml(t)+'</li>').join('');
@@ -191,6 +208,7 @@ function showResult(r){
  $('brandsNote').hidden=!r.brandsNote;
  $('resultCaution').textContent=r.caution;
  if(window.ScantecSensores)window.ScantecSensores.mostrar(r.code,x.vehicle,r.kind);
+ if(window.ScantecBiblioteca)window.ScantecBiblioteca.mostrar(r.code,x.vehicle,r.kind,x.motor);
 }
 function hideResult(){currentResult=null;$('resultCard').hidden=true}
 async function resolveCode(){
@@ -243,7 +261,7 @@ async function resolveCode(){
  $('resultCard').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function storeDraft(){try{localStorage.setItem(draftKey,JSON.stringify({...data(),result:currentResult}))}catch{}}
-function restoreDraft(){try{const x=JSON.parse(localStorage.getItem(draftKey)||'null');if(!x)return;$('vehicle').value=x.vehicle||'';$('code').value=x.code||'';$('notes').value=x.notes||'';if(x.result&&x.result.code===String(x.code||'').replace(/\s+/g,'').toUpperCase())showResult(x.result)}catch{}}
+function restoreDraft(){try{const x=JSON.parse(localStorage.getItem(draftKey)||'null');if(!x)return;$('vehicle').value=x.vehicle||'';$('engineEcu').value=x.motor||'';$('code').value=x.code||'';$('notes').value=x.notes||'';if(x.result&&x.result.code===String(x.code||'').replace(/\s+/g,'').toUpperCase())showResult(x.result)}catch{}}
 function render(){
  const records=getRecords();
  $('records').innerHTML=records.length?records.map(r=>'<article class="record"><strong>'+escapeHtml(r.vehicle||'Sin vehículo')+'</strong> · '+escapeHtml(r.code||'Consulta')+'<br><small>'+escapeHtml(r.date||'')+'</small>'+(r.result?'<p class="record-summary">'+escapeHtml(r.result.description)+'</p>':'')+(r.notes?'<p>'+escapeHtml(r.notes)+'</p>':'')+'<button data-open="'+escapeHtml(r.id)+'" type="button">Abrir ficha</button> <button data-delete="'+escapeHtml(r.id)+'" type="button">Eliminar</button></article>').join(''):'<p class="note">Todavía no guardaste consultas.</p>';
@@ -261,7 +279,7 @@ $('records').addEventListener('click',e=>{
  if(del){localStorage.setItem(key,JSON.stringify(getRecords().filter(r=>r.id!==del.dataset.delete)));render();status('Ficha eliminada.');return}
  const op=e.target.closest('button[data-open]');if(!op)return;
  const r=getRecords().find(x=>x.id===op.dataset.open);if(!r)return;
- $('vehicle').value=r.vehicle||'';$('code').value=r.code||'';$('notes').value=r.notes||'';
+ $('vehicle').value=r.vehicle||'';$('engineEcu').value=r.motor||'';$('code').value=r.code||'';$('notes').value=r.notes||'';
  if(r.result)showResult(r.result);else hideResult();
  storeDraft();status('Ficha cargada desde el historial.');
  (r.result?$('resultCard'):$('vehicle')).scrollIntoView({behavior:'smooth',block:'start'});
@@ -270,9 +288,9 @@ $('search').addEventListener('click',resolveCode);
 $('save').addEventListener('click',saveRecord);
 $('saveResult').addEventListener('click',saveRecord);
 $('web').addEventListener('click',()=>{const x=data();if(!x.code&&!x.vehicle){status('Ingresá un código o vehículo antes de buscar.');return}const q=[x.code,x.vehicle,'diagnóstico automotor código DTC'].filter(Boolean).join(' ');window.open('https://www.google.com/search?q='+encodeURIComponent(q),'_blank','noopener');storeDraft()});
-$('copyResult').addEventListener('click',async()=>{if(!currentResult)return;const r=currentResult,x=data();const content=['Scantec · Ficha de diagnóstico','Vehículo: '+(x.vehicle||'No especificado'),'Código: '+r.code,'Descripción: '+r.description,'Interpretaciones por marca:',...(r.brands||[]).map(b=>'• '+b.name+': '+b.description),'Posibles causas:',...(r.causes||[]).map(s=>'• '+s),'Comprobaciones:',...(r.checks||[]).map(s=>'• '+s),(window.ScantecSensores?window.ScantecSensores.texto(r.code,x.vehicle):''),'Notas: '+(x.notes||'Sin notas'),r.caution].join('\n');try{await navigator.clipboard.writeText(content);status('Ficha copiada al portapapeles.')}catch{status('El navegador no permitió copiar automáticamente.')}});
+$('copyResult').addEventListener('click',async()=>{if(!currentResult)return;const r=currentResult,x=data();const content=['Scantec · Ficha de diagnóstico','Vehículo: '+(x.vehicle||'No especificado'),'Motor/ECU: '+(x.motor||'sin identificar'),'Código: '+r.code,'Descripción: '+r.description,'Interpretaciones por marca:',...(r.brands||[]).map(b=>'• '+b.name+': '+b.description),'Posibles causas:',...(r.causes||[]).map(s=>'• '+s),'Comprobaciones:',...(r.checks||[]).map(s=>'• '+s),(window.ScantecSensores?window.ScantecSensores.texto(r.code,x.vehicle):''),'Notas: '+(x.notes||'Sin notas'),r.caution].join('\n');try{await navigator.clipboard.writeText(content);status('Ficha copiada al portapapeles.')}catch{status('El navegador no permitió copiar automáticamente.')}});
 $('chat').addEventListener('click',async()=>{const p=prompt();storeDraft();let copied=false;try{await navigator.clipboard.writeText(p);copied=true}catch{const t=document.createElement('textarea');t.value=p;document.body.appendChild(t);t.select();try{copied=document.execCommand('copy')}catch{}t.remove()}window.open('https://chatgpt.com/','_blank','noopener');status(copied?'Consulta copiada. Pegala en ChatGPT para empezar.':'ChatGPT abierto. Copiá tu consulta manualmente para enviarla.')});
-['vehicle','code','notes'].forEach(id=>$(id).addEventListener('input',()=>{if(id==='code'&&currentResult&&currentResult.code!==$('code').value.trim().toUpperCase().replace(/\s+/g,'')){searchSerial++;hideResult()}if(id==='vehicle'&&currentResult){$('resultVehicle').textContent='Vehículo: '+($('vehicle').value.trim()||'No especificado');if(window.ScantecSensores)window.ScantecSensores.mostrar(currentResult.code,$('vehicle').value,currentResult.kind)}storeDraft()}));
+['vehicle','engineEcu','code','notes'].forEach(id=>$(id).addEventListener('input',()=>{if(id==='code'&&currentResult&&currentResult.code!==$('code').value.trim().toUpperCase().replace(/\s+/g,'')){searchSerial++;hideResult()}if((id==='vehicle'||id==='engineEcu')&&currentResult){const x=data();$('resultVehicle').textContent='Vehículo: '+(x.vehicle||'No especificado')+(x.motor?' · Motor/ECU: '+x.motor:'');if(id==='vehicle'&&window.ScantecSensores)window.ScantecSensores.mostrar(currentResult.code,x.vehicle,currentResult.kind);if(window.ScantecBiblioteca)window.ScantecBiblioteca.mostrar(currentResult.code,x.vehicle,currentResult.kind,x.motor)}storeDraft()}));
 const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
 if(!Recognition){$('mic').disabled=true;$('mic').textContent='🎙️ Dictado no disponible'}else{$('mic').addEventListener('click',()=>{const r=new Recognition();r.lang='es-AR';r.interimResults=false;r.maxAlternatives=1;status('Escuchando... hablá ahora.');r.onresult=e=>{const said=e.results[0][0].transcript;const match=said.match(/\b[PCBU][0-9]{4}\b/i);if(match&&!$('code').value.trim()){$('code').value=match[0].toUpperCase();hideResult()}else $('notes').value=($('notes').value.trim()+' '+said).trim();storeDraft();status('Dictado recibido: '+said)};r.onerror=e=>status('No se pudo usar el micrófono: '+e.error);try{r.start()}catch{status('El micrófono no está disponible ahora.')}})}
 restoreDraft();render();
