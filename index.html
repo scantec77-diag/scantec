@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07152b">
+<title>Scantec | Diagnóstico Automotor</title>
+<style>
+:root{color-scheme:dark;--bg:#07152b;--surface:#102440;--surface2:#142b4b;--blue:#28b6ff;--text:#f0f7ff;--muted:#b2c3d9}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#163c63 0,var(--bg) 50%);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);min-height:100vh}
+main{width:min(100%,620px);margin:0 auto;padding:28px 18px 64px}
+.brand{display:flex;align-items:center;gap:15px;margin:5px 0 26px}.mark{height:72px;width:72px;border-radius:50%;border:3px solid #32baff;box-shadow:0 0 24px #28b6ff55,inset 0 0 18px #28b6ff35;display:grid;place-items:center;color:#a6e6ff;font-size:39px;font-weight:900;font-style:italic}
+h1{margin:0;font-size:30px;letter-spacing:.05em}h1 span{color:#42c4ff}.sub{font-size:12px;letter-spacing:.14em;color:#b3cce4;text-transform:uppercase}
+.intro{padding:4px 0 20px}.intro h2{font-size:28px;margin:0 0 8px}.intro p{margin:0;color:var(--muted);line-height:1.55}
+.card{background:#102440ed;border:1px solid #2c4a6c;border-radius:19px;padding:20px;margin:16px 0;box-shadow:0 10px 35px #0003}
+.card h3{margin:0 0 16px;font-size:19px}
+label{display:block;color:#d2e5fa;font-size:14px;margin:14px 0 7px}
+input,textarea{display:block;width:100%;padding:14px;border:1px solid #426080;border-radius:11px;background:#06162c;color:var(--text);font-size:16px;outline:none;font-family:inherit}
+input:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 2px #28b6ff25}textarea{resize:vertical;min-height:86px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+button,a.button{border:0;border-radius:12px;background:#1b3a59;color:#effaff;padding:14px 12px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:block}
+.primary{background:linear-gradient(120deg,#008bda,#27b8f7);color:#021526}
+.wide{grid-column:1/-1}button:focus-visible,a:focus-visible{outline:3px solid #fff}
+.note{font-size:13px;color:var(--muted);line-height:1.5}.message{min-height:20px;font-size:14px;color:#8cdbff}
+#records{display:grid;gap:10px}.record{background:#081b34;border:1px solid #344d6b;border-radius:12px;padding:13px}.record small{color:#a9bbce}.record p{white-space:pre-wrap;overflow-wrap:anywhere;margin:7px 0}.record button{font-size:12px;padding:8px 11px;margin-top:7px;background:#50304a}
+footer{text-align:center;color:#7e9ab5;font-size:12px;margin-top:30px}
+@media(max-width:380px){h1{font-size:25px}.mark{height:62px;width:62px}.actions{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<header class="brand"><div class="mark" aria-hidden="true">S</div><div><h1>SCAN<span>TEC</span></h1><div class="sub">Diagnóstico Automotor</div></div></header>
+<section class="intro"><h2 id="greeting">Bienvenido a Scantec</h2><p>Tu copiloto de diagnóstico. Consultá fallas, buscá información técnica y guardá lo que encontrás.</p></section>
+<section class="card">
+<h3>🔎 Nueva consulta</h3>
+<label for="vehicle">Vehículo / modelo / año</label><input id="vehicle" placeholder="Ej.: Chevrolet Astra 2.0 1999" autocomplete="off">
+<label for="code">Código de falla o consulta</label><input id="code" placeholder="Ej.: P0300, falla de encendido" autocomplete="off">
+<label for="notes">Notas de diagnóstico</label><textarea id="notes" placeholder="Síntomas, mediciones, pruebas..."></textarea>
+<div class="actions">
+<button id="mic" type="button">🎙️ Dictar consulta</button>
+<button id="search" class="primary" type="button">🌐 Buscar en la web</button>
+<button id="save" type="button">💾 Guardar consulta</button>
+<button id="chat" type="button">✨ Consultar en ChatGPT</button>
+</div>
+<p class="message" id="message" role="status" aria-live="polite"></p>
+<p class="note">El dictado funciona en navegadores compatibles y puede solicitar permiso para usar el micrófono. La búsqueda abre Google. La opción ChatGPT copia tu consulta y abre ChatGPT para que la pegues allí.</p>
+</section>
+<section class="card"><h3>🗂️ Mis consultas guardadas</h3><div id="records"></div><p class="note">Los datos se guardan únicamente en este navegador. No se sincronizan automáticamente con otros dispositivos.</p></section>
+<footer>Scantec · Diagnóstico Automotor · Versión de prueba</footer>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const greeting=(()=>{const h=new Date().getHours();return h<12?'Buen día':h<19?'Buenas tardes':'Buenas noches'})();
+$('greeting').textContent=greeting+', bienvenido a Scantec';
+const key='scantec_diagnosticos_v1';
+const status=s=>{$('message').textContent=s};
+function data(){return{vehicle:$('vehicle').value.trim(),code:$('code').value.trim(),notes:$('notes').value.trim()}}
+function prompt(){const x=data();return 'Ayudame con un diagnóstico automotor. Vehículo: '+(x.vehicle||'sin especificar')+'. Consulta o código: '+(x.code||'sin especificar')+'. Notas y síntomas: '+(x.notes||'sin especificar')+'. Explicá posibles causas y pruebas seguras para confirmar el problema.'}
+function getRecords(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch{return[]}}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){const records=getRecords();$('records').innerHTML=records.length?records.map(r=>'<article class="record"><strong>'+escapeHtml(r.vehicle||'Sin vehículo')+'</strong> · '+escapeHtml(r.code||'Consulta')+'<br><small>'+escapeHtml(r.date)+'</small>'+(r.notes?'<p>'+escapeHtml(r.notes)+'</p>':'')+'<button data-delete="'+escapeHtml(r.id)+'" type="button">Eliminar</button></article>').join(''):'<p class="note">Todavía no guardaste consultas.</p>'}
+$('records').addEventListener('click',e=>{const b=e.target.closest('button[data-delete]');if(!b)return;localStorage.setItem(key,JSON.stringify(getRecords().filter(r=>r.id!==b.dataset.delete)));render();status('Consulta eliminada.')});
+$('save').addEventListener('click',()=>{const x=data();if(!x.vehicle&&!x.code&&!x.notes){status('Escribí un dato antes de guardar.');return}const r={...x,id:String(Date.now())+'-'+Math.random().toString(36).slice(2),date:new Date().toLocaleString('es-AR')};const all=getRecords();all.unshift(r);try{localStorage.setItem(key,JSON.stringify(all.slice(0,100)));render();status('Consulta guardada en este celular.')}catch{status('No se pudo guardar: revisá el almacenamiento del navegador.')}});
+$('search').addEventListener('click',()=>{const x=data();if(!x.code&&!x.vehicle){status('Ingresá un código, un vehículo o una consulta.');return}const q=[x.code,x.vehicle,'diagnóstico automotor causas comprobación'].filter(Boolean).join(' ');window.open('https://www.google.com/search?q='+encodeURIComponent(q),'_blank','noopener')});
+$('chat').addEventListener('click',async()=>{const p=prompt();let copied=false;try{await navigator.clipboard.writeText(p);copied=true}catch{const t=document.createElement('textarea');t.value=p;document.body.appendChild(t);t.select();try{copied=document.execCommand('copy')}catch{}t.remove()}window.open('https://chatgpt.com/','_blank','noopener');status(copied?'Consulta copiada. Pegala en ChatGPT para empezar.':'ChatGPT abierto. Copiá tu consulta manualmente para enviarla.')});
+const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!Recognition){$('mic').disabled=true;$('mic').textContent='🎙️ Dictado no disponible'}else{$('mic').addEventListener('click',()=>{const r=new Recognition();r.lang='es-AR';r.interimResults=false;r.maxAlternatives=1;status('Escuchando... hablá ahora.');r.onresult=e=>{const said=e.results[0][0].transcript;const match=said.match(/\b[PCBU][0-9]{4}\b/i);if(match&&!$('code').value.trim())$('code').value=match[0].toUpperCase();else $('notes').value=($('notes').value.trim()+' '+said).trim();status('Dictado recibido: '+said)};r.onerror=e=>status('No se pudo usar el micrófono: '+e.error);r.onend=()=>{};try{r.start()}catch{status('El micrófono no está disponible ahora.')}})}
+render();
+})();
+</script></body></html>
