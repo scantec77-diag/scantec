@@ -12,6 +12,9 @@ function marca(s){
  const x=norm(s);
  if(/\bpeugeot\b/.test(x))return 'Peugeot';
  if(/\bcitroen\b|\bcitro[eë]n\b/.test(x))return 'Citroën';
+ // Modelos inequívocos aun cuando el técnico no escribió la marca.
+ if(/\b(c3|c4|berlingo|xsara|picasso)\b/.test(x))return 'Citroën';
+ if(/\b(206|207|307|308|partner)\b/.test(x))return 'Peugeot';
  return '';
 }
 function modelo(s){
