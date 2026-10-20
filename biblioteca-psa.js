@@ -75,18 +75,19 @@ function compatible(d,x){
  if(x.year&&d.anios&&(x.year<d.anios[0]||x.year>d.anios[1]))return null;
  // No confundir diagramas de motores/ECU diferentes.
  const engineTokens=tokens(x.motor);
+ const motorConIdentificacion=engineTokens.some(t=>/^[A-Z]{2,}[0-9]|^[A-Z]{3}$|^ME[0-9]|^EDC[0-9]|^SID[0-9]|^[0-9][A-Z]{2}$/.test(t));
  const motorList=[...(d.motores||[]),...(d.ecu||[])].map(z=>z.toUpperCase().replace(/[^A-Z0-9]/g,''));
  const matches=engineTokens.some(t=>motorList.includes(t.replace(/[^A-Z0-9]/g,'')));
  const isCollection=['indice','coleccion','manual'].includes(d.tipo);
  const relevant=x.system?Array.isArray(d.sistemas)&&d.sistemas.includes(x.system):true;
  if(!relevant&&!isCollection)return null;
- if(x.motor&&motorList.length&&!matches){
+ if(x.motor&&motorConIdentificacion&&motorList.length&&!matches){
   // Documentos no validados del propio modelo como referencia general, excepto un motor explícitamente contradictorio.
   if(!isCollection)return null;
  }
  if(x.motor&&matches)return {d,rank:0,status:'Coincide motor o ECU declarados · verificar versión'};
  if(isCollection)return {d,rank:2,status:'Colección / manual orientativo'};
- if(!x.motor&&motorList.length)return {d,rank:1,status:'Motor NO confirmado · no usar pinado'};
+ if((!x.motor||!motorConIdentificacion)&&motorList.length)return {d,rank:1,status:'Motor NO identificado con código · no usar pinado'};
  return {d,rank:3,status:'Documento de referencia · validar VIN/OPR'};
 }
 function buscar(planos,query){
