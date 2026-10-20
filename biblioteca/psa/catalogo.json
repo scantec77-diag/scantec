@@ -1,0 +1,568 @@
+{
+  "version": 1,
+  "familia": "PSA",
+  "descripcion": "Biblioteca de referencias técnicas para Peugeot y Citroën (no son planos garantizados para cada VIN o mercado).",
+  "advertencia": "Antes de medir pines, comprobar código motor, ECU, generación BSI/BSM, OPR/DAM y VIN en documentación autorizada. Los enlaces de terceros pueden requerir cuenta o pago.",
+  "planos": [
+    {
+      "id": "peu-206-14-tu3jp-me744",
+      "marca": "Peugeot",
+      "modelo": "206",
+      "titulo": "206 1.4 8V TU3JP Flex — inyección Bosch ME7.4.4",
+      "tipo": "plano",
+      "motores": [
+        "TU3JP"
+      ],
+      "ecu": [
+        "ME7.4.4"
+      ],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/429166380/Peugeot-206-ME-7-4-4-pdf",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Edición brasileña Flex; comprobar que coincide con versión del vehículo."
+    },
+    {
+      "id": "peu-206-16-tu5-me744",
+      "marca": "Peugeot",
+      "modelo": "206",
+      "titulo": "206 1.6 16V — esquema/pinado Motronic ME7.4.4",
+      "tipo": "plano",
+      "motores": [
+        "TU5JP4",
+        "NFU"
+      ],
+      "ecu": [
+        "ME7.4.4"
+      ],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/doc/151929719/Diagramas-Electricos-Peugeot-206",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Colección de 57 páginas; incluye otras ECU y series. Buscar sección 206 16V ME7.4.4."
+    },
+    {
+      "id": "peu-206-mux-blog",
+      "marca": "Peugeot",
+      "modelo": "206",
+      "titulo": "206 MUX — diagramas eléctricos en castellano (parte 1)",
+      "tipo": "coleccion",
+      "motores": [],
+      "ecu": [],
+      "anios": null,
+      "sistemas": [
+        "cooling",
+        "ignition",
+        "ckp",
+        "ect",
+        "fuelpump",
+        "injectors"
+      ],
+      "url": "https://pepopolis.blogspot.com/2013/04/206-mux-diagrama-de-cableados.html",
+      "acceso": "Web abierta",
+      "nota": "Incluye refrigeración, fusibles y símbolos. Identificar versión multiplexada antes de comparar."
+    },
+    {
+      "id": "peu-206-mux-index",
+      "marca": "Peugeot",
+      "modelo": "206",
+      "titulo": "206 — índice de instalaciones eléctricas y partes MUX",
+      "tipo": "indice",
+      "motores": [],
+      "ecu": [],
+      "anios": null,
+      "sistemas": [],
+      "url": "https://pepopolis.blogspot.com/p/los-esquemas-de-instalaciones.html?m=0",
+      "acceso": "Web abierta",
+      "nota": "Índice con diagramas de múltiples años y familias; identificar serie."
+    },
+    {
+      "id": "peu-206-14-bosch",
+      "marca": "Peugeot",
+      "modelo": "206",
+      "titulo": "206 1.4 — esquema de encendido, sensores y fusibles",
+      "tipo": "plano",
+      "motores": [
+        "TU3JP",
+        "KFW",
+        "KFV"
+      ],
+      "ecu": [],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/613993903/206-1-4-con-rele",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Documento de fuente externa; identificar ECU antes de usar pinado."
+    },
+    {
+      "id": "peu-207-tu3-bosch749",
+      "marca": "Peugeot",
+      "modelo": "207",
+      "titulo": "207 1.4 8V TU3JP — inyección Bosch M7.4.9",
+      "tipo": "plano",
+      "motores": [
+        "TU3JP",
+        "KFV",
+        "KFW"
+      ],
+      "ecu": [
+        "ME7.4.9",
+        "M7.4.9"
+      ],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/665683222/Peugeot-207-1-4-8V-TU3JP-Bosch-7-4-9-Inyeccion-Diagrama-electrico",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "No asumir equivalencia con 207 Compact/Hoggar argentino de otro motor/BSI."
+    },
+    {
+      "id": "peu-207-tu5-nfu",
+      "marca": "Peugeot",
+      "modelo": "207",
+      "titulo": "207 1.6 TU5JP4/NFU — esquema de control del motor",
+      "tipo": "plano",
+      "motores": [
+        "TU5JP4",
+        "NFU"
+      ],
+      "ecu": [],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/960397787/ecm-207",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "El contenido identificado es TU5JP4 (NFU) 1.6; confirmar versión de ECU."
+    },
+    {
+      "id": "peu-207-hoggar",
+      "marca": "Peugeot",
+      "modelo": "207",
+      "titulo": "207/Hoggar latinoamericano — circuito de inyección (referencia VIN/OPR)",
+      "tipo": "plano",
+      "motores": [],
+      "ecu": [],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/836129346/207-inyeccion",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Documento de un vehículo específico. Sin coincidencia de VIN/OPR no es pinado del auto consultado."
+    },
+    {
+      "id": "peu-307-nfu",
+      "marca": "Peugeot",
+      "modelo": "307",
+      "titulo": "307 1.6 16V NFU — pruebas eléctricas Bosch ME7.4.4",
+      "tipo": "mediciones",
+      "motores": [
+        "TU5JP4",
+        "NFU"
+      ],
+      "ecu": [
+        "ME7.4.4"
+      ],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/435173039/Peugeot-307-Bosch-16v-Motronic-7-4-4-Part4",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Valores de diagnóstico y pines de conexión para sistema declarado; es una sección de pruebas, no un plano integral."
+    },
+    {
+      "id": "peu-307-tu5-inyeccion",
+      "marca": "Peugeot",
+      "modelo": "307",
+      "titulo": "307 1.6 TU5JP4 / NFU — diagramas de inyección Bosch ME7.4.4",
+      "tipo": "plano",
+      "motores": [
+        "TU5JP4",
+        "NFU"
+      ],
+      "ecu": [
+        "ME7.4.4"
+      ],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/466576225/schemas-electrique4-pdf",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Documento con variantes y equipamientos; comparar transmisión y climatización."
+    },
+    {
+      "id": "peu-partner-9ht-edc16",
+      "marca": "Peugeot",
+      "modelo": "partner",
+      "titulo": "Partner 1.6 HDi 9HT — pinado EDC16C34 (2008)",
+      "tipo": "pinado",
+      "motores": [
+        "9HT",
+        "DV6"
+      ],
+      "ecu": [
+        "EDC16C34"
+      ],
+      "anios": [
+        2008,
+        2011
+      ],
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "fuel",
+        "injectors",
+        "fuelpump",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/421220974/Pinout-EDC-16C34-Peugeot-Partner-1-6-HDI-2008",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Fuente de Partner 2008, 9HT, 55 kW. Rango 2008–2011 solo para búsqueda orientativa: no corresponde a toda Partner."
+    },
+    {
+      "id": "cit-c3-me744",
+      "marca": "Citroën",
+      "modelo": "c3",
+      "titulo": "C3 1.4/1.6 — diagrama y conectores Bosch Motronic ME7.4.4",
+      "tipo": "plano",
+      "motores": [
+        "TU3JP",
+        "TU5JP4",
+        "KFV",
+        "KFW",
+        "NFU"
+      ],
+      "ecu": [
+        "ME7.4.4"
+      ],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/960652230/control-del-motor-bosch-motronic-ME-7-4-4",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Documento abarca también Peugeot 206: no todas las variantes C3 usan esta ECU."
+    },
+    {
+      "id": "cit-c3-me744-pt",
+      "marca": "Citroën",
+      "modelo": "c3",
+      "titulo": "C3 / 206 — control Bosch ME7.4.4 y pinado de ECU",
+      "tipo": "pinado",
+      "motores": [
+        "TU3JP",
+        "TU5JP4",
+        "KFV",
+        "NFU"
+      ],
+      "ecu": [
+        "ME7.4.4"
+      ],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://www.scribd.com/document/348958589/Esquema-Peugeot-Bosch-7-4-4",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Esquema brasileño de familia 206/C3; validar combustible, BSI y motor."
+    },
+    {
+      "id": "cit-c4-2006-manual",
+      "marca": "Citroën",
+      "modelo": "c4",
+      "titulo": "C4 2006 — manual de taller 1.6i 16V / 1.6 HDi (incluye electricidad)",
+      "tipo": "manual",
+      "motores": [
+        "TU5JP4",
+        "NFU",
+        "DV6TED4"
+      ],
+      "ecu": [
+        "ME7.4.5"
+      ],
+      "anios": [
+        2005,
+        2007
+      ],
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/370033821/manual-taller-citroen-c4",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Manual de taller 2006 con varias motorizaciones y gestiones; la ECU ME7.4.5 corresponde al TU5JP4, no a HDi."
+    },
+    {
+      "id": "cit-berlingo-rhy-sid801",
+      "marca": "Citroën",
+      "modelo": "berlingo",
+      "titulo": "Berlingo M49/M59 2.0 HDi RHY — Siemens SID801 (2000–2005)",
+      "tipo": "pinado",
+      "motores": [
+        "RHY",
+        "DW10TD"
+      ],
+      "ecu": [
+        "SID801"
+      ],
+      "anios": [
+        2000,
+        2005
+      ],
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "fuel",
+        "injectors",
+        "fuelpump",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/1042165595/Berlingo-First-M49-M59-2-0-HDi-DW10TD-RHY-2000-2005-Siemens-SID-801",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Fuente de generación M49/M59 y ECU Siemens SID801; no aplicar a Berlingo B9 ni HDi 1.6."
+    },
+    {
+      "id": "cit-berlingo-b9",
+      "marca": "Citroën",
+      "modelo": "berlingo",
+      "titulo": "Berlingo B9 — esquema de inyección (vehículo individual)",
+      "tipo": "plano",
+      "motores": [],
+      "ecu": [],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/573612408/https-escheme-networkservice-citroen-com-berlingo",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Se trata de un vehículo B9 con VIN/OPR específico; no es plano universal de Berlingo."
+    },
+    {
+      "id": "cit-xsara-picasso-16-nfz",
+      "marca": "Citroën",
+      "modelo": "xsara picasso",
+      "titulo": "Xsara Picasso 1.6i 8V NFZ / TU5JP — Bosch MP7.2",
+      "tipo": "plano",
+      "motores": [
+        "NFZ",
+        "TU5JP"
+      ],
+      "ecu": [
+        "MP7.2"
+      ],
+      "anios": [
+        2000,
+        2010
+      ],
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/1040923073/ESQUEMA-PICASO",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Fuente de variante 1.6 8V NFZ; no usar para Xsara Picasso 1.6 16V o HDi."
+    },
+    {
+      "id": "cit-xsara-picasso-vin",
+      "marca": "Citroën",
+      "modelo": "xsara picasso",
+      "titulo": "Xsara Picasso — esquema de inyección por VIN/OPR",
+      "tipo": "plano",
+      "motores": [],
+      "ecu": [],
+      "anios": null,
+      "sistemas": [
+        "ect",
+        "iat",
+        "map",
+        "maf",
+        "tps",
+        "ckp",
+        "cmp",
+        "oxygen",
+        "knock",
+        "injectors",
+        "fuelpump",
+        "ignition",
+        "cooling"
+      ],
+      "url": "https://es.scribd.com/document/360205000/Inyeccion-Xsara-Picasso",
+      "acceso": "Scribd (puede requerir cuenta)",
+      "nota": "Ejemplar de un vehículo específico, sin garantía de que coincida con otro Xsara Picasso."
+    }
+  ]
+}
