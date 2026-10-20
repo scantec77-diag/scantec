@@ -22,8 +22,11 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.11.1"
-      - name: Instalar SDK de Android
-        run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
+      - name: Comprobar SDK de Android
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          ls -la "$ANDROID_HOME/platforms" || true
+          ls -la "$ANDROID_HOME/build-tools" || true
       - name: Construir APK de pruebas
         working-directory: android
         run: gradle assembleDebug --no-daemon --stacktrace
