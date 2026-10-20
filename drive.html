@@ -69,6 +69,9 @@ small{color:var(--muted)}
 <p class="note">Esta conexión es independiente del inicio de sesión de Firebase. Pedirá permiso para ver <strong>nombres, carpetas y metadatos</strong> de tu Drive, no para borrar ni subir archivos. Los documentos se abren en una pestaña de Google Drive con tu propia cuenta.</p>
 <label for="clientId">ID de cliente OAuth 2.0 · Aplicación web</label>
 <input id="clientId" placeholder="123456789-xxxxxxxx.apps.googleusercontent.com" spellcheck="false" autocomplete="off">
+<label for="driveAccountHint">Cuenta de Google Drive preferida (opcional)</label>
+<input id="driveAccountHint" type="email" inputmode="email" placeholder="cuenta-de-drive@gmail.com" autocomplete="email" spellcheck="false">
+<p class="note">Podés indicarla una sola vez para que Google intente usar esa cuenta sin mostrarte el selector. No es necesario si solo tenés una cuenta.</p>
 <label for="folderId">Carpeta raíz de ScanTec 77 (enlace o ID)</label>
 <input id="folderId" spellcheck="false" autocomplete="off">
 <p class="note">Vinculamos únicamente la carpeta raíz que indiques y sus subcarpetas. El ID del cliente y la carpeta se recuerdan en este navegador. La autorización temporal de Google se conserva solo durante esta sesión del navegador y hasta su vencimiento; no es un acceso permanente.</p>
