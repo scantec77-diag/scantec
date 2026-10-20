@@ -2,6 +2,12 @@ plugins {
     id 'com.android.application'
 }
 
+// Las claves de firma se leen del entorno de CI; nunca del repositorio.
+def releaseKeystorePath = System.getenv('SCANTEC_KEYSTORE_PATH')
+def releaseStorePassword = System.getenv('SCANTEC_KEYSTORE_PASSWORD')
+def releaseKeyAlias = System.getenv('SCANTEC_KEY_ALIAS')
+def releaseKeyPassword = System.getenv('SCANTEC_KEY_PASSWORD')
+
 android {
     namespace 'ar.com.scantec.diagnostico'
     compileSdk 35
@@ -14,9 +20,23 @@ android {
         versionName '0.1.0'
     }
 
+    signingConfigs {
+        if (releaseKeystorePath && releaseStorePassword && releaseKeyAlias && releaseKeyPassword) {
+            release {
+                storeFile file(releaseKeystorePath)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            if (signingConfigs.findByName('release') != null) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 
