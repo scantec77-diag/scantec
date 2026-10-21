@@ -48,6 +48,10 @@ small{color:var(--muted)}
 .remember-details{margin-top:11px}
 .remember-details label{margin-top:6px}
 .remember-details button{margin-top:8px}
+#rememberDriveForm[hidden],#rememberDriveSaved[hidden]{display:none}
+.remember-saved{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 5px;padding:9px 11px;border:1px solid #34546e;border-radius:10px;background:#102a43}
+.remember-saved span{font-size:13px;color:#bbecff;flex:1}
+.remember-saved button{font-size:12px;padding:7px 10px;font-weight:600;background:#1b3f5c}
 </style>
 </head>
 <body>
@@ -72,16 +76,20 @@ small{color:var(--muted)}
 <div id="results"><p class="note">Conectá tu Drive para consultar la biblioteca.</p></div>
 </section>
 <p id="drivePublicStatus" class="note" role="status">Google Drive sin conectar. Abrí Configuración para autorizarlo.</p>
-<section class="remember-drive" aria-label="Cuenta preferida de Drive">
-<div class="actions connect-row"><button id="reconnectDrive" type="button" class="primary" hidden>🔄 Reconectar Mi Drive</button>
-<label class="checkline" for="rememberDriveAccount"><input id="rememberDriveAccount" type="checkbox"> Recordar siempre esta cuenta de Google Drive</label></div>
+<div class="actions"><button id="reconnectDrive" type="button" class="primary" hidden>🔄 Reconectar Mi Drive</button></div>
+<section id="rememberDriveForm" class="remember-drive" aria-label="Recordar la cuenta preferida de Drive">
+<label class="checkline" for="rememberDriveAccount"><input id="rememberDriveAccount" type="checkbox"> Recordar siempre esta cuenta de Google Drive</label>
 <div id="rememberDriveDetails" class="remember-details" hidden>
 <label for="driveRememberEmail">Correo de la cuenta que querés utilizar siempre</label>
-<input id="driveRememberEmail" type="email" inputmode="email" placeholder="tu-cuenta@gmail.com" autocomplete="email" spellcheck="false">
+<input id="driveRememberEmail" type="email" inputmode="email" placeholder="tu-cuenta@gmail.com" autocomplete="off" spellcheck="false">
 <button id="saveRememberAccount" type="button">💾 Guardar cuenta preferida</button>
 </div>
-<p class="note">Se guarda solo el correo en este dispositivo, nunca la contraseña. Scantec intenta usar esa cuenta al reconectar; Google puede volver a pedir autorización.</p>
+<p class="note">Solo se guarda el correo en este dispositivo, nunca la contraseña. Google puede pedir autorización nuevamente.</p>
 </section>
+<div id="rememberDriveSaved" class="remember-saved" hidden role="status">
+<span>✓ Cuenta de Drive recordada</span>
+<button id="changeDriveAccount" type="button">Cambiar cuenta</button>
+</div>
 
 <details id="driveSettings" class="card">
 <summary>⚙️ Configuración de Mi Drive</summary>
@@ -131,8 +139,8 @@ small{color:var(--muted)}
 </div>
 </main>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="./drive-scantec.js?v=20261020-drive-reconnect-v8"></script>
+<script src="./drive-scantec.js?v=20261020-drive-account-hide-v9"></script>
 <script>window.ScantecDrive?.init();</script>
-<script type="module" src="./drive-acceso.js?v=20261020-drive-reconnect-v8"></script>
+<script type="module" src="./drive-acceso.js?v=20261020-drive-account-hide-v9"></script>
 </body>
 </html>
