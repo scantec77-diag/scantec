@@ -9,9 +9,9 @@ const SESSION_KEY="scantec_drive_token_sesion_v1";
 const INDEX_KEY="scantec_drive_indice_sesion_v1";
 const LOCAL_INDEX_PREFIX="scantec_drive_indice_local_v2:";
 const INDEX_TTL=12*60*60*1000;
-const MAX_INDEX_FILES=5000;
-const MAX_INDEX_FOLDERS=2000;
-const MAX_FOLDER_DEPTH=18;
+const MAX_INDEX_FILES=10000;
+const MAX_INDEX_FOLDERS=4000;
+const MAX_FOLDER_DEPTH=20;
 const DEFAULT_FOLDER="1MKX6ueCTknpmrPp3oryXAE5lck0HTrAv";
 const $=id=>document.getElementById(id);
 const box=(tag,text,className)=>{const x=document.createElement(tag);if(text!==undefined&&text!==null)x.textContent=String(text);if(className)x.className=className;return x};
@@ -194,7 +194,7 @@ async function refresh(){
   libraryLoaded=true;rememberIndex();
   const maxFoldersReached=queue.length>0&&folderCount>=MAX_INDEX_FOLDERS;
   const parcial=limitFiles||maxFoldersReached||depthLimited;
-  const aviso=parcial?" · Lectura parcial: "+(limitFiles?"límite de 5.000 archivos":maxFoldersReached?"límite de 2.000 carpetas":"profundidad máxima de carpetas")+".":"";
+  const aviso=parcial?" · Lectura parcial: "+(limitFiles?"límite de 10.000 archivos":maxFoldersReached?"límite de 4.000 carpetas":"profundidad máxima de carpetas")+".":"";
   show("Biblioteca sincronizada: "+fileCount.toLocaleString("es-AR")+" archivos en "+folderCount.toLocaleString("es-AR")+" carpetas. Ya podés buscar tus planos y manuales."+aviso);
   // Al completar la conexión, volvemos a la búsqueda principal, no al menú.
   const menu=$("driveSettings");if(menu)menu.open=false;
