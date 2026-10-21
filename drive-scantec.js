@@ -21,22 +21,29 @@ const folderId=s=>{
 };
 const clientValid=s=>/^\d+-[A-Za-z0-9_-]+\.apps\.googleusercontent\.com$/.test(String(s||"").trim());
 function settings(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")||{}}catch{return{}}}
+let editingRememberAccount=false;
 function saveSettings(){
  const clientId=$("clientId").value.trim(),folder=folderId($("folderId").value);
- const remember=$("rememberDriveAccount").checked;
- const loginHint=remember?$("driveRememberEmail").value.trim().toLowerCase():"";
+ const previous=settings();
+ // Con el formulario oculto, la configuración general no debe borrar el correo guardado.
+ const formHidden=$("rememberDriveForm").hidden;
+ const remember=formHidden?!!(previous.rememberAccount??previous.loginHint):$("rememberDriveAccount").checked;
+ const loginHint=formHidden?(previous.loginHint||""):(remember?$("driveRememberEmail").value.trim().toLowerCase():"");
  if(!clientValid(clientId)){show("Pegá un ID de cliente OAuth de aplicación web válido (termina en .apps.googleusercontent.com).",true);return false}
  if(!folder){show("Pegá el enlace de la carpeta raíz ScanTec 77 o su ID.",true);return false}
  if(remember&&!loginHint){show("Ingresá el correo de Google Drive que querés recordar.",true);$("driveRememberEmail").focus();return false}
  if(loginHint&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginHint)){
-  show("Revisá el correo de la cuenta preferida o dejalo vacío.",true);return false
+  show("Revisá el correo de la cuenta preferida.",true);return false
  }
- const previous=settings();
  const changed=previous.clientId!==clientId||previous.folder!==folder||(previous.loginHint||"")!==loginHint;
  localStorage.setItem(STORAGE_KEY,JSON.stringify({clientId,folder,loginHint,rememberAccount:remember}));
  $("folderId").value=folder;
  if(changed){token="";expiresAt=0;tokenClient=null;forgetSession();clearFiles();setAuth(false)}
- show(remember?"Cuenta preferida guardada. Scantec intentará utilizar "+loginHint+" al reconectar.":"Configuración guardada. Podés elegir tu cuenta al conectar.");
+ // No dejar visible el correo, ni siquiera al volver desde otra pestaña.
+ editingRememberAccount=false;
+ $("driveRememberEmail").value="";
+ updateRememberUI();
+ show(remember?"Cuenta de Drive guardada. El correo queda oculto.":"Configuración guardada. Podés elegir tu cuenta al conectar.");
  return true;
 }
 let token="",expiresAt=0,tokenClient=null,items=[],lastRoot="",activeUid="",syncing=false,libraryLoaded=false;
@@ -218,6 +225,10 @@ function disconnect(){
  show("Drive desconectado de este navegador. La carpeta y el ID de cliente quedan guardados; los archivos no fueron modificados.");
 }
 function updateRememberUI(){
+ const s=settings();
+ const saved=!!s.loginHint&&!!(s.rememberAccount??s.loginHint);
+ $("rememberDriveForm").hidden=saved&&!editingRememberAccount;
+ $("rememberDriveSaved").hidden=!saved||editingRememberAccount;
  $("rememberDriveDetails").hidden=!$("rememberDriveAccount").checked;
 }
 function init(){
@@ -225,7 +236,7 @@ function init(){
  $("clientId").value=s.clientId||"";
  $("folderId").value=s.folder||DEFAULT_FOLDER;
  $("rememberDriveAccount").checked=s.rememberAccount===undefined?!!s.loginHint:!!s.rememberAccount;
- $("driveRememberEmail").value=s.loginHint||"";
+ $("driveRememberEmail").value=""; // El correo almacenado no se exhibe en pantalla.
  updateRememberUI();
  $("rootLink").href=directRoot;
  $("cloudLink").href=signinURL;
@@ -237,6 +248,13 @@ function init(){
  $("reconnectDrive").addEventListener("click",connect);
  $("rememberDriveAccount").addEventListener("change",updateRememberUI);
  $("saveRememberAccount").addEventListener("click",saveSettings);
+ $("changeDriveAccount").addEventListener("click",()=>{
+  editingRememberAccount=true;
+  $("rememberDriveAccount").checked=true;
+  $("driveRememberEmail").value="";
+  updateRememberUI();
+  $("driveRememberEmail").focus();
+ });
  $("save").addEventListener("click",saveSettings);
  $("refresh").addEventListener("click",refresh);
  $("disconnect").addEventListener("click",disconnect);
