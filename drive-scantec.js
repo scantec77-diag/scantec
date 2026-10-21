@@ -9,6 +9,9 @@ const SESSION_KEY="scantec_drive_token_sesion_v1";
 const INDEX_KEY="scantec_drive_indice_sesion_v1";
 const LOCAL_INDEX_PREFIX="scantec_drive_indice_local_v2:";
 const INDEX_TTL=12*60*60*1000;
+const MAX_INDEX_FILES=5000;
+const MAX_INDEX_FOLDERS=2000;
+const MAX_FOLDER_DEPTH=18;
 const DEFAULT_FOLDER="1MKX6ueCTknpmrPp3oryXAE5lck0HTrAv";
 const $=id=>document.getElementById(id);
 const box=(tag,text,className)=>{const x=document.createElement(tag);if(text!==undefined&&text!==null)x.textContent=String(text);if(className)x.className=className;return x};
@@ -147,14 +150,15 @@ async function apiList(folder){
  const all=[];let next="",pageCount=0;
  do{
   const q="'"+folder.replace(/'/g,"\\'")+"' in parents and trashed = false";
-  const params=new URLSearchParams({q,fields:"nextPageToken,files(id,name,mimeType,webViewLink,description,modifiedTime)",pageSize:"100",supportsAllDrives:"true",includeItemsFromAllDrives:"true"});
+  const params=new URLSearchParams({q,fields:"nextPageToken,files(id,name,mimeType,webViewLink)",pageSize:"500",supportsAllDrives:"true",includeItemsFromAllDrives:"true"});
   if(next)params.set("pageToken",next);
   const r=await fetch("https://www.googleapis.com/drive/v3/files?"+params.toString(),{headers:{Authorization:"Bearer "+token},cache:"no-store"});
   if(r.status===401){expire();throw Error("Se venció la autorización.")}
   const body=await r.json().catch(()=>({}));
   if(!r.ok)throw Error("Google Drive respondió "+r.status+": "+String(body.error?.message||"Verificá que Drive API esté habilitada."));
   all.push(...(body.files||[]));next=body.nextPageToken||"";pageCount++;
- }while(next&&pageCount<20);
+ }while(next&&pageCount<50);
+ if(next)throw Error("La carpeta contiene demasiadas páginas; se interrumpió la lectura para no dejar archivos afuera.");
  return all;
 }
 async function refresh(){
@@ -165,25 +169,33 @@ async function refresh(){
  syncing=true;restoreIndex();lastRoot=root;
  const previousItems=items.slice();items=[];libraryLoaded=false;render();
  const queue=[{id:root,path:"ScanTec 77",depth:0}],seen=new Set();
- let folderCount=0,stop=false;
+ let folderCount=0,fileCount=0,limitFiles=false,depthLimited=false;
  try{
-  while(queue.length&&items.length<1500&&folderCount<140){
+  while(queue.length&&fileCount<MAX_INDEX_FILES&&folderCount<MAX_INDEX_FOLDERS){
    const at=queue.shift();
    if(seen.has(at.id))continue;seen.add(at.id);folderCount++;
-   show("Sincronizando biblioteca de Drive… "+folderCount+" carpeta(s) revisada(s).");
+   show("Sincronizando Drive: "+fileCount.toLocaleString("es-AR")+" archivos · "+folderCount.toLocaleString("es-AR")+" carpetas revisadas.");
    const files=await apiList(at.id);
    for(const file of files){
     if(!file?.id||!file.name)continue;
     const isFolder=file.mimeType==="application/vnd.google-apps.folder";
-    items.push({...file,isFolder,path:at.path+"/"+file.name});
-    if(isFolder&&at.depth<10&&!seen.has(file.id))queue.push({id:file.id,path:at.path+"/"+file.name,depth:at.depth+1});
-    if(items.length>=1500){stop=true;break}
+    if(!isFolder&&fileCount>=MAX_INDEX_FILES){limitFiles=true;break}
+    const path=at.path+"/"+file.name;
+    // Guardamos solo metadatos necesarios para no agotar la memoria del celular.
+    items.push({id:file.id,name:file.name,mimeType:file.mimeType||"",webViewLink:file.webViewLink||"",isFolder,path});
+    if(isFolder){
+     if(at.depth<MAX_FOLDER_DEPTH&&!seen.has(file.id))queue.push({id:file.id,path,depth:at.depth+1});
+     else if(at.depth>=MAX_FOLDER_DEPTH)depthLimited=true;
+    }else fileCount++;
+    if(fileCount>=MAX_INDEX_FILES){limitFiles=true;break}
    }
-   if(stop)break;
+   if(limitFiles)break;
   }
   libraryLoaded=true;rememberIndex();
-  const parcial=stop||queue.length>0;
-  show("Biblioteca actualizada. Ya podés buscar tus planos y manuales."+(parcial?" Sincronización parcial: se alcanzó el límite de lectura.":""));
+  const maxFoldersReached=queue.length>0&&folderCount>=MAX_INDEX_FOLDERS;
+  const parcial=limitFiles||maxFoldersReached||depthLimited;
+  const aviso=parcial?" · Lectura parcial: "+(limitFiles?"límite de 5.000 archivos":maxFoldersReached?"límite de 2.000 carpetas":"profundidad máxima de carpetas")+".":"";
+  show("Biblioteca sincronizada: "+fileCount.toLocaleString("es-AR")+" archivos en "+folderCount.toLocaleString("es-AR")+" carpetas. Ya podés buscar tus planos y manuales."+aviso);
   // Al completar la conexión, volvemos a la búsqueda principal, no al menú.
   const menu=$("driveSettings");if(menu)menu.open=false;
   $("buscar").focus({preventScroll:true});
