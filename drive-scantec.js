@@ -12,7 +12,8 @@ const INDEX_TTL=12*60*60*1000;
 const MAX_INDEX_FILES=10000;
 const MAX_INDEX_FOLDERS=4000;
 const MAX_FOLDER_DEPTH=20;
-const DEFAULT_FOLDER="1MKX6ueCTknpmrPp3oryXAE5lck0HTrAv";
+const DEFAULT_FOLDER="1kBFAsUuTOheqsCJK85IQ3unDJThTY3gp";
+const PREVIOUS_FOLDER="1MKX6ueCTknpmrPp3oryXAE5lck0HTrAv";
 const $=id=>document.getElementById(id);
 const box=(tag,text,className)=>{const x=document.createElement(tag);if(text!==undefined&&text!==null)x.textContent=String(text);if(className)x.className=className;return x};
 const clean=s=>String(s||"").toLocaleLowerCase("es").normalize("NFD").replace(/[\u0300-\u036f]/g,"");
@@ -246,6 +247,8 @@ function updateRememberUI(){
 function init(){
  const s=settings();
  $("clientId").value=s.clientId||"";
+ // Migrar únicamente la carpeta antigua; conservar cualquier otra carpeta elegida manualmente.
+ if(s.folder===PREVIOUS_FOLDER){localStorage.setItem(STORAGE_KEY,JSON.stringify({...s,folder:DEFAULT_FOLDER}));s.folder=DEFAULT_FOLDER;}
  $("folderId").value=s.folder||DEFAULT_FOLDER;
  $("rememberDriveAccount").checked=s.rememberAccount===undefined?!!s.loginHint:!!s.rememberAccount;
  $("driveRememberEmail").value=""; // El correo almacenado no se exhibe en pantalla.
