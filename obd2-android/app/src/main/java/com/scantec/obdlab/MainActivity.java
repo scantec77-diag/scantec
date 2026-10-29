@@ -149,6 +149,9 @@ public class MainActivity extends Activity {
                 info.put("connected", true); info.put("adapter", adapterName); info.put("firmware", firmware);
                 info.put("protocol", clean(protocol)); info.put("supportedPids", clean(supported));
                 js("window.onNativeConnected && window.onNativeConnected(" + info.toString() + ")");
+                state("connected", "ELM conectado · consultando identificación y averías…");
+                readIdentity();
+                readDtcs();
             } catch (Exception e) {
                 closeSocket();
                 state("error", "No se pudo conectar: " + shortError(e));
@@ -320,6 +323,7 @@ public class MainActivity extends Activity {
         @JavascriptInterface public void stopStream(){MainActivity.this.stopStream();}
         @JavascriptInterface public void scanDtcs(){readDtcs();}
         @JavascriptInterface public void readVehicleInfo(){readIdentity();}
+        @JavascriptInterface public void openExternal(String url){runOnUiThread(()->{try{startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url)));}catch(Exception e){toast("No se pudo abrir la búsqueda externa.");}});}
         @JavascriptInterface public void openBluetoothSettings(){runOnUiThread(()->startActivity(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS)));}
     }
 }
