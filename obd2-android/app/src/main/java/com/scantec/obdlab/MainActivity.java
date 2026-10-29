@@ -36,6 +36,7 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends Activity {
     private static final int REQ_BT_CONNECT = 201;
+    private static final int REQ_BT_ENABLE = 202;
     private static final UUID SPP_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private WebView web;
     private BluetoothAdapter adapter;
@@ -83,10 +84,12 @@ public class MainActivity extends Activity {
             return;
         }
         if (!adapter.isEnabled()) {
-            new AlertDialog.Builder(this).setTitle("Bluetooth apagado")
-                .setMessage("Activá Bluetooth para buscar el ELM327 emparejado.")
-                .setNegativeButton("Cancelar", null)
-                .setPositiveButton("Abrir ajustes", (d,w) -> startActivity(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS))).show();
+            try {
+                // Android muestra el diálogo del sistema y pide confirmación antes de encender Bluetooth.
+                startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), REQ_BT_ENABLE);
+            } catch (Exception e) {
+                state("error", "No se pudo abrir el control de Bluetooth del sistema.");
+            }
             return;
         }
         showPairedDevices();
@@ -102,11 +105,8 @@ public class MainActivity extends Activity {
                 labels.add(name + "\n" + device.getAddress());
             }
             if (devices.isEmpty()) {
-                new AlertDialog.Builder(this).setTitle("No hay adaptadores emparejados")
-                    .setMessage("Emparejá el ELM327 desde Ajustes > Bluetooth y volvé a esta pantalla. Muchos adaptadores usan PIN 1234 o 0000.")
-                    .setNegativeButton("Cerrar", null)
-                    .setPositiveButton("Abrir Bluetooth", (d,w) -> startActivity(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS))).show();
-                state("idle", "Emparejá el ELM327 desde Ajustes de Bluetooth.");
+                state("idle", "Buscá y emparejá el ELM327 en Bluetooth; después volvé y tocá Conectar.");
+                startActivity(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS));
                 return;
             }
             String[] options = labels.toArray(new String[0]);
@@ -280,7 +280,7 @@ public class MainActivity extends Activity {
                 ts=new ArrayList<>(ts.subList(2,ts.size()));
                 if(!ts.isEmpty() && (ts.get(0)==1 || ts.get(0)==0)) ts.remove(0);
             }
-            for(Integer x:ts) if(x>=0x20 && x<=0x7e) bytes.append((char)x.intValue());
+            for(Integer x:ts) if(x>=0x20 && x<=0x7e) bytes.append((char)x);
         }
         String result=bytes.toString().replaceAll("[^A-Za-z0-9]","").trim();
         return result.isEmpty()?"":result;
@@ -301,7 +301,16 @@ public class MainActivity extends Activity {
 
     @Override public void onRequestPermissionsResult(int requestCode,String[] permissions,int[] results){
         super.onRequestPermissionsResult(requestCode,permissions,results);
-        if(requestCode==REQ_BT_CONNECT){ if(results.length>0&&results[0]==PackageManager.PERMISSION_GRANTED) showPairedDevices(); else state("error","Permiso Bluetooth denegado. Habilitalo para conectar el ELM327."); }
+        if(requestCode==REQ_BT_CONNECT){ if(results.length>0&&results[0]==PackageManager.PERMISSION_GRANTED) ensurePermissionAndSelect(); else state("error","Permiso Bluetooth denegado. Habilitalo para conectar el ELM327."); }
+    }
+    @Override protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode==REQ_BT_ENABLE){
+            if(resultCode==RESULT_OK && adapter!=null && adapter.isEnabled()){
+                state("idle","Bluetooth activado. Buscá y emparejá el ELM327; después volvé y tocá Conectar.");
+                startActivity(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS));
+            } else state("error","Bluetooth quedó apagado. Volvé a tocar Conectar y aceptá activarlo.");
+        }
     }
     @Override protected void onDestroy(){streaming=false;closeSocket();io.shutdownNow();poller.shutdownNow();if(web!=null)web.destroy();super.onDestroy();}
 
