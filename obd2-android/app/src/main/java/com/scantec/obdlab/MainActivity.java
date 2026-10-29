@@ -280,7 +280,7 @@ public class MainActivity extends Activity {
                 ts=new ArrayList<>(ts.subList(2,ts.size()));
                 if(!ts.isEmpty() && (ts.get(0)==1 || ts.get(0)==0)) ts.remove(0);
             }
-            for(Integer x:ts) if(x>=0x20 && x<=0x7e) bytes.append((char)x);
+            for(Integer x:ts) if(x>=0x20 && x<=0x7e) bytes.append((char)x.intValue());
         }
         String result=bytes.toString().replaceAll("[^A-Za-z0-9]","").trim();
         return result.isEmpty()?"":result;
