@@ -22,11 +22,22 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.11.1"
+      - name: Reutilizar firma de prueba para permitir actualizaciones
+        uses: actions/cache@v4
+        with:
+          path: ~/.android/debug.keystore
+          key: scantec-obd2-debug-signing-v1
+        with:
+          gradle-version: "8.11.1"
       - name: Comprobar SDK de Android
         run: |
           echo "ANDROID_HOME=$ANDROID_HOME"
           ls -la "$ANDROID_HOME/platforms" || true
           ls -la "$ANDROID_HOME/build-tools" || true
+      - name: Versionar APK de prueba
+        env:
+          APP_VERSION_CODE: ${{ github.run_number }}
+        run: sed -i "s/versionCode 1/versionCode ${APP_VERSION_CODE}/" obd2-android/app/build.gradle
       - name: Construir APK de pruebas
         run: gradle -p obd2-android assembleDebug --no-daemon --stacktrace
       - name: Guardar APK para descarga
