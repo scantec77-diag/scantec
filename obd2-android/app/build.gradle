@@ -4,6 +4,21 @@ android {
     namespace 'com.scantec.obdlab'
     compileSdk 35
 
+    signingConfigs {
+        obdTest {
+            storeFile file("${System.getProperty('user.home')}/.android/scantec-obd2-test.keystore")
+            storePassword 'scantec-obd2-test'
+            keyAlias 'scantec-obd2-test'
+            keyPassword 'scantec-obd2-test'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.obdTest
+        }
+    }
+
     defaultConfig {
         applicationId 'com.scantec.obdlab'
         minSdk 23
