@@ -25,8 +25,14 @@ jobs:
       - name: Reutilizar firma de prueba para permitir actualizaciones
         uses: actions/cache@v4
         with:
-          path: ~/.android/debug.keystore
+          path: ~/.android/scantec-obd2-test.keystore
           key: scantec-obd2-debug-signing-v1
+      - name: Crear firma de prueba si todavía no existe
+        run: |
+          mkdir -p "$HOME/.android"
+          if [ ! -f "$HOME/.android/scantec-obd2-test.keystore" ]; then
+            keytool -genkeypair -v -keystore "$HOME/.android/scantec-obd2-test.keystore" -storepass "scantec-obd2-test" -keypass "scantec-obd2-test" -alias "scantec-obd2-test" -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Scantec OBD Test, O=Scantec 77, C=AR"
+          fi
       - name: Comprobar SDK de Android
         run: |
           echo "ANDROID_HOME=$ANDROID_HOME"
