@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-11-11",
   "channels": [
     {
@@ -13,43 +13,48 @@
       "resolved_url": "https://deportv.gob.ar/vivo",
       "title": "DeporTV - TV Vivo",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "Fuera de línea en el reproductor oficial",
+      "playback_state": "testing"
     },
     {
       "name": "Claro Sports",
       "group": "Polideportivo",
-      "url": "https://www.clarosports.com/en-vivo/",
+      "url": "https://www.clarosports.com/en-vivo-home/",
       "kind": "official",
       "video_verified": false,
       "http": 200,
       "resolved_url": "https://www.clarosports.com/en-vivo-home/",
       "title": "Claro Sports - En vivo - ClaroSports",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "En revisión: abre listado de eventos",
+      "playback_state": "testing"
     },
     {
       "name": "Red Bull TV",
       "group": "Acción y aventura",
       "url": "https://www.redbull.tv/",
       "kind": "official",
-      "video_verified": false,
+      "video_verified": true,
       "http": 200,
       "resolved_url": "https://www.redbull.tv/en",
       "title": "Red Bull TV - Discover the latest films, shows &amp; videos",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "Funcionando • confirmado en el teléfono",
+      "playback_state": "working",
+      "verification_scope": "Confirmado por Ari en su teléfono: video, audio y pantalla completa"
     },
     {
       "name": "Canela Deportes",
       "group": "Polideportivo",
-      "url": "https://www.canela.tv/?section=sportssection",
+      "url": "https://www.canela.tv/sports",
       "kind": "official",
       "video_verified": false,
       "http": 200,
       "resolved_url": "https://www.canela.tv/?section=sportssection",
       "title": "Cine y Televisi&#xf3;n Gratis en espa&#xf1;ol",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "En revisión: ítem no encontrado en el teléfono",
+      "playback_state": "testing"
     },
     {
       "name": "beIN Sports XTRA",
@@ -61,7 +66,8 @@
       "resolved_url": "https://www.beinsportsxtra.com/",
       "title": "beIN SPORTS XTRA",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "En revisión: Vimeo solicita iniciar sesión",
+      "playback_state": "testing"
     },
     {
       "name": "beIN Sports XTRA en Español",
@@ -73,7 +79,8 @@
       "resolved_url": "https://www.beinsportsxtra.com/es/beinxtraespanol",
       "title": "beIN SPORTS XTRA En Español",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "En revisión: Vimeo solicita iniciar sesión",
+      "playback_state": "testing"
     },
     {
       "name": "Realmadrid TV",
@@ -85,7 +92,8 @@
       "resolved_url": "https://www.realmadrid.com/es-ES/real-madrid-tv",
       "title": "Real Madrid CF | Web oficial del Real Madrid CF",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "Página accesible; video sin verificar",
+      "playback_state": "testing"
     },
     {
       "name": "FIFA+ en DAZN",
@@ -95,7 +103,8 @@
       "video_verified": false,
       "page_verified": false,
       "status": "Acceso pendiente",
-      "error": "HTTP Error 403: Forbidden"
+      "error": "HTTP Error 403: Forbidden",
+      "playback_state": "testing"
     },
     {
       "name": "UEFA.tv",
@@ -107,7 +116,8 @@
       "resolved_url": "https://www.uefa.tv/",
       "title": "UEFA.tv",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "Página accesible; video sin verificar",
+      "playback_state": "testing"
     },
     {
       "name": "ANOC.tv",
@@ -119,7 +129,8 @@
       "resolved_url": "https://www.anocolympic.org/anoc-tv/",
       "title": "",
       "page_verified": false,
-      "status": "Acceso pendiente"
+      "status": "Acceso pendiente",
+      "playback_state": "testing"
     },
     {
       "name": "Olympic Channel",
@@ -129,7 +140,8 @@
       "video_verified": false,
       "page_verified": false,
       "status": "Acceso pendiente",
-      "error": "HTTP Error 503: Service Unavailable"
+      "error": "HTTP Error 503: Service Unavailable",
+      "playback_state": "testing"
     },
     {
       "name": "NASCAR Euro Series",
@@ -141,7 +153,8 @@
       "resolved_url": "https://www.nascar.eu/where-to-watch/",
       "title": "Where to Watch - NASCAR Euro Series",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "Página accesible; video sin verificar",
+      "playback_state": "testing"
     },
     {
       "name": "NASCAR",
@@ -153,7 +166,8 @@
       "resolved_url": "https://freelivesports.tv/channel/nascar/",
       "title": "Stream NASCAR Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "RACER Select",
@@ -165,7 +179,8 @@
       "resolved_url": "https://freelivesports.tv/channel/racer-select/",
       "title": "Stream RACER Select Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "SpeedVision",
@@ -177,7 +192,8 @@
       "resolved_url": "https://freelivesports.tv/channel/speedvision/",
       "title": "Stream Speedvision Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "MotorRacing",
@@ -189,7 +205,8 @@
       "resolved_url": "https://freelivesports.tv/channel/motorracing/",
       "title": "Stream MotorRacing Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "NHRA",
@@ -201,7 +218,8 @@
       "resolved_url": "https://freelivesports.tv/channel/nhra/",
       "title": "Stream NHRA Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "RPM",
@@ -213,7 +231,8 @@
       "resolved_url": "https://freelivesports.tv/channel/rpm/",
       "title": "Rpm",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Motorvision",
@@ -225,7 +244,8 @@
       "resolved_url": "https://freelivesports.tv/channel/motorvision/",
       "title": "Motorvision",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Speed Sport 1",
@@ -237,7 +257,8 @@
       "resolved_url": "https://freelivesports.tv/channel/speed-sport-1/",
       "title": "Stream Speed Sport 1 Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "MTRSPT1",
@@ -249,7 +270,8 @@
       "resolved_url": "https://freelivesports.tv/channel/mtrspt1/",
       "title": "Stream MTRSPT1 Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Powersports World",
@@ -261,7 +283,8 @@
       "resolved_url": "https://freelivesports.tv/channel/powersports-world/",
       "title": "Stream Powersports World Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "POWERtube TV",
@@ -273,7 +296,8 @@
       "resolved_url": "https://freelivesports.tv/channel/powertube-tv/",
       "title": "Stream POWERtube TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Choppertown",
@@ -285,7 +309,8 @@
       "resolved_url": "https://freelivesports.tv/channel/choppertown/",
       "title": "Stream Choppertown - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "GFN Football TV",
@@ -297,7 +322,8 @@
       "resolved_url": "https://freelivesports.tv/channel/gfn-football-tv/",
       "title": "Gfn Football Tv",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "GOAL TV",
@@ -309,7 +335,8 @@
       "resolved_url": "https://freelivesports.tv/channel/goal-tv/",
       "title": "Stream Goal TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Top Barca",
@@ -321,7 +348,8 @@
       "resolved_url": "https://freelivesports.tv/channel/top-barca/",
       "title": "Stream Top Barca Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Top Barca En Espanol",
@@ -333,7 +361,8 @@
       "resolved_url": "https://freelivesports.tv/channel/top-barca-en-espanol/",
       "title": "Top Barca En Espanol",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Man City 24/7",
@@ -345,7 +374,8 @@
       "resolved_url": "https://freelivesports.tv/channel/man-city-24-7/",
       "title": "Man City 24 7",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Unbeaten",
@@ -357,7 +387,8 @@
       "resolved_url": "https://freelivesports.tv/channel/unbeaten/",
       "title": "Stream Unbeaten Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Stadium",
@@ -369,7 +400,8 @@
       "resolved_url": "https://freelivesports.tv/channel/stadium/",
       "title": "Stream Stadium Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Sports Illustrated TV",
@@ -381,7 +413,8 @@
       "resolved_url": "https://freelivesports.tv/channel/sports-illustrated-tv/",
       "title": "Stream Sports Illustrated TV - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "TyC Sports Fan",
@@ -393,7 +426,8 @@
       "resolved_url": "https://freelivesports.tv/channel/tyc-sports-fan/",
       "title": "Stream TcY Sports Fan Free - Watch Online | Free Live Sports TV",
       "page_verified": false,
-      "status": "Página del canal sin confirmar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Unanimo Deportes",
@@ -405,7 +439,8 @@
       "resolved_url": "https://freelivesports.tv/channel/unanimo-deportes/",
       "title": "Unanimo Deportes",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "GLORY Kickboxing",
@@ -417,7 +452,8 @@
       "resolved_url": "https://freelivesports.tv/channel/glory-kickboxing/",
       "title": "Stream GLORY Kickboxing Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Swerve Combat",
@@ -429,7 +465,8 @@
       "resolved_url": "https://freelivesports.tv/channel/swerve-combat/",
       "title": "Stream Swerve Combat Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Professional Fighters League PFL",
@@ -441,7 +478,8 @@
       "resolved_url": "https://freelivesports.tv/channel/professional-fighters-league-pfl/",
       "title": "Professional Fighters League Pfl",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "TNA Wrestling Channel",
@@ -453,7 +491,8 @@
       "resolved_url": "https://freelivesports.tv/channel/tna-wrestling-channel/",
       "title": "Stream TNA Wrestling Channel Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Lucha Plus",
@@ -465,7 +504,8 @@
       "resolved_url": "https://freelivesports.tv/channel/lucha-plus/",
       "title": "Stream Lucha Plus Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "United Fight Alliance",
@@ -477,7 +517,8 @@
       "resolved_url": "https://freelivesports.tv/channel/united-fight-alliance/",
       "title": "Stream United Fight Alliance Free - Watch MMA Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Fight Network",
@@ -489,7 +530,8 @@
       "resolved_url": "https://freelivesports.tv/channel/fight-network/",
       "title": "Stream Fight Network Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Hard Knocks",
@@ -501,7 +543,8 @@
       "resolved_url": "https://freelivesports.tv/channel/hard-knocks/",
       "title": "Watch Hard Knocks Free | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "MMA TV",
@@ -513,7 +556,8 @@
       "resolved_url": "https://freelivesports.tv/channel/mma-tv/",
       "title": "Stream MMA TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "World Surf League",
@@ -525,7 +569,8 @@
       "resolved_url": "https://freelivesports.tv/channel/world-surf-league/",
       "title": "Stream World Surf League Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "En revisión: solicita instalar app de FLS",
+      "playback_state": "testing"
     },
     {
       "name": "Fuel TV",
@@ -537,7 +582,8 @@
       "resolved_url": "https://freelivesports.tv/channel/fuel-tv/",
       "title": "Stream FUEL TV - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "En revisión: solicita instalar app de FLS",
+      "playback_state": "testing"
     },
     {
       "name": "World of Freesports",
@@ -549,7 +595,8 @@
       "resolved_url": "https://freelivesports.tv/channel/world-of-freesports/",
       "title": "Stream World Of Freesports Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "En revisión: solicita instalar app de FLS",
+      "playback_state": "testing"
     },
     {
       "name": "GoPro TV",
@@ -561,7 +608,8 @@
       "resolved_url": "https://freelivesports.tv/channel/gopro-tv/",
       "title": "Gopro Tv",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "En revisión: solicita instalar app de FLS",
+      "playback_state": "testing"
     },
     {
       "name": "Surf Cinema",
@@ -573,7 +621,8 @@
       "resolved_url": "https://freelivesports.tv/channel/surf-cinema/",
       "title": "Stream Surf Cinema Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "InTrouble",
@@ -585,7 +634,8 @@
       "resolved_url": "https://freelivesports.tv/channel/introuble/",
       "title": "Stream InTrouble Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "HorizonSports",
@@ -597,7 +647,8 @@
       "resolved_url": "https://freelivesports.tv/channel/horizonsports/",
       "title": "Stream HorizonSports Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Absinthe TV",
@@ -609,7 +660,8 @@
       "resolved_url": "https://freelivesports.tv/channel/absinthe-tv/",
       "title": "Stream Absinthe TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Tennis Channel T2",
@@ -621,7 +673,8 @@
       "resolved_url": "https://freelivesports.tv/channel/tennis-channel-t2/",
       "title": "Stream Tennis Channel T2 Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Tennis TV",
@@ -633,7 +686,8 @@
       "resolved_url": "https://freelivesports.tv/channel/tennis-tv/",
       "title": "Stream Tennis TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Pickleball TV",
@@ -645,7 +699,8 @@
       "resolved_url": "https://freelivesports.tv/channel/pickleball-tv/",
       "title": "Stream Pickleball TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "PickleTV",
@@ -657,7 +712,8 @@
       "resolved_url": "https://freelivesports.tv/channel/pickletv/",
       "title": "Pickletv",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "My Padel TV",
@@ -669,7 +725,8 @@
       "resolved_url": "https://freelivesports.tv/channel/my-padel-tv/",
       "title": "Stream My Padel TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "HOOP TV",
@@ -681,7 +738,8 @@
       "resolved_url": "https://freelivesports.tv/channel/hoop-tv/",
       "title": "Stream HOOP TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "HOMERUN TV",
@@ -693,7 +751,8 @@
       "resolved_url": "https://freelivesports.tv/channel/homerun-tv/",
       "title": "Stream HOMERUN TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Perfect Game TV",
@@ -705,7 +764,8 @@
       "resolved_url": "https://freelivesports.tv/channel/perfect-game-tv/",
       "title": "Stream Perfect Game TV - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Lacrosse TV",
@@ -717,7 +777,8 @@
       "resolved_url": "https://freelivesports.tv/channel/lacrosse-tv/",
       "title": "Stream Lacrosse TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Billiard TV",
@@ -729,7 +790,8 @@
       "resolved_url": "https://freelivesports.tv/channel/billiard-tv/",
       "title": "Stream Billiard TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Kozoom",
@@ -741,7 +803,8 @@
       "resolved_url": "https://freelivesports.tv/channel/kozoom/",
       "title": "Stream Kozoom Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Bowling TV",
@@ -753,7 +816,8 @@
       "resolved_url": "https://freelivesports.tv/channel/bowling-tv/",
       "title": "Stream Bowling TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "Strongman Champions League",
@@ -765,7 +829,8 @@
       "resolved_url": "https://freelivesports.tv/channel/strongman-champions-league/",
       "title": "Stream Strongman Champions League Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "World Poker Tour",
@@ -777,7 +842,8 @@
       "resolved_url": "https://freelivesports.tv/channel/world-poker-tour/",
       "title": "Stream World Poker Tour Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     },
     {
       "name": "World Poker Tour Spain",
@@ -789,7 +855,8 @@
       "resolved_url": "https://freelivesports.tv/channel/world-poker-tour-spain/",
       "title": "World Poker Tour Spain",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar"
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing"
     }
   ]
 }
