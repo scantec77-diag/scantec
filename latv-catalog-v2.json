@@ -1,0 +1,4390 @@
+{
+  "schema_version": 2,
+  "revision": 1,
+  "updated_at": "2026-11-11",
+  "channels": [
+    {
+      "name": "DeporTV",
+      "group": "Polideportivo",
+      "url": "https://deportv.gob.ar/vivo",
+      "kind": "official",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://deportv.gob.ar/vivo",
+      "title": "DeporTV - TV Vivo",
+      "page_verified": true,
+      "status": "Fuera de línea en el reproductor oficial",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "AR",
+      "source_type": "web",
+      "free_to_air": true
+    },
+    {
+      "name": "Claro Sports",
+      "group": "Polideportivo",
+      "url": "https://www.clarosports.com/en-vivo-home/",
+      "kind": "official",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://www.clarosports.com/en-vivo-home/",
+      "title": "Claro Sports - En vivo - ClaroSports",
+      "page_verified": true,
+      "status": "En revisión: abre listado de eventos",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Red Bull TV",
+      "group": "Acción y aventura",
+      "url": "https://www.redbull.tv/",
+      "kind": "official",
+      "video_verified": true,
+      "http": 200,
+      "resolved_url": "https://www.redbull.tv/en",
+      "title": "Red Bull TV - Discover the latest films, shows &amp; videos",
+      "page_verified": true,
+      "status": "Funcionando • confirmado en el teléfono",
+      "playback_state": "working",
+      "verification_scope": "Confirmado en teléfono: video, audio y pantalla completa",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Canela Deportes",
+      "group": "Polideportivo",
+      "url": "https://www.canela.tv/sports",
+      "kind": "official",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://www.canela.tv/?section=sportssection",
+      "title": "Cine y Televisi&#xf3;n Gratis en espa&#xf1;ol",
+      "page_verified": true,
+      "status": "En revisión: ítem no encontrado en el teléfono",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "beIN Sports XTRA",
+      "group": "Polideportivo",
+      "url": "https://www.beinsportsxtra.com/",
+      "kind": "official",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://www.beinsportsxtra.com/",
+      "title": "beIN SPORTS XTRA",
+      "page_verified": true,
+      "status": "En revisión: Vimeo solicita iniciar sesión",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "US",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "beIN Sports XTRA en Español",
+      "group": "Polideportivo",
+      "url": "https://www.beinsportsxtra.com/es/beinxtraespanol",
+      "kind": "official",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://www.beinsportsxtra.com/es/beinxtraespanol",
+      "title": "beIN SPORTS XTRA En Español",
+      "page_verified": true,
+      "status": "En revisión: Vimeo solicita iniciar sesión",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "US",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Realmadrid TV",
+      "group": "Fútbol",
+      "url": "https://www.realmadrid.com/es-ES/real-madrid-tv",
+      "kind": "official",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://www.realmadrid.com/es-ES/real-madrid-tv",
+      "title": "Real Madrid CF | Web oficial del Real Madrid CF",
+      "page_verified": true,
+      "status": "Requiere cuenta Madridista gratuita",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "ES",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "FIFA+ en DAZN",
+      "group": "Eventos",
+      "url": "https://www.dazn.com/fifaplus",
+      "kind": "official",
+      "video_verified": false,
+      "page_verified": false,
+      "status": "Prueba bloqueada por DAZN en esta conexión",
+      "error": "HTTP Error 403: Forbidden",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "UEFA.tv",
+      "group": "Eventos",
+      "url": "https://www.uefa.tv/",
+      "kind": "official",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://www.uefa.tv/",
+      "title": "UEFA.tv",
+      "page_verified": true,
+      "status": "Requiere iniciar sesión en UEFA",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "ANOC.tv",
+      "group": "Eventos",
+      "url": "https://www.anocolympic.org/anoc-tv/",
+      "kind": "official",
+      "video_verified": false,
+      "http": 202,
+      "resolved_url": "https://www.anocolympic.org/anoc-tv/",
+      "title": "",
+      "page_verified": false,
+      "status": "Verificación de seguridad impide la prueba",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Olympic Channel",
+      "group": "Eventos",
+      "url": "https://www.olympics.com/es/olympic-channel",
+      "kind": "official",
+      "video_verified": false,
+      "page_verified": false,
+      "status": "No cargó en el navegador de pruebas",
+      "error": "HTTP Error 503: Service Unavailable",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "NASCAR Euro Series",
+      "group": "Eventos",
+      "url": "https://www.nascar.eu/where-to-watch/",
+      "kind": "official",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://www.nascar.eu/where-to-watch/",
+      "title": "Where to Watch - NASCAR Euro Series",
+      "page_verified": true,
+      "status": "Guía de emisores; sin canal reproduciendo",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "NASCAR",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/nascar/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/nascar/",
+      "title": "Stream NASCAR Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "RACER Select",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/racer-select/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/racer-select/",
+      "title": "Stream RACER Select Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "SpeedVision",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/speedvision/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/speedvision/",
+      "title": "Stream Speedvision Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "MotorRacing",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/motorracing/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/motorracing/",
+      "title": "Stream MotorRacing Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "NHRA",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/nhra/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/nhra/",
+      "title": "Stream NHRA Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "RPM",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/rpm/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/rpm/",
+      "title": "Rpm",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Motorvision",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/motorvision/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/motorvision/",
+      "title": "Motorvision",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Speed Sport 1",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/speed-sport-1/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/speed-sport-1/",
+      "title": "Stream Speed Sport 1 Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "MTRSPT1",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/mtrspt1/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/mtrspt1/",
+      "title": "Stream MTRSPT1 Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Powersports World",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/powersports-world/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/powersports-world/",
+      "title": "Stream Powersports World Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "POWERtube TV",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/powertube-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/powertube-tv/",
+      "title": "Stream POWERtube TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Choppertown",
+      "group": "Motor",
+      "url": "https://freelivesports.tv/channel/choppertown/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/choppertown/",
+      "title": "Stream Choppertown - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "GFN Football TV",
+      "group": "Fútbol y polideportivo",
+      "url": "https://freelivesports.tv/channel/gfn-football-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/gfn-football-tv/",
+      "title": "Gfn Football Tv",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "GOAL TV",
+      "group": "Fútbol y polideportivo",
+      "url": "https://freelivesports.tv/channel/goal-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/goal-tv/",
+      "title": "Stream Goal TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Top Barca",
+      "group": "Fútbol y polideportivo",
+      "url": "https://freelivesports.tv/channel/top-barca/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/top-barca/",
+      "title": "Stream Top Barca Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Top Barca En Espanol",
+      "group": "Fútbol y polideportivo",
+      "url": "https://freelivesports.tv/channel/top-barca-en-espanol/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/top-barca-en-espanol/",
+      "title": "Top Barca En Espanol",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Man City 24/7",
+      "group": "Fútbol y polideportivo",
+      "url": "https://freelivesports.tv/channel/man-city-24-7/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/man-city-24-7/",
+      "title": "Man City 24 7",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Unbeaten",
+      "group": "Fútbol y polideportivo",
+      "url": "https://freelivesports.tv/channel/unbeaten/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/unbeaten/",
+      "title": "Stream Unbeaten Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Stadium",
+      "group": "Fútbol y polideportivo",
+      "url": "https://freelivesports.tv/channel/stadium/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/stadium/",
+      "title": "Stream Stadium Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Sports Illustrated TV",
+      "group": "Fútbol y polideportivo",
+      "url": "https://freelivesports.tv/channel/sports-illustrated-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/sports-illustrated-tv/",
+      "title": "Stream Sports Illustrated TV - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "TyC Sports Fan",
+      "group": "Fútbol y polideportivo",
+      "url": "https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/tyc-sports-fan/",
+      "title": "Stream TcY Sports Fan Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "Señal FAN • muestra válida, pendiente en La TV",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "AR",
+      "source_type": "hls",
+      "free_to_air": false
+    },
+    {
+      "name": "Unanimo Deportes",
+      "group": "Fútbol y polideportivo",
+      "url": "https://freelivesports.tv/channel/unanimo-deportes/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/unanimo-deportes/",
+      "title": "Unanimo Deportes",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "GLORY Kickboxing",
+      "group": "Combate",
+      "url": "https://freelivesports.tv/channel/glory-kickboxing/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/glory-kickboxing/",
+      "title": "Stream GLORY Kickboxing Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Swerve Combat",
+      "group": "Combate",
+      "url": "https://freelivesports.tv/channel/swerve-combat/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/swerve-combat/",
+      "title": "Stream Swerve Combat Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Professional Fighters League PFL",
+      "group": "Combate",
+      "url": "https://freelivesports.tv/channel/professional-fighters-league-pfl/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/professional-fighters-league-pfl/",
+      "title": "Professional Fighters League Pfl",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "TNA Wrestling Channel",
+      "group": "Combate",
+      "url": "https://freelivesports.tv/channel/tna-wrestling-channel/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/tna-wrestling-channel/",
+      "title": "Stream TNA Wrestling Channel Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Lucha Plus",
+      "group": "Combate",
+      "url": "https://freelivesports.tv/channel/lucha-plus/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/lucha-plus/",
+      "title": "Stream Lucha Plus Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "United Fight Alliance",
+      "group": "Combate",
+      "url": "https://freelivesports.tv/channel/united-fight-alliance/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/united-fight-alliance/",
+      "title": "Stream United Fight Alliance Free - Watch MMA Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Fight Network",
+      "group": "Combate",
+      "url": "https://freelivesports.tv/channel/fight-network/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/fight-network/",
+      "title": "Stream Fight Network Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Hard Knocks",
+      "group": "Combate",
+      "url": "https://freelivesports.tv/channel/hard-knocks/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/hard-knocks/",
+      "title": "Watch Hard Knocks Free | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "MMA TV",
+      "group": "Combate",
+      "url": "https://freelivesports.tv/channel/mma-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/mma-tv/",
+      "title": "Stream MMA TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "World Surf League",
+      "group": "Acción y aventura",
+      "url": "https://freelivesports.tv/channel/world-surf-league/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/world-surf-league/",
+      "title": "Stream World Surf League Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "En revisión: solicita instalar app de FLS",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Fuel TV",
+      "group": "Acción y aventura",
+      "url": "https://freelivesports.tv/channel/fuel-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/fuel-tv/",
+      "title": "Stream FUEL TV - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "En revisión: solicita instalar app de FLS",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "World of Freesports",
+      "group": "Acción y aventura",
+      "url": "https://freelivesports.tv/channel/world-of-freesports/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/world-of-freesports/",
+      "title": "Stream World Of Freesports Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "En revisión: solicita instalar app de FLS",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "GoPro TV",
+      "group": "Acción y aventura",
+      "url": "https://freelivesports.tv/channel/gopro-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/gopro-tv/",
+      "title": "Gopro Tv",
+      "page_verified": true,
+      "status": "En revisión: solicita instalar app de FLS",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Surf Cinema",
+      "group": "Acción y aventura",
+      "url": "https://freelivesports.tv/channel/surf-cinema/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/surf-cinema/",
+      "title": "Stream Surf Cinema Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "InTrouble",
+      "group": "Acción y aventura",
+      "url": "https://freelivesports.tv/channel/introuble/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/introuble/",
+      "title": "Stream InTrouble Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "HorizonSports",
+      "group": "Acción y aventura",
+      "url": "https://freelivesports.tv/channel/horizonsports/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/horizonsports/",
+      "title": "Stream HorizonSports Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Absinthe TV",
+      "group": "Acción y aventura",
+      "url": "https://freelivesports.tv/channel/absinthe-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/absinthe-tv/",
+      "title": "Stream Absinthe TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Tennis Channel T2",
+      "group": "Raqueta",
+      "url": "https://freelivesports.tv/channel/tennis-channel-t2/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/tennis-channel-t2/",
+      "title": "Stream Tennis Channel T2 Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Tennis TV",
+      "group": "Raqueta",
+      "url": "https://freelivesports.tv/channel/tennis-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/tennis-tv/",
+      "title": "Stream Tennis TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Pickleball TV",
+      "group": "Raqueta",
+      "url": "https://freelivesports.tv/channel/pickleball-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/pickleball-tv/",
+      "title": "Stream Pickleball TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "PickleTV",
+      "group": "Raqueta",
+      "url": "https://freelivesports.tv/channel/pickletv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/pickletv/",
+      "title": "Pickletv",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "My Padel TV",
+      "group": "Raqueta",
+      "url": "https://freelivesports.tv/channel/my-padel-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/my-padel-tv/",
+      "title": "Stream My Padel TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "HOOP TV",
+      "group": "Otros deportes",
+      "url": "https://freelivesports.tv/channel/hoop-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/hoop-tv/",
+      "title": "Stream HOOP TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "HOMERUN TV",
+      "group": "Otros deportes",
+      "url": "https://freelivesports.tv/channel/homerun-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/homerun-tv/",
+      "title": "Stream HOMERUN TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Perfect Game TV",
+      "group": "Otros deportes",
+      "url": "https://freelivesports.tv/channel/perfect-game-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/perfect-game-tv/",
+      "title": "Stream Perfect Game TV - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Lacrosse TV",
+      "group": "Otros deportes",
+      "url": "https://freelivesports.tv/channel/lacrosse-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/lacrosse-tv/",
+      "title": "Stream Lacrosse TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Billiard TV",
+      "group": "Otros deportes",
+      "url": "https://freelivesports.tv/channel/billiard-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/billiard-tv/",
+      "title": "Stream Billiard TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Kozoom",
+      "group": "Otros deportes",
+      "url": "https://freelivesports.tv/channel/kozoom/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/kozoom/",
+      "title": "Stream Kozoom Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Bowling TV",
+      "group": "Otros deportes",
+      "url": "https://freelivesports.tv/channel/bowling-tv/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/bowling-tv/",
+      "title": "Stream Bowling TV Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Strongman Champions League",
+      "group": "Otros deportes",
+      "url": "https://freelivesports.tv/channel/strongman-champions-league/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/strongman-champions-league/",
+      "title": "Stream Strongman Champions League Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "World Poker Tour",
+      "group": "Otros deportes",
+      "url": "https://freelivesports.tv/channel/world-poker-tour/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/world-poker-tour/",
+      "title": "Stream World Poker Tour Free - Watch Online | Free Live Sports TV",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "World Poker Tour Spain",
+      "group": "Otros deportes",
+      "url": "https://freelivesports.tv/channel/world-poker-tour-spain/",
+      "kind": "catalog",
+      "video_verified": false,
+      "http": 200,
+      "resolved_url": "https://freelivesports.tv/channel/world-poker-tour-spain/",
+      "title": "World Poker Tour Spain",
+      "page_verified": true,
+      "status": "A prueba • acceso de FLS pendiente de verificar",
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11",
+      "category": "sports",
+      "country": "INT",
+      "source_type": "web",
+      "free_to_air": false
+    },
+    {
+      "name": "Bloomberg",
+      "group": "News",
+      "url": "https://www.bloomberg.com/media-manifest/streams/us.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "news",
+      "country": "US",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "scte_35",
+          "codec_type": "data"
+        }
+      ],
+      "origin_list": "Radios Argentina",
+      "source_notes": "Bloomberg"
+    },
+    {
+      "name": "Garage TV",
+      "group": "Motor",
+      "url": "https://stream1.sersat.com/hls/garagetv.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "sports",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 720,
+          "height": 404
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "Radios Argentina",
+      "source_notes": "Garage TV"
+    },
+    {
+      "name": "MusicTop",
+      "group": "Music",
+      "url": "https://stream-gtlc.telecentro.net.ar/hls/musictophls/main.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "music",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "Radios Argentina",
+      "source_notes": "Musictop"
+    },
+    {
+      "name": "Mercurio Noticias",
+      "group": "News",
+      "url": "https://videostream.shockmedia.com.ar/hls/mercuriotv/mercuriotv.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "news",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Mercurio Noticias"
+    },
+    {
+      "name": "Quantica TV",
+      "group": "News",
+      "url": "https://videostream.shockmedia.com.ar:19360/quanticatv/quanticatv.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "news",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Quantica TV"
+    },
+    {
+      "name": "Multivision Federal",
+      "group": "News",
+      "url": "https://videostream.shockmedia.com.ar/hls/multivisionfederal/multivisionfederal.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "news",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Multivision Federal"
+    },
+    {
+      "name": "Radio Realpolitik",
+      "group": "Music",
+      "url": "https://vivo.solumedia.com:19360/realpolitik/realpolitik.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "music",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Radio Realpolitik (720p)"
+    },
+    {
+      "name": "Mas FM",
+      "group": "Music",
+      "url": "https://vivo.solumedia.com:19360/masfm/masfm.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "music",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Mas FM (720p)"
+    },
+    {
+      "name": "Radio Conexion Web TV",
+      "group": "Music",
+      "url": "https://tuvideoonline.com.ar:3391/live/radioconexionlive.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "music",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Radio Conexion Web TV (720p)"
+    },
+    {
+      "name": "VIVE TV",
+      "group": "News",
+      "url": "https://vivo.solumedia.com:19360/vivetv/vivetv.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "news",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 2276,
+          "height": 1280
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "VIVE TV (1080p)"
+    },
+    {
+      "name": "ABTV Bariloche",
+      "group": "General",
+      "url": "https://videostream.shockmedia.com.ar/hls/abtvbariloche/abtvbariloche.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "ABTV Bariloche"
+    },
+    {
+      "name": "Xtrema Terror",
+      "group": "Movies",
+      "url": "https://stmv6.voxtvhd.com.br/cineterror/cineterror/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "movies",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Xtrema Terror"
+    },
+    {
+      "name": "Xtrema Accion",
+      "group": "Movies",
+      "url": "https://stmv6.voxtvhd.com.br/cineaccion/cineaccion/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "movies",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 640,
+          "height": 264
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Xtrema Accion"
+    },
+    {
+      "name": "5tv",
+      "group": "General",
+      "url": "https://617c5175c970b.streamlock.net:4444/tvcinco/live1/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1080,
+          "height": 608
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "5tv"
+    },
+    {
+      "name": "Aire de Santa Fe",
+      "group": "General",
+      "url": "https://mdstrm.com/live-stream-playlist/6931a0eb06778645348008e0.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 640,
+          "height": 360
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Aire de Santa Fe (1080p)"
+    },
+    {
+      "name": "AlternaTV",
+      "group": "Culture;Documentary;Entertainment;General;Movies;Music",
+      "url": "https://tv.alterna.ar/stream/hls/live.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "movies",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1024,
+          "height": 576
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "AlternaTV (720p) [Not 24/7]"
+    },
+    {
+      "name": "Argentinisima Satelital",
+      "group": "General",
+      "url": "https://stream1.sersat.com/hls/argentinisima.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 720,
+          "height": 576
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Argentinisima Satelital (540p)"
+    },
+    {
+      "name": "BVC",
+      "group": "Undefined",
+      "url": "https://vivo.solumedia.com:19360/bvnet/bvnet.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 850,
+          "height": 480
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "BVC"
+    },
+    {
+      "name": "Canal 10 Goya",
+      "group": "General",
+      "url": "https://tv.streamcasthd.com:3637/live/canal10goyalive.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 10 Goya (1080p)"
+    },
+    {
+      "name": "Cable Imagen Armstrong",
+      "group": "Undefined",
+      "url": "https://stream.arcast.com.ar/casse/casse/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Cable Imagen Armstrong (540p) [Not 24/7]"
+    },
+    {
+      "name": "Cadena103.TV",
+      "group": "Undefined",
+      "url": "https://streamlov.alsolnet.com/cadena103/live/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Cadena103.TV (720p)"
+    },
+    {
+      "name": "Canal 12 Venado Tuerto",
+      "group": "General",
+      "url": "https://nd106.republicaservers.com:4433/hls/diegologonitv/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 12 Venado Tuerto (1080i)"
+    },
+    {
+      "name": "Canal 2 NexTV Rafaela",
+      "group": "General",
+      "url": "https://edge.enhdtv.com/nexthd/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 2 NexTV Rafaela (720p)"
+    },
+    {
+      "name": "Canal 2 Misiones",
+      "group": "Undefined",
+      "url": "https://nd106.republicaservers.com:4433/hls/canal2misioness/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 2 Misiones (1080p)"
+    },
+    {
+      "name": "Canal 2 Gualeguay",
+      "group": "General",
+      "url": "https://stream.arcast.net:4443/gualeguay/gualeguay/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 2 Gualeguay"
+    },
+    {
+      "name": "Canal 21 TV",
+      "group": "Undefined",
+      "url": "https://iptv.ixfo.com.ar:30443/c21tv/hd/c21tv/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 21 TV (1080p)"
+    },
+    {
+      "name": "Canal 20 Villa Maria",
+      "group": "Undefined",
+      "url": "https://stmvideo3.livecastv.com/canal20/canal20/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 20 Villa Maria (1080p)"
+    },
+    {
+      "name": "Canal 3 La Pampa",
+      "group": "Undefined",
+      "url": "https://stream.arcast.com.ar/c3lapampa/ngrp:c3lapampa_all/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 3 La Pampa (1080p)"
+    },
+    {
+      "name": "Canal 3 Las Heras",
+      "group": "Undefined",
+      "url": "https://stream.arcast.com.ar/canal3/canal3/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 3 Las Heras (720p)"
+    },
+    {
+      "name": "Canal 3 Arroyito",
+      "group": "General",
+      "url": "https://envivo.cespalarroyito.coop/live/Canal3Arroyito.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 3 Arroyito (1080p)"
+    },
+    {
+      "name": "Canal 3 Formosa",
+      "group": "Undefined",
+      "url": "https://stmvideo6.livecastv.com/agenfor/agenfor/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 3 Formosa"
+    },
+    {
+      "name": "Canal 4 Esquel",
+      "group": "Undefined",
+      "url": "https://stream.arcast.com.ar/canal4esquel/canal4esquel/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 4 Esquel (720p)"
+    },
+    {
+      "name": "Canal 5 Del Pueblo",
+      "group": "General",
+      "url": "https://stmv4.voxtvhd.com.br/canal5pueblo/canal5pueblo/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 856,
+          "height": 480
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 5 Del Pueblo [Not 24/7]"
+    },
+    {
+      "name": "Canal 5 Santa Fe",
+      "group": "Undefined",
+      "url": "https://stream.arcast.com.ar/c5sf/c5sf/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 5 Santa Fe (240p)"
+    },
+    {
+      "name": "Canal 4 San Juan",
+      "group": "Undefined",
+      "url": "https://streamlov.alsolnet.com/canal4sanjuan/live/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 4 San Juan (576p)"
+    },
+    {
+      "name": "Canal 4 Teleaire",
+      "group": "General",
+      "url": "https://stmvideo6.livecastv.com/canal4/canal4/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 4 Teleaire"
+    },
+    {
+      "name": "Canal 5 TV Chepes",
+      "group": "General",
+      "url": "https://videostream.shockmedia.com.ar:19360/canal5alfatvchepes/canal5alfatvchepes.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 5 TV Chepes"
+    },
+    {
+      "name": "Canal 4 Villa Dolores",
+      "group": "General",
+      "url": "https://stmvideo3.livecastv.com/canal4vd/canal4vd/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 854,
+          "height": 480
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 4 Villa Dolores"
+    },
+    {
+      "name": "Canal 50 Morteros",
+      "group": "Undefined",
+      "url": "https://online.coopmorteros.coop/canal50/vivo.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 50 Morteros"
+    },
+    {
+      "name": "Canal 7 Neuquen",
+      "group": "General",
+      "url": "https://stream.arcast.com.ar/c7nq/ngrp:c7nq_all/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 7 Neuquen (1080p)"
+    },
+    {
+      "name": "Canal 7 Salta",
+      "group": "Undefined",
+      "url": "https://vivo.solumedia.com:19360/cooperativa/cooperativa.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 720,
+          "height": 480
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 7 Salta (1080p)"
+    },
+    {
+      "name": "Canal 6 Posadas",
+      "group": "Undefined",
+      "url": "https://iptv.ixfo.com.ar:30443/live/c6digital/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 6 Posadas (1080p)"
+    },
+    {
+      "name": "Canal 79 Puan",
+      "group": "Undefined",
+      "url": "https://streamconex.com:19360/puan/puan.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 79 Puan (240p)"
+    },
+    {
+      "name": "Canal 7 Jujuy",
+      "group": "Undefined",
+      "url": "https://stream.arcast.live/canal7jujuy/ngrp:canal7jujuy_all/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 7 Jujuy"
+    },
+    {
+      "name": "Canal 79 Santa Clara del Mar",
+      "group": "Undefined",
+      "url": "https://streamconex.com:19360/santaclara-1/santaclara-1.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 79 Santa Clara del Mar (240p)"
+    },
+    {
+      "name": "Canal 79 Mar del Plata",
+      "group": "Undefined",
+      "url": "https://streamconex.com:19360/mardelplata/mardelplata.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 79 Mar del Plata"
+    },
+    {
+      "name": "Canal 7 TV",
+      "group": "Undefined",
+      "url": "https://stream.arcast.com.ar/envivo/castv/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 7 TV (720p)"
+    },
+    {
+      "name": "Canal 6 Viento Recio",
+      "group": "Religious",
+      "url": "https://stmvideo6.livecastv.com/vientorecio/vientorecio/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 6 Viento Recio"
+    },
+    {
+      "name": "Canal 79 Villa Maza",
+      "group": "Undefined",
+      "url": "https://streamconex.com:19360/villamaza/villamaza.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1350,
+          "height": 1080
+        },
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 79 Villa Maza"
+    },
+    {
+      "name": "Canal 99 Miramar",
+      "group": "General",
+      "url": "https://vivo.solumedia.com:19360/cardinal/cardinal.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 99 Miramar"
+    },
+    {
+      "name": "Canal 9 Link",
+      "group": "Entertainment",
+      "url": "https://617c5175c970b.streamlock.net:4444/9linklivert/smil:9linkmultibr.smil/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 9 Link"
+    },
+    {
+      "name": "Canal Universidad",
+      "group": "Education",
+      "url": "https://videostream.shockmedia.com.ar/hls/canaluniversidadmdp/canaluniversidadmdp.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "culture",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal Universidad"
+    },
+    {
+      "name": "Canal Orbe 21",
+      "group": "Religious",
+      "url": "https://stream.arcast.net:4443/canal21/ngrp:canal21_all/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal Orbe 21 (1080p)"
+    },
+    {
+      "name": "Canal 8 Mar del Plata",
+      "group": "Undefined",
+      "url": "https://canal8mdq.unpocodeawita.workers.dev",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal 8 Mar del Plata (720p) [Not 24/7]"
+    },
+    {
+      "name": "Canal Santa Maria",
+      "group": "Religious",
+      "url": "https://streaming.telered.com.ar/santa-maria/streaming/mystream.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 720,
+          "height": 480
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal Santa Maria (360p)"
+    },
+    {
+      "name": "Canal Provincial",
+      "group": "General",
+      "url": "https://streaming.telered.com.ar/provincial/streaming/mystream.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 720,
+          "height": 480
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Canal Provincial (360p)"
+    },
+    {
+      "name": "Caras TV",
+      "group": "Entertainment",
+      "url": "https://unlimited1-us.dps.live/carastv/carastv.smil/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Caras TV (1080p)"
+    },
+    {
+      "name": "Celta TV",
+      "group": "Undefined",
+      "url": "https://vivo.solumedia.com:19360/celta/celta.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 640,
+          "height": 360
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Celta TV (240p)"
+    },
+    {
+      "name": "Catamarca TV",
+      "group": "Culture;News",
+      "url": "https://stream.arcast.com.ar/canal7catamarca/ngrp:canal7catamarca_all/playlist.m3u8?DVR=",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "news",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Catamarca TV (720p)"
+    },
+    {
+      "name": "Ciudad TV Resistencia",
+      "group": "General",
+      "url": "https://617c5175c970b.streamlock.net:4444/chacodxdtv/livenew/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Ciudad TV Resistencia (720p)"
+    },
+    {
+      "name": "Cosmos Tv",
+      "group": "Movies;News",
+      "url": "https://tv.mediacp.eu:19360/cosmos/cosmos.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "movies",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Cosmos Tv"
+    },
+    {
+      "name": "Cosmos Tv SD",
+      "group": "Movies;News",
+      "url": "https://canaletaplus.com:3922/live/cosmoslive.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "movies",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Cosmos Tv SD"
+    },
+    {
+      "name": "Corrientes TV",
+      "group": "General",
+      "url": "https://617c5175c970b.streamlock.net:4444/13max2/live13maxtv2026/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 704
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Corrientes TV"
+    },
+    {
+      "name": "Eco TV",
+      "group": "General",
+      "url": "https://stream.arcast.com.ar/ecotv/ngrp:ecotv_all/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Eco TV"
+    },
+    {
+      "name": "El Gourmet South",
+      "group": "Cooking",
+      "url": "https://iptv.bitred.cl/ELGOURMET_HD/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "mp2",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "El Gourmet South (1080p)"
+    },
+    {
+      "name": "El Trece",
+      "group": "General",
+      "url": "https://livetrx01.vodgc.net/eltrecetv/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": true,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 640,
+          "height": 360
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "El Trece (1080p)"
+    },
+    {
+      "name": "Folcloreando TV",
+      "group": "General",
+      "url": "https://stmvideo6.livecastv.com/radioactivasanjuan/radioactivasanjuan/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Folcloreando TV"
+    },
+    {
+      "name": "Kpop Mix",
+      "group": "Undefined",
+      "url": "https://cloud.tvomix.com/KPOPMIX/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Kpop Mix (720p)"
+    },
+    {
+      "name": "Litus TV",
+      "group": "General",
+      "url": "https://edge.enhdtv.com/litustv/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Litus TV (720p) [Not 24/7]"
+    },
+    {
+      "name": "Metro TV (Argentina)",
+      "group": "Entertainment",
+      "url": "https://streamtv12.ddns.net:5443/LiveApp/streams/193945633734205616732920.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Metro TV (Argentina) (720p)"
+    },
+    {
+      "name": "Itel TV Canal 2",
+      "group": "General",
+      "url": "https://proxystream.iteltv.com.ar/output/iteltv/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Itel TV Canal 2"
+    },
+    {
+      "name": "LAMIL35 TV",
+      "group": "Animation;Classic;Entertainment",
+      "url": "https://vtm2.msinteractiva.com/lamil35/lamil35/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "kids",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "LAMIL35 TV (720p)"
+    },
+    {
+      "name": "Neo TV (Argentina)",
+      "group": "General",
+      "url": "https://videostream.shockmedia.com.ar:19360/neotvdigital/neotvdigital.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Neo TV (Argentina)"
+    },
+    {
+      "name": "Misiones Cuatro",
+      "group": "General",
+      "url": "https://iptv.ixfo.com.ar:30443/live-HD/MISIONES4/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Misiones Cuatro"
+    },
+    {
+      "name": "Neox TV",
+      "group": "General",
+      "url": "https://tv.streamcasthd.com:3031/live/neoxtvlive.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Neox TV [Not 24/7]"
+    },
+    {
+      "name": "Power Max Radio TV",
+      "group": "Entertainment",
+      "url": "https://videostream.shockmedia.com.ar:19360/radio1045/radio1045.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "music",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Power Max Radio TV (720p)"
+    },
+    {
+      "name": "PowerHD",
+      "group": "Undefined",
+      "url": "https://live2.tensila.com/1-1-1.power-tv/hls/master.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "PowerHD (720p)"
+    },
+    {
+      "name": "San Pedro TV",
+      "group": "Undefined",
+      "url": "https://iptv.ixfo.com.ar:30443/live/sanpedrotv/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "San Pedro TV (1080p) [Not 24/7]"
+    },
+    {
+      "name": "Radio Yguazu TV",
+      "group": "Entertainment",
+      "url": "https://live.enhdtv.com:8081/radioiguazutv/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "music",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 720,
+          "height": 480
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Radio Yguazu TV (480p)"
+    },
+    {
+      "name": "Radio TV Neuquen",
+      "group": "Undefined",
+      "url": "https://media.neuquen.gov.ar/rtn/television/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "music",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Radio TV Neuquen (720p) [Not 24/7]"
+    },
+    {
+      "name": "RTN (Argentina)",
+      "group": "Undefined",
+      "url": "https://media.neuquen.gov.ar/rtn/television/media.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "RTN (Argentina) (720p) [Not 24/7]"
+    },
+    {
+      "name": "Sicardi TV",
+      "group": "Undefined",
+      "url": "https://vivo.solumedia.com:19360/sicarditv/sicarditv.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Sicardi TV (720p)"
+    },
+    {
+      "name": "Solive TV",
+      "group": "Undefined",
+      "url": "https://stmv6.voxtvhd.com.br/solivetv/solivetv/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Solive TV"
+    },
+    {
+      "name": "Senillosa TV",
+      "group": "Undefined",
+      "url": "https://player.videohost.click/senillosatv/senillosatv/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 640,
+          "height": 360
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Senillosa TV (360p)"
+    },
+    {
+      "name": "Telemax (Argentina)",
+      "group": "Undefined",
+      "url": "https://stream-gtlc.telecentro.net.ar/hls/telemaxhls/main.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Telemax (Argentina) (1080p)"
+    },
+    {
+      "name": "TV Canal 72",
+      "group": "General",
+      "url": "https://stmv1.voxtvhd.com.br/canal72tv2/canal72tv2/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 640,
+          "height": 360
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "TV Canal 72"
+    },
+    {
+      "name": "TV Publica Marcos Paz",
+      "group": "General",
+      "url": "https://ca.centaurychile.com:2443/hls/mediospublicos.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "TV Publica Marcos Paz (720p)"
+    },
+    {
+      "name": "TV Mana Argentina",
+      "group": "Religious",
+      "url": "https://w2.manasat.com/tvmana-ar/smil:tvmana-ar.smil/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 720,
+          "height": 576
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "TV Mana Argentina (576p) [Not 24/7]"
+    },
+    {
+      "name": "Uniteve",
+      "group": "Undefined",
+      "url": "https://vivo.solumedia.com:19360/uniteve/uniteve.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Uniteve (720p) [Not 24/7]"
+    },
+    {
+      "name": "TV Publica Fueguina",
+      "group": "Undefined",
+      "url": "https://nd106.republicaservers.com/hls/c8094/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "TV Publica Fueguina (1080p)"
+    },
+    {
+      "name": "Villa Mantero TV",
+      "group": "Undefined",
+      "url": "https://micanal.ovh/livestreams/515.AUTOOAAZ721F.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 960,
+          "height": 540
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Villa Mantero TV"
+    },
+    {
+      "name": "Xtrema Cine Clasico",
+      "group": "Classic;Movies",
+      "url": "https://stmv6.voxtvhd.com.br/cineclasico/cineclasico/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "movies",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Xtrema Cine Clasico"
+    },
+    {
+      "name": "Xtrema Cartoons",
+      "group": "Animation;Kids",
+      "url": "https://stmv6.voxtvhd.com.br/xtremacartoons/xtremacartoons/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "kids",
+      "country": "AR",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 640,
+          "height": 360
+        }
+      ],
+      "origin_list": "IPTV-org Argentina",
+      "source_notes": "Xtrema Cartoons"
+    },
+    {
+      "name": "Amitel TV",
+      "group": "General",
+      "url": "https://stv2.boliviaplay.com.bo/hls/stream.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "BO",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org mundial",
+      "source_notes": "Amitel TV (720p)"
+    },
+    {
+      "name": "As Contenidos",
+      "group": "General",
+      "url": "https://master.tucableip.com/ascontenido/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "BO",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org mundial",
+      "source_notes": "As Contenidos (720p)"
+    },
+    {
+      "name": "Audiokiss",
+      "group": "Music",
+      "url": "https://master.tucableip.com/audiokisstv/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "music",
+      "country": "BO",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "origin_list": "IPTV-org mundial",
+      "source_notes": "Audiokiss (1080p)"
+    },
+    {
+      "name": "36 TV Huacho",
+      "group": "General",
+      "url": "https://live-evg10.tv360.bitel.com.pe/bitel/36tvSRT/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "PE",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org mundial",
+      "source_notes": "36 TV Huacho (720p)"
+    },
+    {
+      "name": "ABC Teleshow",
+      "group": "General",
+      "url": "https://live-evg10.tv360.bitel.com.pe/bitel/abctv/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "PE",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org mundial",
+      "source_notes": "ABC Teleshow (720p)"
+    },
+    {
+      "name": "ABTelevision",
+      "group": "General",
+      "url": "https://live-evg8.tv360.bitel.com.pe/bitel/abctelevisionSRT/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "PE",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org mundial",
+      "source_notes": "ABTelevision (720p)"
+    },
+    {
+      "name": "AE Radio TV",
+      "group": "Music",
+      "url": "https://tls-cl.cdnz.cl/aeradio/live/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "music",
+      "country": "CL",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "timed_id3",
+          "codec_type": "data"
+        },
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org mundial",
+      "source_notes": "AE Radio TV (720p) [Not 24/7]"
+    },
+    {
+      "name": "AM Canal",
+      "group": "General",
+      "url": "https://streaming.bitsur.cl:3534/live/vdo1102live.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "CL",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org mundial",
+      "source_notes": "AM Canal"
+    },
+    {
+      "name": "Antofagasta TV",
+      "group": "General",
+      "url": "https://unlimited6-cl.dps.live/atv/atv.smil/playlist.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "CL",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org mundial",
+      "source_notes": "Antofagasta TV (1080p)"
+    },
+    {
+      "name": "Aysen TV",
+      "group": "General",
+      "url": "https://v1.tustreaming.cl/aysentv/index.m3u8",
+      "source_type": "hls",
+      "kind": "direct_stream",
+      "page_verified": true,
+      "video_verified": false,
+      "playback_state": "testing",
+      "status": "Muestra técnica válida • pendiente en La TV",
+      "category": "general",
+      "country": "CL",
+      "free_to_air": false,
+      "sample_validated": true,
+      "sample_streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "origin_list": "IPTV-org mundial",
+      "source_notes": "Aysen TV (720p)"
+    }
+  ]
+}
