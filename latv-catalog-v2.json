@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "revision": 2,
+  "revision": 3,
   "updated_at": "2026-11-11",
   "channels": [
     {
@@ -1834,7 +1834,7 @@
       "page_verified": true,
       "video_verified": false,
       "playback_state": "testing",
-      "status": "Solo audio • imagen pendiente de corregir",
+      "status": "Abre, pero no reproduce • probado en el teléfono",
       "category": "movies",
       "country": "AR",
       "free_to_air": false,
@@ -1854,8 +1854,8 @@
       "origin_list": "IPTV-org Argentina",
       "source_notes": "AlternaTV (720p) [Not 24/7]",
       "phone_test": {
-        "result": "audio_only",
-        "reported_local_time": "2026-11-11 18:10",
+        "result": "page_without_playback",
+        "reported_local_time": "2026-11-11 18:19",
         "timezone": "America/Buenos_Aires"
       }
     },
