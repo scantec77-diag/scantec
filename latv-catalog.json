@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 2,
+  "revision": 3,
   "updated_at": "2026-11-11",
   "channels": [
     {
@@ -14,7 +14,8 @@
       "title": "DeporTV - TV Vivo",
       "page_verified": true,
       "status": "Fuera de línea en el reproductor oficial",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Claro Sports",
@@ -27,7 +28,8 @@
       "title": "Claro Sports - En vivo - ClaroSports",
       "page_verified": true,
       "status": "En revisión: abre listado de eventos",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Red Bull TV",
@@ -41,7 +43,7 @@
       "page_verified": true,
       "status": "Funcionando • confirmado en el teléfono",
       "playback_state": "working",
-      "verification_scope": "Confirmado por Ari en su teléfono: video, audio y pantalla completa"
+      "verification_scope": "Confirmado en teléfono: video, audio y pantalla completa"
     },
     {
       "name": "Canela Deportes",
@@ -54,7 +56,8 @@
       "title": "Cine y Televisi&#xf3;n Gratis en espa&#xf1;ol",
       "page_verified": true,
       "status": "En revisión: ítem no encontrado en el teléfono",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "beIN Sports XTRA",
@@ -67,7 +70,8 @@
       "title": "beIN SPORTS XTRA",
       "page_verified": true,
       "status": "En revisión: Vimeo solicita iniciar sesión",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "beIN Sports XTRA en Español",
@@ -80,7 +84,8 @@
       "title": "beIN SPORTS XTRA En Español",
       "page_verified": true,
       "status": "En revisión: Vimeo solicita iniciar sesión",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Realmadrid TV",
@@ -92,8 +97,9 @@
       "resolved_url": "https://www.realmadrid.com/es-ES/real-madrid-tv",
       "title": "Real Madrid CF | Web oficial del Real Madrid CF",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar",
-      "playback_state": "testing"
+      "status": "Requiere cuenta Madridista gratuita",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "FIFA+ en DAZN",
@@ -102,9 +108,10 @@
       "kind": "official",
       "video_verified": false,
       "page_verified": false,
-      "status": "Acceso pendiente",
+      "status": "Prueba bloqueada por DAZN en esta conexión",
       "error": "HTTP Error 403: Forbidden",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "UEFA.tv",
@@ -116,8 +123,9 @@
       "resolved_url": "https://www.uefa.tv/",
       "title": "UEFA.tv",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar",
-      "playback_state": "testing"
+      "status": "Requiere iniciar sesión en UEFA",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "ANOC.tv",
@@ -129,8 +137,9 @@
       "resolved_url": "https://www.anocolympic.org/anoc-tv/",
       "title": "",
       "page_verified": false,
-      "status": "Acceso pendiente",
-      "playback_state": "testing"
+      "status": "Verificación de seguridad impide la prueba",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Olympic Channel",
@@ -139,9 +148,10 @@
       "kind": "official",
       "video_verified": false,
       "page_verified": false,
-      "status": "Acceso pendiente",
+      "status": "No cargó en el navegador de pruebas",
       "error": "HTTP Error 503: Service Unavailable",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "NASCAR Euro Series",
@@ -153,8 +163,9 @@
       "resolved_url": "https://www.nascar.eu/where-to-watch/",
       "title": "Where to Watch - NASCAR Euro Series",
       "page_verified": true,
-      "status": "Página accesible; video sin verificar",
-      "playback_state": "testing"
+      "status": "Guía de emisores; sin canal reproduciendo",
+      "playback_state": "testing",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "NASCAR",
@@ -167,7 +178,10 @@
       "title": "Stream NASCAR Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "RACER Select",
@@ -180,7 +194,10 @@
       "title": "Stream RACER Select Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "SpeedVision",
@@ -193,7 +210,10 @@
       "title": "Stream Speedvision Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "MotorRacing",
@@ -206,7 +226,10 @@
       "title": "Stream MotorRacing Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "NHRA",
@@ -219,7 +242,10 @@
       "title": "Stream NHRA Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "RPM",
@@ -232,7 +258,10 @@
       "title": "Rpm",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Motorvision",
@@ -245,7 +274,10 @@
       "title": "Motorvision",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Speed Sport 1",
@@ -258,7 +290,10 @@
       "title": "Stream Speed Sport 1 Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "MTRSPT1",
@@ -271,7 +306,10 @@
       "title": "Stream MTRSPT1 Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Powersports World",
@@ -284,7 +322,10 @@
       "title": "Stream Powersports World Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "POWERtube TV",
@@ -297,7 +338,10 @@
       "title": "Stream POWERtube TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Choppertown",
@@ -310,7 +354,10 @@
       "title": "Stream Choppertown - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "GFN Football TV",
@@ -323,7 +370,10 @@
       "title": "Gfn Football Tv",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "GOAL TV",
@@ -336,7 +386,10 @@
       "title": "Stream Goal TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Top Barca",
@@ -349,7 +402,10 @@
       "title": "Stream Top Barca Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Top Barca En Espanol",
@@ -362,7 +418,10 @@
       "title": "Top Barca En Espanol",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Man City 24/7",
@@ -375,7 +434,10 @@
       "title": "Man City 24 7",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Unbeaten",
@@ -388,7 +450,10 @@
       "title": "Stream Unbeaten Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Stadium",
@@ -401,7 +466,10 @@
       "title": "Stream Stadium Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Sports Illustrated TV",
@@ -414,7 +482,10 @@
       "title": "Stream Sports Illustrated TV - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "TyC Sports Fan",
@@ -427,7 +498,10 @@
       "title": "Stream TcY Sports Fan Free - Watch Online | Free Live Sports TV",
       "page_verified": false,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Unanimo Deportes",
@@ -440,7 +514,10 @@
       "title": "Unanimo Deportes",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "GLORY Kickboxing",
@@ -453,7 +530,10 @@
       "title": "Stream GLORY Kickboxing Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Swerve Combat",
@@ -466,7 +546,10 @@
       "title": "Stream Swerve Combat Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Professional Fighters League PFL",
@@ -479,7 +562,10 @@
       "title": "Professional Fighters League Pfl",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "TNA Wrestling Channel",
@@ -492,7 +578,10 @@
       "title": "Stream TNA Wrestling Channel Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Lucha Plus",
@@ -505,7 +594,10 @@
       "title": "Stream Lucha Plus Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "United Fight Alliance",
@@ -518,7 +610,10 @@
       "title": "Stream United Fight Alliance Free - Watch MMA Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Fight Network",
@@ -531,7 +626,10 @@
       "title": "Stream Fight Network Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Hard Knocks",
@@ -544,7 +642,10 @@
       "title": "Watch Hard Knocks Free | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "MMA TV",
@@ -557,7 +658,10 @@
       "title": "Stream MMA TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "World Surf League",
@@ -570,7 +674,10 @@
       "title": "Stream World Surf League Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "En revisión: solicita instalar app de FLS",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Fuel TV",
@@ -583,7 +690,10 @@
       "title": "Stream FUEL TV - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "En revisión: solicita instalar app de FLS",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "World of Freesports",
@@ -596,7 +706,10 @@
       "title": "Stream World Of Freesports Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "En revisión: solicita instalar app de FLS",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "GoPro TV",
@@ -609,7 +722,10 @@
       "title": "Gopro Tv",
       "page_verified": true,
       "status": "En revisión: solicita instalar app de FLS",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Surf Cinema",
@@ -622,7 +738,10 @@
       "title": "Stream Surf Cinema Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "InTrouble",
@@ -635,7 +754,10 @@
       "title": "Stream InTrouble Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "HorizonSports",
@@ -648,7 +770,10 @@
       "title": "Stream HorizonSports Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Absinthe TV",
@@ -661,7 +786,10 @@
       "title": "Stream Absinthe TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Tennis Channel T2",
@@ -674,7 +802,10 @@
       "title": "Stream Tennis Channel T2 Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Tennis TV",
@@ -687,7 +818,10 @@
       "title": "Stream Tennis TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Pickleball TV",
@@ -700,7 +834,10 @@
       "title": "Stream Pickleball TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "PickleTV",
@@ -713,7 +850,10 @@
       "title": "Pickletv",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "My Padel TV",
@@ -726,7 +866,10 @@
       "title": "Stream My Padel TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "HOOP TV",
@@ -739,7 +882,10 @@
       "title": "Stream HOOP TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "HOMERUN TV",
@@ -752,7 +898,10 @@
       "title": "Stream HOMERUN TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Perfect Game TV",
@@ -765,7 +914,10 @@
       "title": "Stream Perfect Game TV - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Lacrosse TV",
@@ -778,7 +930,10 @@
       "title": "Stream Lacrosse TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Billiard TV",
@@ -791,7 +946,10 @@
       "title": "Stream Billiard TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Kozoom",
@@ -804,7 +962,10 @@
       "title": "Stream Kozoom Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Bowling TV",
@@ -817,7 +978,10 @@
       "title": "Stream Bowling TV Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "Strongman Champions League",
@@ -830,7 +994,10 @@
       "title": "Stream Strongman Champions League Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "World Poker Tour",
@@ -843,7 +1010,10 @@
       "title": "Stream World Poker Tour Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     },
     {
       "name": "World Poker Tour Spain",
@@ -856,7 +1026,10 @@
       "title": "World Poker Tour Spain",
       "page_verified": true,
       "status": "A prueba • acceso de FLS pendiente de verificar",
-      "playback_state": "testing"
+      "playback_state": "testing",
+      "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
+      "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
+      "reviewed_at": "2026-11-11"
     }
   ]
 }
