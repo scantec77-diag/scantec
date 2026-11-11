@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-11-11",
   "channels": [
     {
@@ -13,13 +13,18 @@
       "resolved_url": "https://deportv.gob.ar/vivo",
       "title": "DeporTV - TV Vivo",
       "page_verified": true,
-      "status": "Fuera de línea en el reproductor oficial",
+      "status": "Abre, pero no reproduce • probado en el teléfono",
       "playback_state": "testing",
       "reviewed_at": "2026-11-11",
       "category": "sports",
       "country": "AR",
       "source_type": "web",
-      "free_to_air": true
+      "free_to_air": true,
+      "phone_test": {
+        "result": "page_without_playback",
+        "reported_local_time": "2026-11-11 18:12",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Claro Sports",
@@ -620,20 +625,26 @@
       "group": "Fútbol y polideportivo",
       "url": "https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8",
       "kind": "catalog",
-      "video_verified": false,
+      "video_verified": true,
       "http": 200,
       "resolved_url": "https://freelivesports.tv/channel/tyc-sports-fan/",
       "title": "Stream TcY Sports Fan Free - Watch Online | Free Live Sports TV",
       "page_verified": true,
-      "status": "Señal FAN • muestra válida, pendiente en La TV",
-      "playback_state": "testing",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
+      "playback_state": "working",
       "review_scope": "Revisión del acceso compartido de FLS; no equivale a probar individualmente el video de este canal",
       "review_result": "Guía web alcanzada; reproductor sin cargar en navegador. En el teléfono, cuatro accesos probados pidieron otra aplicación.",
       "reviewed_at": "2026-11-11",
       "category": "sports",
       "country": "AR",
       "source_type": "hls",
-      "free_to_air": false
+      "free_to_air": false,
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:15",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Unanimo Deportes",
@@ -1302,9 +1313,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "news",
       "country": "US",
       "free_to_air": false,
@@ -1326,7 +1337,13 @@
         }
       ],
       "origin_list": "Radios Argentina",
-      "source_notes": "Bloomberg"
+      "source_notes": "Bloomberg",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:13",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Garage TV",
@@ -1335,9 +1352,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "sports",
       "country": "AR",
       "free_to_air": false,
@@ -1355,7 +1372,13 @@
         }
       ],
       "origin_list": "Radios Argentina",
-      "source_notes": "Garage TV"
+      "source_notes": "Garage TV",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:15",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "MusicTop",
@@ -1364,9 +1387,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "music",
       "country": "AR",
       "free_to_air": false,
@@ -1384,7 +1407,13 @@
         }
       ],
       "origin_list": "Radios Argentina",
-      "source_notes": "Musictop"
+      "source_notes": "Musictop",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:15",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Mercurio Noticias",
@@ -1393,9 +1422,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "news",
       "country": "AR",
       "free_to_air": false,
@@ -1413,7 +1442,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Mercurio Noticias"
+      "source_notes": "Mercurio Noticias",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:15",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Quantica TV",
@@ -1422,9 +1457,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "news",
       "country": "AR",
       "free_to_air": false,
@@ -1442,7 +1477,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Quantica TV"
+      "source_notes": "Quantica TV",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:13",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Multivision Federal",
@@ -1451,9 +1492,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "news",
       "country": "AR",
       "free_to_air": false,
@@ -1471,7 +1512,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Multivision Federal"
+      "source_notes": "Multivision Federal",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:13",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Radio Realpolitik",
@@ -1480,9 +1527,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "music",
       "country": "AR",
       "free_to_air": false,
@@ -1500,7 +1547,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Radio Realpolitik (720p)"
+      "source_notes": "Radio Realpolitik (720p)",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:16",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Mas FM",
@@ -1509,9 +1562,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "music",
       "country": "AR",
       "free_to_air": false,
@@ -1529,7 +1582,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Mas FM (720p)"
+      "source_notes": "Mas FM (720p)",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:16",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Radio Conexion Web TV",
@@ -1538,9 +1597,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "music",
       "country": "AR",
       "free_to_air": false,
@@ -1558,7 +1617,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Radio Conexion Web TV (720p)"
+      "source_notes": "Radio Conexion Web TV (720p)",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:11",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "VIVE TV",
@@ -1567,9 +1632,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "news",
       "country": "AR",
       "free_to_air": false,
@@ -1587,7 +1652,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "VIVE TV (1080p)"
+      "source_notes": "VIVE TV (1080p)",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:13",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "ABTV Bariloche",
@@ -1625,9 +1696,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "movies",
       "country": "AR",
       "free_to_air": false,
@@ -1645,7 +1716,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Xtrema Terror"
+      "source_notes": "Xtrema Terror",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:09",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Xtrema Accion",
@@ -1654,9 +1731,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "movies",
       "country": "AR",
       "free_to_air": false,
@@ -1674,7 +1751,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Xtrema Accion"
+      "source_notes": "Xtrema Accion",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:09",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "5tv",
@@ -1751,7 +1834,7 @@
       "page_verified": true,
       "video_verified": false,
       "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "status": "Solo audio • imagen pendiente de corregir",
       "category": "movies",
       "country": "AR",
       "free_to_air": false,
@@ -1769,7 +1852,12 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "AlternaTV (720p) [Not 24/7]"
+      "source_notes": "AlternaTV (720p) [Not 24/7]",
+      "phone_test": {
+        "result": "audio_only",
+        "reported_local_time": "2026-11-11 18:10",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Argentinisima Satelital",
@@ -2841,9 +2929,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "culture",
       "country": "AR",
       "free_to_air": false,
@@ -2861,7 +2949,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Canal Universidad"
+      "source_notes": "Canal Universidad",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:14",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Canal Orbe 21",
@@ -3052,9 +3146,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "news",
       "country": "AR",
       "free_to_air": false,
@@ -3076,7 +3170,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Catamarca TV (720p)"
+      "source_notes": "Catamarca TV (720p)",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:13",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Ciudad TV Resistencia",
@@ -3118,9 +3218,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "movies",
       "country": "AR",
       "free_to_air": false,
@@ -3138,7 +3238,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Cosmos Tv"
+      "source_notes": "Cosmos Tv",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:10",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Cosmos Tv SD",
@@ -3147,9 +3253,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "movies",
       "country": "AR",
       "free_to_air": false,
@@ -3167,7 +3273,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Cosmos Tv SD"
+      "source_notes": "Cosmos Tv SD",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:10",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Corrientes TV",
@@ -3271,9 +3383,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "general",
       "country": "AR",
       "free_to_air": true,
@@ -3291,7 +3403,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "El Trece (1080p)"
+      "source_notes": "El Trece (1080p)",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:12",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Folcloreando TV",
@@ -3445,9 +3563,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "kids",
       "country": "AR",
       "free_to_air": false,
@@ -3465,7 +3583,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "LAMIL35 TV (720p)"
+      "source_notes": "LAMIL35 TV (720p)",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:15",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Neo TV (Argentina)",
@@ -3561,9 +3685,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "music",
       "country": "AR",
       "free_to_air": false,
@@ -3581,7 +3705,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Power Max Radio TV (720p)"
+      "source_notes": "Power Max Radio TV (720p)",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:11",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "PowerHD",
@@ -3648,9 +3778,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "music",
       "country": "AR",
       "free_to_air": false,
@@ -3668,7 +3798,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Radio Yguazu TV (480p)"
+      "source_notes": "Radio Yguazu TV (480p)",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:11",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Radio TV Neuquen",
@@ -3677,9 +3813,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "music",
       "country": "AR",
       "free_to_air": false,
@@ -3701,7 +3837,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Radio TV Neuquen (720p) [Not 24/7]"
+      "source_notes": "Radio TV Neuquen (720p) [Not 24/7]",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:12",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "RTN (Argentina)",
@@ -4041,9 +4183,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "movies",
       "country": "AR",
       "free_to_air": false,
@@ -4061,7 +4203,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Xtrema Cine Clasico"
+      "source_notes": "Xtrema Cine Clasico",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:10",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Xtrema Cartoons",
@@ -4070,9 +4218,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "kids",
       "country": "AR",
       "free_to_air": false,
@@ -4090,7 +4238,13 @@
         }
       ],
       "origin_list": "IPTV-org Argentina",
-      "source_notes": "Xtrema Cartoons"
+      "source_notes": "Xtrema Cartoons",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:15",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "Amitel TV",
@@ -4157,9 +4311,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "music",
       "country": "BO",
       "free_to_air": false,
@@ -4177,7 +4331,13 @@
         }
       ],
       "origin_list": "IPTV-org mundial",
-      "source_notes": "Audiokiss (1080p)"
+      "source_notes": "Audiokiss (1080p)",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:12",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "36 TV Huacho",
@@ -4273,9 +4433,9 @@
       "source_type": "hls",
       "kind": "direct_stream",
       "page_verified": true,
-      "video_verified": false,
-      "playback_state": "testing",
-      "status": "Muestra técnica válida • pendiente en La TV",
+      "video_verified": true,
+      "playback_state": "working",
+      "status": "Funcionando • imagen y audio confirmados en el teléfono",
       "category": "music",
       "country": "CL",
       "free_to_air": false,
@@ -4297,7 +4457,13 @@
         }
       ],
       "origin_list": "IPTV-org mundial",
-      "source_notes": "AE Radio TV (720p) [Not 24/7]"
+      "source_notes": "AE Radio TV (720p) [Not 24/7]",
+      "verification_scope": "Prueba manual en teléfono con La TV v0.7",
+      "phone_test": {
+        "result": "video_and_audio",
+        "reported_local_time": "2026-11-11 18:12",
+        "timezone": "America/Buenos_Aires"
+      }
     },
     {
       "name": "AM Canal",
