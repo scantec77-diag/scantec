@@ -1,16 +1,20 @@
 {
   "packageName": "ar.ari.gigas",
-  "versionCode": 9,
-  "versionName": "0.9",
-  "apkUrl": "https://raw.githubusercontent.com/scantec77-diag/scantec/misgigas-updates/misgigas/MisGigas_v0.9_pruebas.apk",
-  "sha256": "710dd5c9fa0cf0ecff0dee99f03cd44dfa007da92eb7a12aa2a419e458a55743",
-  "styleRevision": 1,
+  "versionCode": 10,
+  "versionName": "0.10",
+  "apkUrl": "https://raw.githubusercontent.com/scantec77-diag/scantec/misgigas-updates/misgigas/MisGigas_v0.10_pruebas.apk",
+  "sha256": "793c4c6b7953d8478861358e682ec61a07a4f3aa982e0deb130db6f71d643b70",
+  "styleRevision": 2,
   "style": {
     "red": "#F45B69",
     "yellow": "#FFCA45",
     "green": "#4CE5A2",
     "text": "#FFFFFF",
     "lowGb": 5,
-    "highGb": 15
+    "highGb": 15,
+    "orange": "#FF8C32",
+    "orangeGb": 5,
+    "yellowGb": 10,
+    "greenGb": 20
   }
 }
