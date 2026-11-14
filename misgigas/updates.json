@@ -1,9 +1,9 @@
 {
   "packageName": "ar.ari.gigas",
-  "versionCode": 23,
-  "versionName": "0.23",
-  "apkUrl": "https://raw.githubusercontent.com/scantec77-diag/scantec/misgigas-updates/misgigas/MisGigas_v0.23_pruebas.apk",
-  "sha256": "eeed36e39de887cc8f0f1f02b9a74334dffafb8a3e47bba32e39d411db4dfa33",
+  "versionCode": 24,
+  "versionName": "0.24",
+  "apkUrl": "https://raw.githubusercontent.com/scantec77-diag/scantec/misgigas-updates/misgigas/MisGigas_v0.24_pruebas.apk",
+  "sha256": "e9d7e86f084cc4c5da58c2b0a2bd10ac19fdf3cb668b2275f509c7c4ea11e9c2",
   "styleRevision": 2,
   "style": {
     "red": "#F45B69",
